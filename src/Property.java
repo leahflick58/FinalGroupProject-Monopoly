@@ -28,6 +28,10 @@ public class Property extends Spaces {
         ;
     }
 
+    public void reset() {
+        unmortgage();
+    }
+
     public void mortage() {
         mortgaged = true;
     }

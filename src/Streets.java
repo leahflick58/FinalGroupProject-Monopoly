@@ -19,4 +19,9 @@ public class Streets extends Property {
         property.isHotel = true;
     }
 
+    @Override
+    public void reset() {
+        super.reset();
+        isHotel = false;
+    }
 }
