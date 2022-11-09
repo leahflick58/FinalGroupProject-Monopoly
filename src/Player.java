@@ -8,6 +8,7 @@ public class Player {
     protected int turnsInJail;
     protected ArrayList<Property> properties;
     protected int bankBalance;
+    protected int currentSpace;
 
     public Player(String name) {
         this.name = name;
@@ -17,6 +18,7 @@ public class Player {
         turnsInJail = 0;
         properties = new ArrayList<>();
         bankBalance = 1500;
+        currentSpace = 0;
     }
 
     public int numberUtilities() {
@@ -75,6 +77,13 @@ public class Player {
         return properties.contains(property);
     }
 
+    public int getCurrentSpace() {
+        return currentSpace;
+    }
+
+    public void setCurrentSpace(int space) {
+        this.currentSpace = space;
+    }
 
 
 }
