@@ -13,7 +13,7 @@ public class Player {
     public Player(String name) {
         this.name = name;
         isInJail = false;
-        bankrupt = false;   // might want to get rid of this and instead just check if bankBalance <= 0
+        bankrupt = false;
         hasGetOutOfJail = false;
         turnsInJail = 0;
         properties = new ArrayList<>();
@@ -84,6 +84,27 @@ public class Player {
     public void setCurrentSpace(int space) {
         this.currentSpace = space;
     }
+
+    public boolean getHasGetOutOfJail() {
+        return hasGetOutOfJail;
+    }
+
+    public void setHasGetOutOfJail(boolean status) {
+        hasGetOutOfJail = status;
+    }
+
+    public int getTurnsInJail() {
+        return turnsInJail;
+    }
+
+    public void resetTurnsInJail() {
+        turnsInJail = 0;
+    }
+
+    public int getBankBalance() {
+        return bankBalance;
+    }
+
 
 
 }

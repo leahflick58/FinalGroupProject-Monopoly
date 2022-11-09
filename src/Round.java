@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
     public class Round {
-        private ArrayList<Player> players;
-        private ArrayList<Spaces> spaces;
-        private int numPlayers;
+        private final ArrayList<Player> players;
+        private final ArrayList<Spaces> spaces;
+        private final int numPlayers;
 
 
         public Round(ArrayList<Player> players, ArrayList<Spaces> spaces) {
@@ -16,21 +16,24 @@ import java.util.Random;
         //plays a single round
         public void play() {
             for(Player p : players) {
-                int spaces = rollDice();
-                if(spaces == 0) {
-                    //p goes to jail and BREAK
-                }
-                //TODO: handle doubles or triples
-                p.setCurrentSpace(p.getCurrentSpace() + spaces);
-                int newSpace = p.getCurrentSpace();
+                if (!p.bankrupt) {
+                    int spaces = rollDice();
+                    if(spaces == 0) {
+                        //p goes to jail and BREAK
+                    }
+                    //TODO: handle doubles or triples
+                    p.setCurrentSpace(p.getCurrentSpace() + spaces);
+                    int newSpace = p.getCurrentSpace();
 
-                //TODO: identify type of space and act accordingly
+                    //TODO: identify type of space and act accordingly
 
 //            if(!p.ownsProperty()) {
 //
 //            } else {
 //
 //            }
+                }
+
             }
         }
 
