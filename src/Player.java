@@ -7,7 +7,7 @@ public class Player {
     protected boolean bankrupt;
     protected boolean hasGetOutOfJail;
     protected int turnsInJail;
-    protected ArrayList<Properties> properties;
+    protected ArrayList<Property> properties;
     protected int bankBalance;
 
     public Player(String name) {
@@ -17,41 +17,66 @@ public class Player {
         hasGetOutOfJail = false;
         turnsInJail = 0;
         properties = new ArrayList<>();
-        bankBalance = 1;
-        // TODO: Get starting bank balance
+        bankBalance = 1500;
     }
 
     // TODO: Finish Method
     public int numberUtilities() {
-        return 1;
+        int utilities = 0;
+        for (Property property : properties) {
+            if (property instanceof Utilities) {
+                utilities ++;
+            }
+        }
+        return utilities;
     }
 
     // TODO: Finish Method
     public int numberRailRoads() {
-        return 1;
+        int railroads = 0;
+        for (Property property : properties) {
+            if (property instanceof Railroads) {
+                railroads ++;
+            }
+        }
+        return railroads;
     }
 
     // TODO: Finish Method
     public int numberHouses() {
-        return 1;
+        int houses = 0;
+        for (Property property : properties) {
+            if (property instanceof Streets) {
+                if (!((Streets) property).getHouseStatus())
+                        houses ++;
+            }
+        }
+        return houses;
     }
 
     // TODO: Finish Method
     public int numberHotels() {
-        return 1;
+        int hotels = 0;
+        for (Property property : properties) {
+            if (property instanceof Streets) {
+                if (((Streets) property).getHouseStatus())
+                    hotels ++;
+            }
+        }
+        return hotels;
     }
 
-    public void addProperty(Properties newProperty) {
+    public void addProperty(Property newProperty) {
         // TODO: Change bank balance
         properties.add(newProperty);
     }
 
-    public void sellProperty(Properties soldProperty) {
+    public void sellProperty(Property soldProperty) {
         // TODO: Change bank balance
         properties.remove(soldProperty);
     }
 
-    public boolean ownsProperty(Properties property) {
+    public boolean ownsProperty(Property property) {
         return properties.contains(property);
     }
 
