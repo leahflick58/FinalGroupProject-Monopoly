@@ -1,4 +1,4 @@
-public class Property {
+public class Property extends Spaces {
     private int rent;
     private int price;
     private int mortgage;
@@ -23,6 +23,10 @@ public class Property {
         return mortgage;
     }
 
+    @Override
+    public void action() {
+        ;
+    }
 
     public void mortage() {
         mortgaged = true;

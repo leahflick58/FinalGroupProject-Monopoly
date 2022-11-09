@@ -1,2 +1,3 @@
-public class Spaces {
+public abstract class Spaces {
+    abstract void action();
 }
