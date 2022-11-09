@@ -1,11 +1,16 @@
 public class Streets extends Property {
-    private boolean isHouse;
+    private boolean isHotel;
     public Streets(int rent, int price, int mortgage) {
         super(rent, price, mortgage);
-        this.isHouse = false;
+        this.isHotel = false;
     }
 
     public boolean getHouseStatus() {
-        return isHouse;
+        return isHotel;
     }
+
+    public void upgrade(Streets property) {
+        property.isHotel = true;
+    }
+
 }

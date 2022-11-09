@@ -8,6 +8,19 @@ public class Property {
         this.rent = rent;
         this.price = price;
         this.mortgage = mortgage;
+        mortgaged = false;
+    }
+
+    public int getRent() {
+        return rent;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getMortgage() {
+        return mortgage;
     }
 
 
@@ -19,6 +32,5 @@ public class Property {
         mortgaged = false;
     }
 
-    //abstract void upgrade();
 
 }

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Properties;
 
 public class Player {
     protected String name;
@@ -20,7 +19,6 @@ public class Player {
         bankBalance = 1500;
     }
 
-    // TODO: Finish Method
     public int numberUtilities() {
         int utilities = 0;
         for (Property property : properties) {
@@ -31,7 +29,6 @@ public class Player {
         return utilities;
     }
 
-    // TODO: Finish Method
     public int numberRailRoads() {
         int railroads = 0;
         for (Property property : properties) {
@@ -42,7 +39,6 @@ public class Player {
         return railroads;
     }
 
-    // TODO: Finish Method
     public int numberHouses() {
         int houses = 0;
         for (Property property : properties) {
@@ -54,7 +50,6 @@ public class Player {
         return houses;
     }
 
-    // TODO: Finish Method
     public int numberHotels() {
         int hotels = 0;
         for (Property property : properties) {
@@ -67,18 +62,19 @@ public class Player {
     }
 
     public void addProperty(Property newProperty) {
-        // TODO: Change bank balance
+        bankBalance = bankBalance - newProperty.getPrice();
         properties.add(newProperty);
     }
 
     public void sellProperty(Property soldProperty) {
-        // TODO: Change bank balance
+        bankBalance = bankBalance + (soldProperty.getPrice() / 2);
         properties.remove(soldProperty);
     }
 
     public boolean ownsProperty(Property property) {
         return properties.contains(property);
     }
+
 
 
 }
