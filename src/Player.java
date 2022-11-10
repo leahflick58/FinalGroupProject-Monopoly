@@ -21,6 +21,10 @@ public class Player {
         currentSpace = 0;
     }
 
+    /**
+     * Searches through a players owned properties and counts the number of utilities
+     * @return number of Utilities a Player owns in their Properties ArrayList
+     */
     public int numberUtilities() {
         int utilities = 0;
         for (Property property : properties) {
@@ -31,6 +35,10 @@ public class Player {
         return utilities;
     }
 
+    /**
+     * Searches through a players owned properties and counts the number of railroads
+     * @return number of RailRoads a Player owns in their Properties ArrayList
+     */
     public int numberRailRoads() {
         int railroads = 0;
         for (Property property : properties) {
@@ -41,6 +49,10 @@ public class Player {
         return railroads;
     }
 
+    /**
+     * Searches through a players owned properties and counts the number of houses
+     * @return number of Houses a Player owns in their Properties ArrayList
+     */
     public int numberHouses() {
         int houses = 0;
         for (Property property : properties) {
@@ -52,6 +64,10 @@ public class Player {
         return houses;
     }
 
+    /**
+     * Searches through a players owned properties and counts the number of Hotels
+     * @return number of Hotels a Player owns in their Properties ArrayList
+     */
     public int numberHotels() {
         int hotels = 0;
         for (Property property : properties) {
@@ -63,11 +79,19 @@ public class Player {
         return hotels;
     }
 
+    /**
+     * Adds a Property to a players owned properties list
+     * @param newProperty property that player is buying
+     */
     public void addProperty(Property newProperty) {
         bankBalance = bankBalance - newProperty.getPrice();
         properties.add(newProperty);
     }
 
+    /**
+     * Removes a Property from a players owned properties list.
+     * @param soldProperty
+     */
     public void sellProperty(Property soldProperty) {
         bankBalance = bankBalance + (soldProperty.getPrice() / 2);
         properties.remove(soldProperty);
@@ -103,6 +127,10 @@ public class Player {
 
     public int getBankBalance() {
         return bankBalance;
+    }
+
+    public void addOrSubBankBalance(int dollars) {
+        bankBalance = bankBalance + dollars;
     }
 
 

@@ -24,7 +24,7 @@ public class Property extends Spaces {
     }
 
     @Override
-    public void action() {
+    public void action(Player p) {
         ;
     }
 

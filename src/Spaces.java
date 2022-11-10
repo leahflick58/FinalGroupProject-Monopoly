@@ -1,3 +1,3 @@
 public abstract class Spaces {
-    abstract void action();
+    abstract void action(Player p);
 }
