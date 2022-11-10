@@ -90,21 +90,37 @@ public class Player {
 
     /**
      * Removes a Property from a players owned properties list.
-     * @param soldProperty
+     * Adds half of property's price to Player BankBalance
+     * Resets property status (un-mortgaged and house)
+     * @param soldProperty property that player is Selling
      */
     public void sellProperty(Property soldProperty) {
         bankBalance = bankBalance + (soldProperty.getPrice() / 2);
         properties.remove(soldProperty);
+        soldProperty.reset();
     }
 
+    /**
+     * Checks a Player's owned properties list to see if that Player owns the property
+     * @param property property in question
+     * @return true if Player owns that property, else false
+     */
     public boolean ownsProperty(Property property) {
         return properties.contains(property);
     }
 
+    /**
+     * The space the Player currently is on the board
+     * @return an integer representing the Player's space
+     */
     public int getCurrentSpace() {
         return currentSpace;
     }
 
+    /**
+     * Moves player on the board and saves their new space
+     * @param space the space the player should end up
+     */
     public void setCurrentSpace(int space) {
         this.currentSpace = space;
     }
@@ -117,18 +133,33 @@ public class Player {
         hasGetOutOfJail = status;
     }
 
+    /**
+     * To test if a Player has been in jail 3 concurrent turns -> if so they must pay the fee and can leave
+     * @return number of concurrent turns in jail
+     */
     public int getTurnsInJail() {
         return turnsInJail;
     }
 
+    /**
+     * After a player leaves Jail, TurnsInJail is reset back to zero
+     */
     public void resetTurnsInJail() {
         turnsInJail = 0;
     }
 
+    /**
+     *
+     * @return a player's current bank balance as an int
+     */
     public int getBankBalance() {
         return bankBalance;
     }
 
+    /**
+     * Changes a player's bank balance by provided amount
+     * @param dollars positive to add money or negative to subtract money
+     */
     public void addOrSubBankBalance(int dollars) {
         bankBalance = bankBalance + dollars;
     }

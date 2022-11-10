@@ -25,9 +25,12 @@ public class Property extends Spaces {
 
     @Override
     public void action(Player p) {
-        ;
+        // TODO: All this jazz
     }
 
+    /**
+     * When a Property is sold back to the bank, it resets it its "natural" state
+     */
     public void reset() {
         unmortgage();
     }
