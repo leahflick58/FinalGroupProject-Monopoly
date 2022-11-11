@@ -4,7 +4,7 @@ public class Player {
     protected String name;
     protected boolean isInJail;
     protected boolean bankrupt;
-    protected boolean hasGetOutOfJail;
+    protected int hasGetOutOfJail;
     protected int turnsInJail;
     protected ArrayList<Property> properties;
     protected int bankBalance;
@@ -14,7 +14,7 @@ public class Player {
         this.name = name;
         isInJail = false;
         bankrupt = false;
-        hasGetOutOfJail = false;
+        hasGetOutOfJail = 0;
         turnsInJail = 0;
         properties = new ArrayList<>();
         bankBalance = 1500;
@@ -126,11 +126,11 @@ public class Player {
     }
 
     public boolean getHasGetOutOfJail() {
-        return hasGetOutOfJail;
+        return hasGetOutOfJail > 0;
     }
 
-    public void setHasGetOutOfJail(boolean status) {
-        hasGetOutOfJail = status;
+    public void setHasGetOutOfJail(int status) {
+        hasGetOutOfJail = hasGetOutOfJail + status;
     }
 
     /**

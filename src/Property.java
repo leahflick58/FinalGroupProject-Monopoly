@@ -1,4 +1,4 @@
-public class Property extends Spaces {
+abstract class Property extends Spaces {
     private int rent;
     private int price;
     private int mortgage;
