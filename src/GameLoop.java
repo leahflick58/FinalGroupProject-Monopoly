@@ -1,27 +1,35 @@
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class GameLoop {
-//    Round round;
-    private ArrayList<Player> players;
+    public ArrayList<Player> players;
+    private Board board;
+    private boolean hasWinner;
 
-    public GameLoop(List<String> names) {
-        boolean winner = false;
+    public GameLoop(ArrayList<String> names) {
+        board = new Board();        //ArrayLists <Spaces>,<Chance>, <CommunityChest>
+                                    //Board constructor should not take any args
+        hasWinner = false;
 
         this.players = new ArrayList<>();
         for (String p : names) {
             this.players.add(new Player(p));
         }
+    }
+
+    public Player gameLoop(ArrayList<Player> players) {
+        //TODO
 
         //iterate through rounds while no winner
-        while(!winner) {
+        while(!hasWinner) {
             System.out.println("TEST");
-
+//            board.getSpaces().get(0);     //should return space "Go"
             //TODO: add winner boolean to play() logic
-            winner = true;
+
+            hasWinner = true;
 //            play();
         }
+        return new Player("winner");
     }
 
     //plays a single round
@@ -68,5 +76,9 @@ public class GameLoop {
             return 0;
         }
         return sum;
+    }
+
+    public void move() {
+        //TODO
     }
 }

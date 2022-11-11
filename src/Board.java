@@ -1,11 +1,20 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 public class Board {
-    private ArrayList<Spaces> spaces;
-    private ArrayList<Chance> chance;                   //Chance cards
-    private ArrayList<Community> communityChests;       //Community Chest cards
+    private HashMap<Integer, Spaces> spaces;
+    private LinkedList<Chance> chance;                   //Chance cards
+    private LinkedList<Community> communityChests;       //Community Chest cards
 
     public Board() {
-        //TODO: if spaces, chance, and comChests do not change, what kind of constructor do we need here?
+        //TODO: complete constructor (+ Spaces, Chance, Community constructors)
+        //spaces = new Spaces();
+        //chance = new Chance();
+        //communityChests = new Community();
+    }
+
+    public HashMap<Integer, Spaces> getSpaces() {
+        return spaces;
     }
 }
