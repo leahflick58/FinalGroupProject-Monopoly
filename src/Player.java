@@ -164,6 +164,11 @@ public class Player {
         bankBalance = bankBalance + dollars;
     }
 
+    public void payRent(Player otherPlayer, Property property) {
+
+
+    }
+
 
 
 }
