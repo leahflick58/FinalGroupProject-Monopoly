@@ -24,4 +24,20 @@ public class Streets extends Property {
         super.reset();
         isHotel = false;
     }
+
+    // Instead of the regular house/hotel rent since we only have one rent variable, I just have hotels marked up 25%
+    @Override
+    int getTotalRent(Player p) {
+        int rent = 0;
+        for (Property property : p.properties) {
+            if (property instanceof Streets) {
+                if (((Streets) property).isHotel) {
+                    rent += property.getRent() * (1.25);
+                } else {
+                    rent += property.getRent();
+                }
+            }
+        }
+        return rent;
+    }
 }

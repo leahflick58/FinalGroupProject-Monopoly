@@ -57,7 +57,7 @@ public class GameLoop {
     }
 
     //TODO: test logic
-    public int rollDice() {
+    public static int rollDice() {
         Random randGen = new Random();
         int sum = 0;
         int rolls = 0;

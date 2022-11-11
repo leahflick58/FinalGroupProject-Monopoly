@@ -164,9 +164,15 @@ public class Player {
         bankBalance = bankBalance + dollars;
     }
 
+    /**
+     * Determines the amount of rent due depending on Property type
+     * @param otherPlayer the player that owns the property landed on
+     * @param property property in question in order to gain the property type for getTotalRent() method
+     */
     public void payRent(Player otherPlayer, Property property) {
-
-
+        int rentAmount = property.getTotalRent(otherPlayer);
+        this.addOrSubBankBalance(-rentAmount);
+        otherPlayer.addOrSubBankBalance(rentAmount);
     }
 
 

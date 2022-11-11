@@ -43,5 +43,7 @@ abstract class Property extends Spaces {
         mortgaged = false;
     }
 
+    abstract int getTotalRent(Player p);
+
 
 }
