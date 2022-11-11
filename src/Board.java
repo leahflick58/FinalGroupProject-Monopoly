@@ -6,6 +6,9 @@ public class Board {
     private ArrayList<Community> communityChests;       //Community Chest cards
 
     public Board() {
-        //TODO: if spaces, chance, and comChests do not change, what kind of constructor do we need here?
+        //TODO: complete constructor (+ Spaces, Chance, Community constructors)
+        //spaces = new Spaces();
+        //chance = new Chance();
+        //communityChests = new Community();
     }
 }

@@ -3,11 +3,12 @@ import java.util.List;
 import java.util.Random;
 
 public class GameLoop {
-//    Round round;
-    private ArrayList<Player> players;
 
-    public GameLoop(List<String> names) {
-        boolean winner = false;
+    public ArrayList<Player> players;
+    private boolean hasWinner;
+
+    public GameLoop(ArrayList<String> names) {
+        hasWinner = false;
 
         this.players = new ArrayList<>();
         for (String p : names) {
@@ -15,11 +16,12 @@ public class GameLoop {
         }
 
         //iterate through rounds while no winner
-        while(!winner) {
+        while(!hasWinner) {
             System.out.println("TEST");
 
             //TODO: add winner boolean to play() logic
-            winner = true;
+
+            hasWinner = true;
 //            play();
         }
     }
