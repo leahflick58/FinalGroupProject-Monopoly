@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GameLoop {
-    public ArrayList<Player> players;
+    public static ArrayList<Player> players;
     private Board board;
     private boolean hasWinner;
 
