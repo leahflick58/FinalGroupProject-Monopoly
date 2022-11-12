@@ -44,26 +44,18 @@ public class GameLoop {
                 p.setCurrentSpace(p.getCurrentSpace() + spaces);
                 int newSpace = p.getCurrentSpace();
 
-                //TODO: identify type of space and act accordingly
-
-//            if(!p.ownsProperty()) {
-//
-//            } else {
-//
-//            }
             }
-
         }
     }
 
-    //TODO: test logic
     public static int rollDice() {
         Random randGen = new Random();
         int sum = 0;
         int rolls = 0;
-        boolean doubles = false;
+        boolean doubles;
 
         do {
+            doubles = false;
             int die1 = randGen.nextInt(6) + 1;
             int die2 = randGen.nextInt(6) + 1;
             sum += die1 + die2;
@@ -71,8 +63,8 @@ public class GameLoop {
             if(die1 == die2) {
                 doubles = true;
             }
-        } while (doubles && (rolls < 4));
-        if(rolls > 3) {
+        } while (doubles && (rolls < 3));
+        if(rolls == 3) {
             return 0;
         }
         return sum;
