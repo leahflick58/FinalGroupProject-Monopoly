@@ -4,12 +4,14 @@ import java.util.Random;
 public class GameLoop {
     public static ArrayList<Player> players;
     private Board board;
-    private boolean hasWinner;
 
+    /**
+     * GameLoop constructor: takes an ArrayList of player names and creates a new ArrayList of Player objects.
+     * @param names
+     */
     public GameLoop(ArrayList<String> names) {
         board = new Board();        //ArrayLists <Spaces>,<Chance>, <CommunityChest>
                                     //Board constructor should not take any args
-        hasWinner = false;
 
         this.players = new ArrayList<>();
         for (String p : names) {
@@ -17,37 +19,43 @@ public class GameLoop {
         }
     }
 
+    /**
+     * Iterates through multiple rounds of Monopoly until all but one player is bankrupt (winner)
+     * @param players
+     * @return Player that has won the game
+     */
+    //TODO: test logic
     public Player gameLoop(ArrayList<Player> players) {
-        //TODO
 
         //iterate through rounds while no winner
-        while(!hasWinner) {
-            System.out.println("TEST");
-//            board.getSpaces().get(0);     //should return space "Go"
-            //TODO: add winner boolean to play() logic
-
-            hasWinner = true;
-//            play();
+        while(!hasWinner()) {
+            play();
         }
-        return new Player("winner");
+        return winner();
     }
 
-    //plays a single round
+    /**
+     * Plays a single Monopoly round
+     */
     public void play() {
         for(Player p : players) {
             if (!p.bankrupt) {
-                int spaces = rollDice();
-                if(spaces == 0) {
-                    //p goes to jail and BREAK
+                                        //if p.isinJail && p.usesJailFreeCard {
+                if (!p.isInJail) {
+                    move(p, rollDice());
+                    playerAction(p);
+                } else {
+                    p.isInJail = false;
                 }
-                //TODO: handle doubles or triples
-                p.setCurrentSpace(p.getCurrentSpace() + spaces);
-                int newSpace = p.getCurrentSpace();
-
             }
         }
     }
 
+    /**
+     * Rolls two 6-sided dice according to Monopoly rules
+     * @return sum of rolls or 0 if caught cheating, indicating player should go to jail
+     */
+    //Tests Passed
     public static int rollDice() {
         Random randGen = new Random();
         int sum = 0;
@@ -70,7 +78,62 @@ public class GameLoop {
         return sum;
     }
 
-    public void move() {
-        //TODO
+    /**
+     * Moves player's current location on board based on dice roll
+     * @param p
+     * @param spaces
+     * @return int new location on board
+     */
+    //TODO: test logic
+    public int move(Player p, int spaces) {
+        if (spaces != 0) {
+            p.setCurrentSpace(p.getCurrentSpace() + spaces);
+        } else {
+            p.isInJail = true;  //if cheating on rolling dice, go to jail
+            p.currentSpace = 10;
+                //TODO: get int value corresponding to key "Jail" after reversing HashMap
+                //consider making 0: Go, 10: Just Visiting [Jail] and 11: Jail
+        }
+        return p.currentSpace;
+    }
+
+    /**
+     * calls Spaces' action()
+     * @param p
+     */
+    public void playerAction(Player p) {
+        board.getSpaces().get(p.currentSpace).action(p);
+    }
+
+    /**
+     * If all but one player is bankrupt, the game has a winner
+     * @return
+     */
+    //TODO: test logic
+    public boolean hasWinner() {
+        int numPlaying = 0;
+
+        for(Player p : this.players) {
+            if(!p.bankrupt) {
+                numPlaying++;
+            }
+        }
+        return ((numPlaying == 1) && (this.players.size() > 1));
+    }
+
+    /**
+     * If the game has a winner, finds and returns the winner of the game
+     * @return address of Player who has won the game
+     */
+    //TODO: test logic
+    public Player winner() {
+        if(hasWinner()) {
+            for(Player p : this.players) {
+                if(!p.bankrupt) {
+                    return p;
+                }
+            }
+        }
+        return null;
     }
 }

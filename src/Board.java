@@ -14,6 +14,10 @@ public class Board {
         //communityChests = new Community();
     }
 
+    /**
+     * Getter: Spaces on Board
+     * @return
+     */
     public HashMap<Integer, Spaces> getSpaces() {
         return spaces;
     }
