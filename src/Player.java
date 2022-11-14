@@ -10,6 +10,18 @@ public class Player {
     protected int bankBalance;
     protected int currentSpace;
 
+    /**
+     * A Player has 8 attributes, only one of which is up for user input
+     * Pre-determined attributes:
+     * isInJail - boolean for if a Player is in jail
+     * bankrupt - boolean for if a Player is still "in the game"
+     * hasGetOutOfJail - int of number of Get Out of Jail cards a Player has
+     * turnsInJail - int of number of concurrent turns a Player has spent in jail
+     * properties - an empty ArrayList of Player's owned Properties
+     * bankBalance - int of Player's available money, initiated at $1500
+     * currentSpace - int of Player's respective space on the Board. Initiated at "GO"
+     * @param name User's name
+     */
     public Player(String name) {
         this.name = name;
         isInJail = false;
@@ -125,16 +137,24 @@ public class Player {
         this.currentSpace = space;
     }
 
+    /**
+     * @return true if Player has 1+ Get Out of Jail cards
+     */
     public boolean getHasGetOutOfJail() {
         return hasGetOutOfJail > 0;
     }
 
-    public void setHasGetOutOfJail(int status) {
-        hasGetOutOfJail = hasGetOutOfJail + status;
+    /**
+     * Add or subtract a Get Out of Jail Card if a Player either:
+     * a) receives a card
+     * b) plays a card
+     * @param amount +1 to receive a card, -1 to play a card
+     */
+    public void setHasGetOutOfJail(int amount) {
+        hasGetOutOfJail = hasGetOutOfJail + amount;
     }
 
     /**
-     * To test if a Player has been in jail 3 concurrent turns -> if so they must pay the fee and can leave
      * @return number of concurrent turns in jail
      */
     public int getTurnsInJail() {
@@ -149,7 +169,6 @@ public class Player {
     }
 
     /**
-     *
      * @return a player's current bank balance as an int
      */
     public int getBankBalance() {

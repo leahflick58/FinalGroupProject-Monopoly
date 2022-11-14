@@ -5,6 +5,14 @@ abstract class Property extends Spaces {
     private final int mortgage;
     private boolean mortgaged;
 
+    /**
+     * A Property, extended from Spaces class, has five attributes:
+     * @param name name of the property (i.e. "Beans on Broad", "Hall of Arts and Letters", etc.
+     * @param rent rent due when someone other than the owner lands on the property
+     * @param price price in order to buy property
+     * @param mortgage the amount the player can receive from the bank from mortgaging the property
+     *                 Finally, boolean mortgaged is set to false
+     */
     public Property(String name, int rent, int price, int mortgage) {
         this.name = name;
         this.rent = rent;
@@ -13,18 +21,34 @@ abstract class Property extends Spaces {
         mortgaged = false;
     }
 
+    /**
+     * @return Property's rent
+     */
     public int getRent() {
         return rent;
     }
 
+    /**
+     * @return Property's price
+     */
     public int getPrice() {
         return price;
     }
 
+    /**
+     * @return Property's mortgage
+     */
     public int getMortgage() {
         return mortgage;
     }
 
+    /**
+     * When a Player lands on a Property space, first check if that property is owned
+     * If the Player who landed on the space owns it, break
+     * If a different Player owns it, the current Player must pay them rent
+     * If no one owns it, the Player has the choice to buy the Property or pass
+     * @param p
+     */
     // TODO: This is gonna require a lot of testing, I don't know if this does what we want
     @Override
     public void action(Player p) {
@@ -58,14 +82,25 @@ abstract class Property extends Spaces {
         unmortgage();
     }
 
+    /**
+     * Used when a player wishes to mortgage a property for extra cash
+     */
     public void mortage() {
         mortgaged = true;
     }
 
+    /**
+     * Used when either a player chooses to unmortgage a property or when the property is seized by the bank (reset() method)
+     */
     public void unmortgage() {
         mortgaged = false;
     }
 
+    /**
+     * Returns the amount of rent due based on Player's number of specific property type
+     * @param p Player who owns the respective property
+     * @return total dollar amount due
+     */
     abstract int getTotalRent(Player p);
 
 
