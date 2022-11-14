@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Monopoly {
     private GameLoop loop;
 
@@ -11,6 +12,8 @@ public class Monopoly {
     public static void main(String[] args) {
         Monopoly myGame = new Monopoly(new ArrayList<>(List.of("James","Mary","Joe")));
         //TODO: return winner
+
     }
+
 
 }
