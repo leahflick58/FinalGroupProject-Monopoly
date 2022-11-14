@@ -7,6 +7,7 @@ public class Community extends Spaces {
      *
      * @param type payBank, payPlayers, collectBank, collectPlayers, goToJail, getOutOfJail, repairs, advance
      * @param amount dollars collected/paid, or in getOutOfJail adds one Get Out of Jail card to Player's inventory, or int of destination space
+     *               If goToJail, getOutOfJail, or repairs -> amount = 0
      */
     public Community(String type, int amount) {
         this.type = type;

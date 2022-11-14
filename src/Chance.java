@@ -7,6 +7,7 @@ public class Chance extends Spaces{
      *
      * @param type payBank, payPlayers, collectBank, collectPlayers, goToJail, getOutOfJail, homeImprovement
      * @param amount dollars collected/paid, or in getOutOfJail adds one Get Out of Jail card to Player's inventory
+     *               If goToJail, getOutOfJail, or homeImprovement -> amount = 0
      */
     public Chance(String type, int amount) {
         this.type = type;
