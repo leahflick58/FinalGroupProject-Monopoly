@@ -17,7 +17,8 @@ public class Board {
         spaces.put(1, new Streets("SAC", 2, 60, 30, "Brown"));
 
 
-        communityChests.add(0, new Community("pay", 10, ""));
+        communityChests.add(0, new Community("payBank", 10, "copay"));
+        chance.add(0, new Chance("collectPlayers", 10, "birthday"));
     }
 
     /**
