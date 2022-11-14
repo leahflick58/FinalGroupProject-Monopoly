@@ -1,11 +1,6 @@
-import java.util.LinkedList;
+import java.util.Objects;
 
 public class ChanceSpace extends Spaces {
-    LinkedList<Chance> chance;
-
-    public ChanceSpace() {
-        //TODO
-    }
 
     /**
      * Draws a card from the Chance deck and carries out the assigned action
@@ -13,8 +8,28 @@ public class ChanceSpace extends Spaces {
      */
     @Override
     void action(Player p) {
-        chance.get(0).action(p);
-        chance.addLast(chance.get(0));
-        chance.remove(chance.get(0));
+        Chance drawnCard = Board.chance.get(0);
+        int cardAmount = drawnCard.getAmount();
+        switch (drawnCard.getType()) {
+            case "payBank":
+                drawnCard.payBank(p, cardAmount);
+            case "payPlayers":
+                drawnCard.payPlayers(p, cardAmount);
+            case "collectBank":
+                drawnCard.collectBank(p, cardAmount);
+            case "collectPlayers":
+                drawnCard.collectPlayers(p, cardAmount);
+            case "goToJail":
+                drawnCard.goToJail(p);
+            case "getOutOfJail":
+                drawnCard.getOutOfJail(p);
+            case "homeImprovement":
+                drawnCard.homeImprovement(p);
+        }
+        if (!Objects.equals(drawnCard.getType(), "getOutOfJail")) {
+            Board.chance.addLast(drawnCard);
+            Board.chance.remove(drawnCard);
+        }
+
     }
 }
