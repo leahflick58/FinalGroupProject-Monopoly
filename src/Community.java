@@ -1,7 +1,8 @@
-public class Community extends Spaces {
+public class Community extends Card {
     private final String type;
     // payBank, payPlayers, collectBank, collectPlayers, goToJail, getOutOfJail, repairs, advance, goBack
     private final int amount;
+    private final String message;
 
     /**
      *
@@ -9,9 +10,10 @@ public class Community extends Spaces {
      * @param amount dollars collected/paid, or in getOutOfJail adds one Get Out of Jail card to Player's inventory, or int of destination space
      *               If goToJail, getOutOfJail, or repairs -> amount = 0
      */
-    public Community(String type, int amount) {
+    public Community(String type, int amount, String message) {
         this.type = type;
         this.amount = amount;
+        this.message = message;
     }
     @Override
     void action(Player p) {

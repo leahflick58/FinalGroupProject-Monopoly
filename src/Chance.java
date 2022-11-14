@@ -1,7 +1,8 @@
-public class Chance extends Spaces{
+public class Chance extends Card {
     private final String type;
     // payBank, payPlayers, collectBank, collectPlayers, goToJail, getOutOfJail, homeImprovement
     private final int amount;
+    private final String message;
 
     /**
      *
@@ -9,9 +10,10 @@ public class Chance extends Spaces{
      * @param amount dollars collected/paid, or in getOutOfJail adds one Get Out of Jail card to Player's inventory
      *               If goToJail, getOutOfJail, or homeImprovement -> amount = 0
      */
-    public Chance(String type, int amount) {
+    public Chance(String type, int amount, String message) {
         this.type = type;
         this.amount = amount;
+        this.message = message;
     }
     @Override
     void action(Player p) {

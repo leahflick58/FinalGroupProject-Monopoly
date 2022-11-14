@@ -1,25 +1,28 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Board {
     protected static HashMap<Integer, Spaces> spaces;
-    protected LinkedList<Chance> chance;                   //Chance cards
-    protected LinkedList<Community> communityChests;       //Community Chest cards
+    protected static LinkedList<Chance> chance;                   //Chance cards
+    protected static LinkedList<Community> communityChests;       //Community Chest cards
 
+    /**
+     * Board constructor
+     * Because the board will not change during the game, all spaces are initialized in the Board constructor
+     */
     public Board() {
-        //TODO: complete constructor (+ Spaces, Chance, Community constructors)
+        //TODO: complete constructor (+ Spaces, Chance, Community cons`tructors)
         spaces = new HashMap<>();
         spaces.put(0, new Go());
-//        spaces.put(1, new Streets());
+        spaces.put(1, new Streets("SAC", 2, 60, 30, "Brown"));
 
-        //chance = new Chance();
-        //communityChests = new Community();
+
+        communityChests.add(0, new Community("pay", 10, ""));
     }
 
     /**
      * Getter: Spaces on Board
-     * @return
+     * @return HashMap of spaces
      */
     public HashMap<Integer, Spaces> getSpaces() {
         return spaces;
