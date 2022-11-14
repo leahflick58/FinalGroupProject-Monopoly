@@ -45,7 +45,7 @@ public class GameLoop {
                     move(p, rollDice());
                     playerAction(p);
                 } else {
-                    p.isInJail = false;
+                    //jail action()
                 }
             }
         }
