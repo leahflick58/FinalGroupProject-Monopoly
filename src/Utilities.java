@@ -1,6 +1,6 @@
 public class Utilities extends Property {
-    public Utilities(int rent, int price, int mortgage) {
-        super(rent, price, mortgage);
+    public Utilities(String name, int rent, int price, int mortgage) {
+        super(name, rent, price, mortgage);
     }
 
     // did a new dice roll to save hassle

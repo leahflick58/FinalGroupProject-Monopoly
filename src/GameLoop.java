@@ -13,9 +13,9 @@ public class GameLoop {
         board = new Board();        //ArrayLists <Spaces>,<Chance>, <CommunityChest>
                                     //Board constructor should not take any args
 
-        this.players = new ArrayList<>();
+        players = new ArrayList<>();
         for (String p : names) {
-            this.players.add(new Player(p));
+            players.add(new Player(p));
         }
     }
 

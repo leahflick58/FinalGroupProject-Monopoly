@@ -1,8 +1,8 @@
 public class Streets extends Property {
     private boolean isHotel;
     private final String colorGroup;
-    public Streets(int rent, int price, int mortgage, String colorGroup) {
-        super(rent, price, mortgage);
+    public Streets(String name, int rent, int price, int mortgage, String colorGroup) {
+        super(name, rent, price, mortgage);
         this.isHotel = false;
         this.colorGroup = colorGroup;
     }

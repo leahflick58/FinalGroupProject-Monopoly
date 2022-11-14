@@ -1,10 +1,12 @@
 abstract class Property extends Spaces {
+    private final String name;
     private final int rent;
     private final int price;
     private final int mortgage;
     private boolean mortgaged;
 
-    public Property(int rent, int price, int mortgage) {
+    public Property(String name, int rent, int price, int mortgage) {
+        this.name = name;
         this.rent = rent;
         this.price = price;
         this.mortgage = mortgage;

@@ -4,8 +4,8 @@ import java.util.Map;
 public class Railroads extends Property {
     Map<Integer, Integer> railRoadRent;
 
-    public Railroads(int rent, int price, int mortgage) {
-        super(rent, price, mortgage);
+    public Railroads(String name, int rent, int price, int mortgage) {
+        super(name, rent, price, mortgage);
         railRoadRent = new HashMap<>();
         railRoadRent.put(1, 25);
         railRoadRent.put(2, 50);
