@@ -1,6 +1,6 @@
 public class Community extends Spaces {
     private final String type;
-    // payBank, payPlayers, collectBank, collectPlayers, goToJail, getOutOfJail, repairs, advance
+    // payBank, payPlayers, collectBank, collectPlayers, goToJail, getOutOfJail, repairs, advance, goBack
     private final int amount;
 
     /**
@@ -31,6 +31,8 @@ public class Community extends Spaces {
                 repairs(p);
             case "advance":
                 advance(p, this.amount);
+            case "goBack":
+                goBack(p, this.amount);
         }
     }
 
@@ -72,6 +74,11 @@ public class Community extends Spaces {
 
     public void advance(Player p, int amount) {
         p.setCurrentSpace(amount);
+        Board.spaces.get(p.getCurrentSpace()).action(p);
+    }
+
+    public void goBack(Player p, int amount) {
+        p.setCurrentSpace(p.getBankBalance() - amount);
         Board.spaces.get(p.getCurrentSpace()).action(p);
     }
 
