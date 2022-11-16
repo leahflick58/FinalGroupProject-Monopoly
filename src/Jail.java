@@ -14,4 +14,9 @@ public class Jail extends Spaces{
         // TODO: Finish method
         // like a test at the beginning of the round we check to see if player's current space is Jail?
     }
+
+    @Override
+    String getName() {
+        return "Jail";
+    }
 }

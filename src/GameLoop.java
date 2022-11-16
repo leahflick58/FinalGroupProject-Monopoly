@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class GameLoop {
     public static ArrayList<Player> players;
@@ -17,21 +18,25 @@ public class GameLoop {
         for (String p : names) {
             players.add(new Player(p));
         }
+        System.out.println("Created game loop");
     }
 
     /**
      * Iterates through multiple rounds of Monopoly until all but one player is bankrupt (winner)
-     * @param players
      * @return Player that has won the game
      */
     //TODO: test logic
-    public Player gameLoop(ArrayList<Player> players) {
+    public Player gameLoop() {
+        //plays one round
+        play();
+
 
         //iterate through rounds while no winner
-        while(!hasWinner()) {
-            play();
-        }
-        return winner();
+//        while(!hasWinner()) {
+//            play();
+//        }
+//        return winner();
+        return players.get(0);
     }
 
     /**
@@ -39,16 +44,22 @@ public class GameLoop {
      */
     public void play() {
         for(Player p : players) {
+            System.out.println(p.name);
             if (!p.bankrupt) {
                                         //if p.isinJail && p.usesJailFreeCard {
                 if (!p.isInJail) {
                     move(p, rollDice());
+                    System.out.println(getSpace(p.getCurrentSpace()));
                     playerAction(p);
                 } else {
-                    //jail action()
+                    playerAction(p);    //jail action
                 }
             }
         }
+    }
+
+    public String getSpace(int currentSpace) {
+        return board.getSpaces().get(currentSpace).getName();
     }
 
     /**

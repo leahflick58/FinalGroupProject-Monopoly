@@ -9,4 +9,9 @@ public class GoToJail extends Spaces {
         p.setCurrentSpace(0);
         p.isInJail = true;
     }
+
+    @Override
+    String getName() {
+        return "Go To Jail";
+    }
 }

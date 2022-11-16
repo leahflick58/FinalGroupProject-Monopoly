@@ -85,7 +85,7 @@ abstract class Property extends Spaces {
     /**
      * Used when a player wishes to mortgage a property for extra cash
      */
-    public void mortage() {
+    public void mortgage() {
         mortgaged = true;
     }
 
@@ -103,5 +103,8 @@ abstract class Property extends Spaces {
      */
     abstract int getTotalRent(Player p);
 
+    public String getName() {
+        return name;
+    }
 
 }

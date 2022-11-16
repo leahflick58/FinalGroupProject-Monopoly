@@ -34,4 +34,9 @@ public class CommunitySpace extends Spaces {
         }
     }
 
+    @Override
+    String getName() {
+        return "Community Chest";
+    }
+
 }

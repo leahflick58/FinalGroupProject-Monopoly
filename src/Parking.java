@@ -7,4 +7,9 @@ public class Parking extends Spaces {
     void action(Player p) {
         // TODO: nothing happens in free parking
     }
+
+    @Override
+    String getName() {
+        return "Free Parking";
+    }
 }

@@ -32,4 +32,9 @@ public class ChanceSpace extends Spaces {
         }
 
     }
+
+    @Override
+    String getName() {
+        return "Chance";
+    }
 }

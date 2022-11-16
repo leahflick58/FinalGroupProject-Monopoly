@@ -61,11 +61,14 @@ public class Board {
 
 
         //TODO: complete Community Chest cards
+        communityChests = new LinkedList<>();
+        communityChests.add(new Community("payBank", 10, "copay"));
         communityChests.add(new Community("payBank", 10, "copay"));
 
         //TODO: complete Chance cards
+        chance = new LinkedList<>();
         chance.add(new Chance("collectPlayers", 10, "birthday"));
-
+        chance.add(new Chance("collectPlayers", 10, "birthday"));
     }
 
     /**

@@ -7,4 +7,9 @@ public class Go extends Spaces {
     void action(Player p) {
         p.addOrSubBankBalance(200);
     }
+
+    @Override
+    String getName() {
+        return "Go";
+    }
 }

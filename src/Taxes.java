@@ -8,4 +8,9 @@ public class Taxes extends Spaces{
         // Normally there is an option to do 200 or 10% of all owned assets, I got rid of that choice
         p.addOrSubBankBalance(-200);
     }
+
+    @Override
+    String getName() {
+        return "Taxes";     //will need to split into Income and Luxury
+    }
 }

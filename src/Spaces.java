@@ -4,4 +4,5 @@ public abstract class Spaces {
      * @param p active Player
      */
     abstract void action(Player p);
+    abstract String getName();
 }
