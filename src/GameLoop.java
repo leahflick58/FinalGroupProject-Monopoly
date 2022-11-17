@@ -55,9 +55,9 @@ public class GameLoop {
                                         //if p.isinJail && p.usesJailFreeCard {
                 if (!p.isInJail) {
                     move(p, rollDice());
-                    System.out.println(getSpace(p.getCurrentSpace()));
+                    System.out.println("Landed on " + getSpace(p.getCurrentSpace()));
                     playerAction(p);
-                    System.out.println(p.name + "'s New Balance: $" + p.bankBalance);
+                    System.out.println(p.name + "'s New Balance: $" + p.bankBalance + "\n");
                 } else {
                     playerAction(p);    //jail action
                 }

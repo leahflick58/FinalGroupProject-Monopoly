@@ -71,8 +71,9 @@ abstract class Property extends Spaces {
         if (!owned) {
             // NOTICE - First time I've had to deal with user input
             System.out.println("Do you want to buy this property? Enter Y/N: ");
-            System.out.println(this.getPrice());
-            // TODO: Scanner???
+            System.out.println(this.getDetails());
+
+            //TODO: handle invalid input.Currently any symbol other than 'Y' means "no"
             Scanner in = new Scanner(System.in);
             String decision = in.next();
             if(decision.equals("Y")) {
@@ -111,6 +112,15 @@ abstract class Property extends Spaces {
 
     public String getName() {
         return name;
+    }
+
+    /**
+     * Gets a String of all of this property's values
+     * @return String
+     */
+    public String getDetails() {
+        return (getName() + "\nPrice: $" + getPrice() + "\nRent: $" + getRent()
+        + "\nMortgage: $" + getMortgage());
     }
 
 }
