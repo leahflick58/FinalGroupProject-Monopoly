@@ -38,8 +38,15 @@ public class GameLoop {
         }
 
         //iterate through rounds while no winner
-//        while(!hasWinner()) {
+        //last player can press "q" to quit
+//        boolean quit = false;
+//        Scanner in = new Scanner(System.in);
+//        while(!hasWinner() && !quit) {
 //            play();
+//            while(in.hasNext()) {
+//                if(in.next().equals("q"));
+//                quit = true;
+//            }
 //        }
 //        return winner();
         return winner;

@@ -26,6 +26,10 @@ public class ChanceSpace extends Spaces {
                 drawnCard.getOutOfJail(p);
             case "homeImprovement":
                 drawnCard.homeImprovement(p);
+            case "advNearestRR":
+                drawnCard.advNearestRR(p);
+            case "advNearestUtil":
+                drawnCard.advNearestUtil(p);
         }
         if (!Objects.equals(drawnCard.getType(), "getOutOfJail")) {
             Board.chance.addLast(drawnCard);

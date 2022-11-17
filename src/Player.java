@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class Player {
     protected String name;
@@ -193,6 +193,34 @@ public class Player {
         this.addOrSubBankBalance(-rentAmount);
         otherPlayer.addOrSubBankBalance(rentAmount);
     }
+
+    /**
+     * Finds the nearest Railroad to player (forward direction only)
+     * @return int location
+     */
+    public int nearestRailroad() {
+        //NOTE: hard-coded values
+        if(((currentSpace > 0) && currentSpace < 5) || (currentSpace > 35)) {
+            return 5;
+        }
+        else if((currentSpace >= 5) && currentSpace < 15) {
+            return 15;
+        }
+        if((currentSpace >= 15) && currentSpace < 25) {
+            return 25;
+        }
+        else return 35;
+    }
+
+    public int nearestUtility() {
+        //NOTE: hard-coded values
+        if(((currentSpace > 0) && currentSpace < 12) || (currentSpace > 28)) {
+            return 12;
+        }
+        else return 28;
+    }
+
+
 
 
 

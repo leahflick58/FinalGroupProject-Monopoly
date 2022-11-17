@@ -16,7 +16,7 @@ public class ConsoleDriver {
         // call g.displayBoard()
 
         // can add a gui with minimal if any changes to game logic
-
+/*
         Scanner in = new Scanner(System.in);
         int numPlayers;
         ArrayList<String> playerNames = new ArrayList<>();
@@ -39,5 +39,11 @@ public class ConsoleDriver {
         System.out.println(playerNames);
         Monopoly monopoly = new Monopoly(playerNames);
         System.out.println(monopoly.getWinner().name + " won!");
+   */
+
+        //TEST NEAREST():PLAYER
+
+
     }
+
 }

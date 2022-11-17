@@ -88,8 +88,7 @@ public abstract class Card {
      * @param p active Player
      */
     public void goToJail(Player p) {
-        // TODO: Set this space to jail's actual int
-        p.setCurrentSpace(0);
+        p.setCurrentSpace(10);  //jail in location 10
     }
 
     /**
@@ -130,6 +129,24 @@ public abstract class Card {
      */
     public void goBack(Player p, int amount) {
         p.setCurrentSpace(p.getBankBalance() - amount);
+        Board.spaces.get(p.getCurrentSpace()).action(p);
+    }
+
+    /**
+     * Advances player to nearest Railroad
+     * @param p
+     */
+    public void advNearestRR(Player p) {
+        p.setCurrentSpace(p.nearestRailroad());
+        Board.spaces.get(p.getCurrentSpace()).action(p);
+    }
+
+    /**
+     * Advances player to nearest Utility
+     * @param p
+     */
+    public void advNearestUtil(Player p) {
+        p.setCurrentSpace(p.nearestUtility());
         Board.spaces.get(p.getCurrentSpace()).action(p);
     }
 }
