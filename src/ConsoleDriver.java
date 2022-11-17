@@ -38,5 +38,6 @@ public class ConsoleDriver {
         }
         System.out.println(playerNames);
         Monopoly monopoly = new Monopoly(playerNames);
+        System.out.println(monopoly.getWinner().name + " won!");
     }
 }

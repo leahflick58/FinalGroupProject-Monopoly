@@ -9,14 +9,15 @@ public class Monopoly {
     public Monopoly(ArrayList<String> players) {
         loop = new GameLoop(players);      //take player names
         winner = loop.gameLoop();
-        System.out.println(winner.name);
+    }
+    public Player getWinner() {
+        return winner;
     }
 
     public static void main(String[] args) {
         Monopoly myGame = new Monopoly(new ArrayList<>(List.of("James","Mary","Joe")));
         myGame.loop.gameLoop();
-        //TODO: return winner
-
+        System.out.println(myGame.winner.name);
     }
 
 

@@ -10,6 +10,7 @@ public class ChanceSpace extends Spaces {
     void action(Player p) {
         Chance drawnCard = Board.chance.get(0);
         int cardAmount = drawnCard.getAmount();
+        System.out.println(drawnCard.getMessage());
         switch (drawnCard.getType()) {
             case "payBank":
                 drawnCard.payBank(p, cardAmount);

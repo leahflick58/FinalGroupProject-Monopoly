@@ -27,16 +27,22 @@ public class GameLoop {
      */
     //TODO: test logic
     public Player gameLoop() {
-        //plays one round
+        //plays one round; winner has highest bankBalance
         play();
 
+        Player winner = players.get(0);
+        for(Player p : players) {
+            if(p.bankBalance > winner.bankBalance) {
+                winner = p;
+            }
+        }
 
         //iterate through rounds while no winner
 //        while(!hasWinner()) {
 //            play();
 //        }
 //        return winner();
-        return players.get(0);
+        return winner;
     }
 
     /**
@@ -44,13 +50,14 @@ public class GameLoop {
      */
     public void play() {
         for(Player p : players) {
-            System.out.println(p.name);
+            System.out.println(p.name + "'s Balance: $" + p.bankBalance);
             if (!p.bankrupt) {
                                         //if p.isinJail && p.usesJailFreeCard {
                 if (!p.isInJail) {
                     move(p, rollDice());
                     System.out.println(getSpace(p.getCurrentSpace()));
                     playerAction(p);
+                    System.out.println(p.name + "'s New Balance: $" + p.bankBalance);
                 } else {
                     playerAction(p);    //jail action
                 }

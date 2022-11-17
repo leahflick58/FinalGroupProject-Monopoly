@@ -9,6 +9,7 @@ public class CommunitySpace extends Spaces {
     @Override
     void action(Player p) {
         Community drawnCard = Board.communityChests.get(0);
+        System.out.println(drawnCard.getMessage());
         int cardAmount = drawnCard.getAmount();
         switch (drawnCard.getType()) {
             case "payBank":

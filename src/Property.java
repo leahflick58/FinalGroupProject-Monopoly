@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 abstract class Property extends Spaces {
     private final String name;
     private final int rent;
@@ -68,10 +70,14 @@ abstract class Property extends Spaces {
         // if the property is not owned, the player may either buy or pass
         if (!owned) {
             // NOTICE - First time I've had to deal with user input
-            System.out.println("Do you want to buy this property?");
+            System.out.println("Do you want to buy this property? Enter Y/N: ");
             System.out.println(this.getPrice());
             // TODO: Scanner???
-            p.addProperty(this);
+            Scanner in = new Scanner(System.in);
+            String decision = in.next();
+            if(decision.equals("Y")) {
+                p.addProperty(this);
+            }
         }
     }
 

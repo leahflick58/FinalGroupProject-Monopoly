@@ -8,7 +8,8 @@ public class Board {
 
     /**
      * Board constructor
-     * Because the board will not change during the game, all spaces are initialized in the Board constructor
+     * Because the board will not change during the game, all spaces and cards are initialized
+     * in the Board constructor
      */
     public Board() {
         //TODO: complete constructor (+ Spaces, Chance, Community constructors)
