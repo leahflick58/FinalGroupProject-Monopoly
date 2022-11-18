@@ -149,4 +149,5 @@ public abstract class Card {
         p.setCurrentSpace(p.nearestUtility());
         Board.spaces.get(p.getCurrentSpace()).action(p);
     }
+
 }

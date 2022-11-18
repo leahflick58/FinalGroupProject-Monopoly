@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Random;
 
 public class Board {
     protected static HashMap<Integer, Spaces> spaces;
@@ -65,8 +66,6 @@ public class Board {
 
         //Cards information taken from https://www.monopolyland.com/list-monopoly-chance-community-chest-cards/
 
-        //TODO: complete Community Chest cards
-        //payBank, payPlayers, collectBank, collectPlayers, goToJail, getOutOfJail, repairs, advance
         communityChests = new LinkedList<>();
         communityChests.add(new Community("advance", 0, "Advance to Go (Collect $200)"));
         communityChests.add(new Community("collectBank", 200, "Bank error in your favor. " +
@@ -78,10 +77,24 @@ public class Board {
                 " pass Go, do not collect $200"));
         communityChests.add(new Community("collectBank", 100, "Holiday fund matures. Receive" +
                 " $100"));
+        communityChests.add(new Community("collectBank", 20, "Income tax refund. Collect $20"));
+        communityChests.add(new Community("collectPlayers", 10,"It is your birthday. Collect $10" +
+                " from every player."));
+        communityChests.add(new Community("collectBank", 100, "Life insurance matures. Collect " +
+                "$100"));
+        communityChests.add(new Community("payBank", 100, "Pay hospital fees of $100"));
+        communityChests.add(new Community("payBank",50, "Pay school fees of $50"));
+        communityChests.add(new Community("collectBank",25, "Receive $25 consultancy " +
+                "fee"));
+        communityChests.add(new Community("homeImprovement", 0, "You are assessed for street " +
+                "repair. $40 per house. $115 per hotel"));
+        communityChests.add(new Community("collectBank",10, "You won second prize in a beauty " +
+                "contest. Collect $10"));
+        communityChests.add(new Community("collectBank", 100,"You inherit $100"));
 
-        //TODO: complete Chance cards
-        //TODO: create shuffle method
-        //payBank, payPlayers, collectBank, collectPlayers, goToJail, getOutOfJail, homeImprovement, advNearestRR
+
+
+        //TODO: create shuffle method opt
         chance = new LinkedList<>();
         chance.add(new Chance("advance", 39, "Advance to Boardwalk"));
         chance.add(new Chance("advance", 0, "Advance to " + spaces.get(0) + " (Collect $200)"));
@@ -93,16 +106,15 @@ public class Board {
                 "pass Go, collect $200"));
         chance.add(new Chance("advNearestRR", 0, "Advance to the nearest Railroad. If you " +
                 "pass Go, collect $200"));
-        //TODO: make changes to Utility action() based on this card
         chance.add(new Chance("advNearestUtil", 0, "Advance to the nearest Utility. If unowned, " +
-                "you may buy it from the Bank. If owned, pay owner twice the rental to which they are otherwise " +
+                "you may buy it from the Bank. If owned, pay owner the rent to which they are otherwise " +
                 "entitled."));
         chance.add(new Chance("collectBank",50,"Bank pays you dividend of $50"));
         chance.add(new Chance("goBack", 3, "Go back 3 spaces"));
         chance.add(new Chance("goToJail", 1, "Go to Jail. Go directly to Jail, " +
                 "do not pass Go, do not collect $200."));
         chance.add(new Chance("homeImprovement", 0, "Make general repairs on all your property." +
-                " For each house pay $25. For each hotel pay $100."));
+                " For each house pay $40. For each hotel pay $115."));
         chance.add(new Chance("payBank",15, "Speeding fine $15"));
         chance.add(new Chance("advance", 0, "Take a trip to Reading Railroad. If you pass Go, " +
                 "collect $200."));
@@ -133,4 +145,6 @@ public class Board {
         }
         return locations;
     }
+
+
 }
