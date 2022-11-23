@@ -28,28 +28,22 @@ public class GameLoop {
     //TODO: test logic
     public Player gameLoop() {
         //plays one round; winner has highest bankBalance
-        play();
-
-        Player winner = players.get(0);
-        for(Player p : players) {
-            if(p.bankBalance > winner.bankBalance) {
-                winner = p;
-            }
-        }
-
-        //iterate through rounds while no winner
-        //last player can press "q" to quit
-//        boolean quit = false;
-//        Scanner in = new Scanner(System.in);
-//        while(!hasWinner() && !quit) {
-//            play();
-//            while(in.hasNext()) {
-//                if(in.next().equals("q"));
-//                quit = true;
+//        play();
+//
+//        Player winner = players.get(0);
+//        for(Player p : players) {
+//            if(p.bankBalance > winner.bankBalance) {
+//                winner = p;
 //            }
 //        }
-//        return winner();
-        return winner;
+
+        //iterate through rounds while no winner
+
+        while(!hasWinner()) {
+            play();
+        }
+        return winner();
+//        return winner;
     }
 
     /**
@@ -57,18 +51,20 @@ public class GameLoop {
      */
     public void play() {
         for(Player p : players) {
-            System.out.println(p.name + "'s Balance: $" + p.bankBalance);
-            if (!p.bankrupt) {
+            if (!p.isBankrupt()) {
+                System.out.println(p.name + "'s Balance: $" + p.bankBalance);
                                         //if p.isinJail && p.usesJailFreeCard {
                 if (!p.isInJail) {
                     move(p, rollDice());
-                    System.out.println("Landed on " + getSpace(p.getCurrentSpace()));
+                    System.out.println("Landed on " + getSpace(p.getCurrentSpace()) + " (" + p.getCurrentSpace() + ")");
                     playerAction(p);
                     System.out.println(p.name + "'s New Balance: $" + p.bankBalance + "\n");
                 } else {
-                    playerAction(p);    //jail action
+//                    playerAction(p);    //jail action
+                    System.out.println(p.name + " is in jail");
                 }
             }
+            else System.out.println(p.name + " is bankrupt");
         }
     }
 
@@ -112,7 +108,7 @@ public class GameLoop {
     //TODO: test logic
     public int move(Player p, int spaces) {
         if (spaces != 0) {
-            p.setCurrentSpace(p.getCurrentSpace() + spaces);
+            p.setCurrentSpace((p.getCurrentSpace() + spaces) % 40);
         } else {
             p.isInJail = true;  //if cheating on rolling dice, go to jail
             p.currentSpace = 10;
@@ -139,7 +135,7 @@ public class GameLoop {
         int numPlaying = 0;
 
         for(Player p : this.players) {
-            if(!p.bankrupt) {
+            if(!p.isBankrupt()) {
                 numPlaying++;
             }
         }

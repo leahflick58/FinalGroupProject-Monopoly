@@ -220,6 +220,13 @@ public class Player {
         else return 28;
     }
 
+    public boolean isBankrupt() {
+        if(bankBalance <= 0) {
+            bankrupt = true;
+        }
+        return bankrupt;
+    }
+
 
 
 

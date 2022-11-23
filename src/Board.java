@@ -98,17 +98,16 @@ public class Board {
         chance = new LinkedList<>();
         chance.add(new Chance("advance", 39, "Advance to Boardwalk"));
         chance.add(new Chance("advance", 0, "Advance to " + spaces.get(0) + " (Collect $200)"));
-        chance.add(new Chance("advance", 24, "Advance to " + spaces.get(24) + ". If you " +
+        chance.add(new Chance("advance", 24, "Advance to " + spaces.get(24).getName() + ". If you " +
                 "pass Go, collect $200"));
-        chance.add(new Chance("advance", 11, "Advance to " + spaces.get(24) + ". If you " +
+        chance.add(new Chance("advance", 11, "Advance to " + spaces.get(11).getName() + ". If you " +
                 "pass Go, collect $200"));
         chance.add(new Chance("advNearestRR", 0, "Advance to the nearest Railroad. If you " +
                 "pass Go, collect $200"));
         chance.add(new Chance("advNearestRR", 0, "Advance to the nearest Railroad. If you " +
                 "pass Go, collect $200"));
         chance.add(new Chance("advNearestUtil", 0, "Advance to the nearest Utility. If unowned, " +
-                "you may buy it from the Bank. If owned, pay owner the rent to which they are otherwise " +
-                "entitled."));
+                "you may buy it from the Bank. If owned, pay owner the rent to which they are entitled. "));
         chance.add(new Chance("collectBank",50,"Bank pays you dividend of $50"));
         chance.add(new Chance("goBack", 3, "Go back 3 spaces"));
         chance.add(new Chance("goToJail", 1, "Go to Jail. Go directly to Jail, " +

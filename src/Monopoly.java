@@ -17,7 +17,7 @@ public class Monopoly {
     public static void main(String[] args) {
         Monopoly myGame = new Monopoly(new ArrayList<>(List.of("James","Mary","Joe")));
         myGame.loop.gameLoop();
-        System.out.println(myGame.winner.name);
+        System.out.println(myGame.winner.name + "won!");
     }
 
 

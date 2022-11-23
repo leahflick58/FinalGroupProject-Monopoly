@@ -14,20 +14,28 @@ public class CommunitySpace extends Spaces {
         switch (drawnCard.getType()) {
             case "payBank":
                 drawnCard.payBank(p, cardAmount);
+                break;
             case "payPlayers":
                 drawnCard.payPlayers(p, cardAmount);
+                break;
             case "collectBank":
                 drawnCard.collectBank(p, cardAmount);
+                break;
             case "collectPlayers":
                 drawnCard.collectPlayers(p, cardAmount);
+                break;
             case "goToJail":
                 drawnCard.goToJail(p);
+                break;
             case "getOutOfJail":
                 drawnCard.getOutOfJail(p);
+                break;
             case "advance":
                 drawnCard.advance(p, cardAmount);
+                break;
             case "goBack":
                 drawnCard.goBack(p, cardAmount);
+                break;
         }
         if (!Objects.equals(drawnCard.getType(), "getOutOfJail")) {
             Board.communityChests.addLast(drawnCard);
