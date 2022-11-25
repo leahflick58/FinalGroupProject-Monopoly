@@ -14,22 +14,31 @@ public class ChanceSpace extends Spaces {
         switch (drawnCard.getType()) {
             case "payBank":
                 drawnCard.payBank(p, cardAmount);
+                break;
             case "payPlayers":
                 drawnCard.payPlayers(p, cardAmount);
+                break;
             case "collectBank":
                 drawnCard.collectBank(p, cardAmount);
+                break;
             case "collectPlayers":
                 drawnCard.collectPlayers(p, cardAmount);
+                break;
             case "goToJail":
                 drawnCard.goToJail(p);
+                break;
             case "getOutOfJail":
                 drawnCard.getOutOfJail(p);
+                break;
             case "homeImprovement":
                 drawnCard.homeImprovement(p);
+                break;
             case "advNearestRR":
                 drawnCard.advNearestRR(p);
+                break;
             case "advNearestUtil":
                 drawnCard.advNearestUtil(p);
+                break;
         }
         if (!Objects.equals(drawnCard.getType(), "getOutOfJail")) {
             Board.chance.addLast(drawnCard);
