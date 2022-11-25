@@ -88,7 +88,8 @@ public abstract class Card {
      * @param p active Player
      */
     public void goToJail(Player p) {
-        p.setCurrentSpace(10);  //jail in location 10
+        p.setCurrentSpace(30);  //jail in location 10, Go to Jail location = 30
+        Board.spaces.get(p.getCurrentSpace()).action(p);
     }
 
     /**
@@ -97,7 +98,7 @@ public abstract class Card {
      * @param p active Player
      */
     public void getOutOfJail(Player p) {
-        p.setHasGetOutOfJail(p.hasGetOutOfJail + 1);
+        p.setNumGetOutOfJail(p.numGetOutOfJail + 1);
     }
 
     /**

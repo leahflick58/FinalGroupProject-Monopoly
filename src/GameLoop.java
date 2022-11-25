@@ -56,12 +56,18 @@ public class GameLoop {
                                         //if p.isinJail && p.usesJailFreeCard {
                 if (!p.isInJail) {
                     move(p, rollDice());
-                    System.out.println("Landed on " + getSpace(p.getCurrentSpace()) + " (" + p.getCurrentSpace() + ")");
+                    if(p.isInJail) {
+                        System.out.println(p.name + " is in jail");
+                    } else {
+                        System.out.println("Landed on " + getSpace(p.getCurrentSpace()) + " (" + p.getCurrentSpace() + ")");
+                    }
                     playerAction(p);
                     System.out.println(p.name + "'s New Balance: $" + p.bankBalance + "\n");
                 } else {
-//                    playerAction(p);    //jail action
-                    System.out.println(p.name + " is in jail");
+                    if(p.getTurnsInJail() > 0) {
+                        System.out.println(p.name + " is in jail");
+                        playerAction(p);    //jail action
+                    }
                 }
             }
             else System.out.println(p.name + " is bankrupt");
@@ -109,11 +115,12 @@ public class GameLoop {
     public int move(Player p, int spaces) {
         if (spaces != 0) {
             p.setCurrentSpace((p.getCurrentSpace() + spaces) % 40);
+            //TODO: +$200 passing Go
         } else {
+            System.out.println("Caught cheating on rolling dice");
             p.isInJail = true;  //if cheating on rolling dice, go to jail
             p.currentSpace = 10;
                 //TODO: get int value corresponding to key "Jail" after reversing HashMap
-                //consider making 0: Go, 10: Just Visiting [Jail] and 11: Jail
         }
         return p.currentSpace;
     }

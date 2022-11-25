@@ -67,14 +67,15 @@ public class Board {
         //Cards information taken from https://www.monopolyland.com/list-monopoly-chance-community-chest-cards/
 
         communityChests = new LinkedList<>();
+        communityChests.add(new Community("goToJail", 1, "Go to Jail. Go directly to Jail, do not" +
+                " pass Go, do not collect $200"));
         communityChests.add(new Community("advance", 0, "Advance to Go (Collect $200)"));
         communityChests.add(new Community("collectBank", 200, "Bank error in your favor. " +
                 "Collect $200"));
         communityChests.add(new Community("payBank", 50, "Doctor's fee. Pay $50"));
         communityChests.add(new Community("collectBank", 50, "From sale of stock you get $50."));
         communityChests.add(new Community("getOutOfJail", 1, "Get Out of Jail Free"));
-        communityChests.add(new Community("goToJail", 1, "Go to Jail. Go directly to Jail, do not" +
-                " pass Go, do not collect $200"));
+        //
         communityChests.add(new Community("collectBank", 100, "Holiday fund matures. Receive" +
                 " $100"));
         communityChests.add(new Community("collectBank", 20, "Income tax refund. Collect $20"));
@@ -97,7 +98,7 @@ public class Board {
         //TODO: create shuffle method opt
         chance = new LinkedList<>();
         chance.add(new Chance("advance", 39, "Advance to Boardwalk"));
-        chance.add(new Chance("advance", 0, "Advance to " + spaces.get(0) + " (Collect $200)"));
+        chance.add(new Chance("advance", 0, "Advance to " + spaces.get(0).getName() + " (Collect $200)"));
         chance.add(new Chance("advance", 24, "Advance to " + spaces.get(24).getName() + ". If you " +
                 "pass Go, collect $200"));
         chance.add(new Chance("advance", 11, "Advance to " + spaces.get(11).getName() + ". If you " +

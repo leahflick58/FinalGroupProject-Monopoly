@@ -4,7 +4,7 @@ public class Player {
     protected String name;
     protected boolean isInJail;
     protected boolean bankrupt;
-    protected int hasGetOutOfJail;
+    protected int numGetOutOfJail;
     protected int turnsInJail;
     protected ArrayList<Property> properties;
     protected int bankBalance;
@@ -26,7 +26,7 @@ public class Player {
         this.name = name;
         isInJail = false;
         bankrupt = false;
-        hasGetOutOfJail = 0;
+        numGetOutOfJail = 1;    //TODO: change back to 0
         turnsInJail = 0;
         properties = new ArrayList<>();
         bankBalance = 1500;
@@ -140,8 +140,8 @@ public class Player {
     /**
      * @return true if Player has 1+ Get Out of Jail cards
      */
-    public boolean getHasGetOutOfJail() {
-        return hasGetOutOfJail > 0;
+    public int getNumGetOutOfJail() {
+        return numGetOutOfJail;
     }
 
     /**
@@ -150,8 +150,8 @@ public class Player {
      * b) plays a card
      * @param amount +1 to receive a card, -1 to play a card
      */
-    public void setHasGetOutOfJail(int amount) {
-        hasGetOutOfJail = hasGetOutOfJail + amount;
+    public void setNumGetOutOfJail(int amount) {
+        this.numGetOutOfJail = numGetOutOfJail + amount;
     }
 
     /**
@@ -228,7 +228,7 @@ public class Player {
     }
 
 
-
-
-
+    public void setTurnsInJail(int turns) {
+        this.turnsInJail = turns;
+    }
 }
