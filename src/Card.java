@@ -84,11 +84,13 @@ public abstract class Card {
 
     /**
      * For type "goToJail" - only affects active player
-     * Sends active Player to Jail space
+     * Sends active Player to Jail space (10) with 3 turns in jail
      * @param p active Player
      */
     public void goToJail(Player p) {
-        p.setCurrentSpace(30);  //jail in location 10, Go to Jail location = 30
+        p.setCurrentSpace(10);
+        p.isInJail = true;
+        p.setTurnsInJail(3);
         Board.spaces.get(p.getCurrentSpace()).action(p);
     }
 
@@ -98,7 +100,7 @@ public abstract class Card {
      * @param p active Player
      */
     public void getOutOfJail(Player p) {
-        p.setNumGetOutOfJail(p.numGetOutOfJail + 1);
+        p.setNumGetOutOfJail(1);
     }
 
     /**
@@ -114,11 +116,15 @@ public abstract class Card {
     /**
      * For type "advance" - only affects active player (specific to Community cards)
      * Player is moved to the specified location on the card and then does the action on that space
+     * Player receives $200 if he/she passes Go
      * @param p active Player
-     * @param amount intended space number
+     * @param space intended space number
      */
-    public void advance(Player p, int amount) {
-        p.setCurrentSpace(amount);
+    public void advance(Player p, int space) {
+        if((space < p.currentSpace) && (space != 0)) {      //otherwise, will add $200 twice
+            p.addOrSubBankBalance(200);
+        }
+        p.setCurrentSpace(space);
         Board.spaces.get(p.getCurrentSpace()).action(p);
     }
 
@@ -134,20 +140,32 @@ public abstract class Card {
     }
 
     /**
-     * Advances player to nearest Railroad
+     * For type "advance" - only affects active player (specific to Chance cards)
+     * Player advances to the nearest Railroad and performs the action on that space
+     * Player receives $200 if he/she passes Go
      * @param p
      */
     public void advNearestRR(Player p) {
-        p.setCurrentSpace(p.nearestRailroad());
+        int nearest = p.nearestRailroad();
+        if(nearest < p.currentSpace) {
+            p.addOrSubBankBalance(200);
+        }
+        p.setCurrentSpace(nearest);
         Board.spaces.get(p.getCurrentSpace()).action(p);
     }
 
     /**
-     * Advances player to nearest Utility
+     * For type "advance" - only affects active player (specific to Chance cards)
+     * Player advances to the nearest Utility and performs the action on that space
+     * Player receives $200 if he/she passes Go
      * @param p
      */
     public void advNearestUtil(Player p) {
-        p.setCurrentSpace(p.nearestUtility());
+        int nearest = p.nearestUtility();
+        if(nearest < p.currentSpace) {
+            p.addOrSubBankBalance(200);
+        }
+        p.setCurrentSpace(nearest);
         Board.spaces.get(p.getCurrentSpace()).action(p);
     }
 

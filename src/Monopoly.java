@@ -7,6 +7,7 @@ public class Monopoly {
     private Player winner;
 
     public Monopoly(ArrayList<String> players) {
+        //TODO: create shuffle methods for Community and Chance
         loop = new GameLoop(players);      //take player names
         winner = loop.gameLoop();
     }

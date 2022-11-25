@@ -26,7 +26,7 @@ public class Player {
         this.name = name;
         isInJail = false;
         bankrupt = false;
-        numGetOutOfJail = 1;    //TODO: change back to 0
+        numGetOutOfJail = 0;
         turnsInJail = 0;
         properties = new ArrayList<>();
         bankBalance = 1500;
@@ -162,6 +162,14 @@ public class Player {
     }
 
     /**
+     * Sets number of turns that a player is in jail.
+     * @param turns
+     */
+    public void setTurnsInJail(int turns) {
+        this.turnsInJail = turns;
+    }
+
+    /**
      * After a player leaves Jail, TurnsInJail is reset back to zero
      */
     public void resetTurnsInJail() {
@@ -212,6 +220,10 @@ public class Player {
         else return 35;
     }
 
+    /**
+     * Finds the nearest Utility to player (forward direction only)
+     * @return int location
+     */
     public int nearestUtility() {
         //NOTE: hard-coded values
         if(((currentSpace > 0) && currentSpace < 12) || (currentSpace > 28)) {
@@ -220,6 +232,10 @@ public class Player {
         else return 28;
     }
 
+    /**
+     * Determines whether this player is bankrupt
+     * @return true if bankrupt
+     */
     public boolean isBankrupt() {
         if(bankBalance <= 0) {
             bankrupt = true;
@@ -227,8 +243,4 @@ public class Player {
         return bankrupt;
     }
 
-
-    public void setTurnsInJail(int turns) {
-        this.turnsInJail = turns;
-    }
 }

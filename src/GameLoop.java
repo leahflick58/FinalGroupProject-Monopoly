@@ -7,43 +7,27 @@ public class GameLoop {
     private Board board;
 
     /**
-     * GameLoop constructor: takes an ArrayList of player names and creates a new ArrayList of Player objects.
+     * GameLoop constructor: Initializes a new Monopoly board and takes an ArrayList of player names and creates a new
+     * ArrayList of Player objects.
      * @param names
      */
     public GameLoop(ArrayList<String> names) {
         board = new Board();        //ArrayLists <Spaces>,<Chance>, <CommunityChest>
-                                    //Board constructor should not take any args
-
         players = new ArrayList<>();
         for (String p : names) {
             players.add(new Player(p));
         }
-        System.out.println("Created game loop");
     }
 
     /**
-     * Iterates through multiple rounds of Monopoly until all but one player is bankrupt (winner)
+     * Iterates through multiple rounds of Monopoly until all but one player (winner) is bankrupt
      * @return Player that has won the game
      */
-    //TODO: test logic
     public Player gameLoop() {
-        //plays one round; winner has highest bankBalance
-//        play();
-//
-//        Player winner = players.get(0);
-//        for(Player p : players) {
-//            if(p.bankBalance > winner.bankBalance) {
-//                winner = p;
-//            }
-//        }
-
-        //iterate through rounds while no winner
-
         while(!hasWinner()) {
             play();
         }
         return winner();
-//        return winner;
     }
 
     /**
@@ -59,7 +43,8 @@ public class GameLoop {
                     if(p.isInJail) {
                         System.out.println(p.name + " is in jail");
                     } else {
-                        System.out.println("Landed on " + getSpace(p.getCurrentSpace()) + " (" + p.getCurrentSpace() + ")");
+                        System.out.println("Landed on " + getSpace(p.getCurrentSpace()) + " (" + p.getCurrentSpace() +
+                                ")");
                     }
                     playerAction(p);
                     System.out.println(p.name + "'s New Balance: $" + p.bankBalance + "\n");
@@ -74,6 +59,11 @@ public class GameLoop {
         }
     }
 
+    /**
+     * Gets the name of the space on the board given its integer location
+     * @param currentSpace
+     * @return
+     */
     public String getSpace(int currentSpace) {
         return board.getSpaces().get(currentSpace).getName();
     }
@@ -111,18 +101,20 @@ public class GameLoop {
      * @param spaces
      * @return int new location on board
      */
-    //TODO: test logic
-    public int move(Player p, int spaces) {
+    public void move(Player p, int spaces) {
         if (spaces != 0) {
-            p.setCurrentSpace((p.getCurrentSpace() + spaces) % 40);
-            //TODO: +$200 passing Go
+            int newSpace = p.getCurrentSpace() + spaces;
+            if(newSpace > 39) {
+                p.addOrSubBankBalance(200);
+                System.out.println("You earned $200 for passing Go");
+            }
+            p.setCurrentSpace(newSpace % 40);
         } else {
             System.out.println("Caught cheating on rolling dice");
             p.isInJail = true;  //if cheating on rolling dice, go to jail
+            p.setTurnsInJail(3);
             p.currentSpace = 10;
-                //TODO: get int value corresponding to key "Jail" after reversing HashMap
         }
-        return p.currentSpace;
     }
 
     /**
@@ -135,9 +127,8 @@ public class GameLoop {
 
     /**
      * If all but one player is bankrupt, the game has a winner
-     * @return
+     * @return true if game has a winner
      */
-    //TODO: test logic
     public boolean hasWinner() {
         int numPlaying = 0;
 
@@ -153,7 +144,6 @@ public class GameLoop {
      * If the game has a winner, finds and returns the winner of the game
      * @return address of Player who has won the game
      */
-    //TODO: test logic
     public Player winner() {
         if(hasWinner()) {
             for(Player p : this.players) {

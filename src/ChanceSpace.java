@@ -12,6 +12,9 @@ public class ChanceSpace extends Spaces {
         int cardAmount = drawnCard.getAmount();
         System.out.println(drawnCard.getMessage());
         switch (drawnCard.getType()) {
+            case "advance":
+                drawnCard.advance(p, cardAmount);
+                break;
             case "payBank":
                 drawnCard.payBank(p, cardAmount);
                 break;

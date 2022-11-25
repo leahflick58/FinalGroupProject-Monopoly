@@ -6,16 +6,16 @@ public class Jail extends Spaces{
      * Jail Action
      * Check if a Player is currently in jail, if not space acts as "Just Visiting" and nothing happens
      * If the player is in jail, they have three options to escape jail:
-     * 1. Pay bank $50
-     * 2. Roll doubles
-     * 3. Play get out of jail free card
+     * 1. Play get out of jail free card
+     * 2. Pay bank $50
+     * 3. Roll doubles
      * After three consecutive rounds in jail, if the Player has not escaped jail, they must pay the fine and isInJail
      * is set to false
      * @param p active Player
      */
     @Override
     void action(Player p) {
-        //TODO: final testing, but this method should be good
+        //TODO: Clean up and final testing: enough turns in jail?
 
         if(!p.isInJail) {
             System.out.println("Just Visiting");
@@ -35,7 +35,8 @@ public class Jail extends Spaces{
                     p.resetTurnsInJail();
                 }
             }
-            if(p.isInJail) {        //may be redundant
+            if(p.isInJail) {
+
                 //Option 2: Pay $50 fine to bank
                 System.out.println("Pay $50 fine to bank? Enter Y/N:");
                 Scanner in = new Scanner(System.in);
@@ -43,7 +44,6 @@ public class Jail extends Spaces{
                     p.addOrSubBankBalance(-50);
                     p.isInJail = false;
                     p.resetTurnsInJail();
-                    System.out.println(p.name + "'s New Balance: " + p.bankBalance);
                 } else {
 
                     //Option 3: Roll doubles
@@ -57,9 +57,9 @@ public class Jail extends Spaces{
                         if (p.getTurnsInJail() == 0) {
                             p.addOrSubBankBalance(-50);
                             p.isInJail = false;
-                            System.out.println("You did not roll doubles. You have 0 turns left in jail and must pay the $50 " +
-                                    "fine.");
-                            System.out.println(p.name + "'s New Balance: " + p.bankBalance);
+                            System.out.println("You did not roll doubles. You have 0 turns left in jail and must pay " +
+                                    "the $50 fine.");
+                            System.out.println(p.name + "'s New Balance: " + p.bankBalance + "\n");
                         } else {
                             if(p.getTurnsInJail() == 1) {
                                 System.out.println("You did not roll doubles. You have 1 turn left in jail.");
@@ -79,9 +79,14 @@ public class Jail extends Spaces{
         return "Jail";
     }
 
+    /**
+     * Rolls two dice and returns true if both dice land on the same number of digits
+     * @return doubles
+     */
     public static boolean rolledDoubles() {
         boolean doubles = false;
         Random rand = new Random();
+
         int die1 = rand.nextInt(6) + 1;
         int die2 = rand.nextInt(6) + 1;
 
