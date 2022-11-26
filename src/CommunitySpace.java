@@ -12,6 +12,8 @@ public class CommunitySpace extends Spaces {
         System.out.println(drawnCard.getMessage());
         int cardAmount = drawnCard.getAmount();
         switch (drawnCard.getType()) {
+            case "homeImprovement":
+                drawnCard.homeImprovement(p);
             case "payBank":
                 drawnCard.payBank(p, cardAmount);
                 break;
@@ -39,6 +41,8 @@ public class CommunitySpace extends Spaces {
         }
         if (!Objects.equals(drawnCard.getType(), "getOutOfJail")) {
             Board.communityChests.addLast(drawnCard);
+            Board.communityChests.remove(drawnCard);
+        } else {
             Board.communityChests.remove(drawnCard);
         }
     }

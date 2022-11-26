@@ -75,7 +75,7 @@ public class Board {
         communityChests.add(new Community("payBank", 50, "Doctor's fee. Pay $50"));
         communityChests.add(new Community("collectBank", 50, "From sale of stock you get $50."));
         communityChests.add(new Community("getOutOfJail", 1, "Get Out of Jail Free"));
-        //
+
         communityChests.add(new Community("collectBank", 100, "Holiday fund matures. Receive" +
                 " $100"));
         communityChests.add(new Community("collectBank", 20, "Income tax refund. Collect $20"));
@@ -88,7 +88,7 @@ public class Board {
         communityChests.add(new Community("collectBank",25, "Receive $25 consultancy " +
                 "fee"));
         communityChests.add(new Community("homeImprovement", 0, "You are assessed for street " +
-                "repair. $40 per house. $115 per hotel"));
+                "repair: $40 per house, $115 per hotel"));
         communityChests.add(new Community("collectBank",10, "You won second prize in a beauty " +
                 "contest. Collect $10"));
         communityChests.add(new Community("collectBank", 100,"You inherit $100"));
