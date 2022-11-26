@@ -6,11 +6,20 @@ public class Monopoly {
     private GameLoop loop;
     private Player winner;
 
+    /**
+     * Creates a GameLoop for the Monopoly game and gets the winner
+     * @param players as an ArrayList of String names
+     */
     public Monopoly(ArrayList<String> players) {
         //TODO: create shuffle methods for Community and Chance
-        loop = new GameLoop(players);      //take player names
+        loop = new GameLoop(players);
         winner = loop.gameLoop();
     }
+
+    /**
+     * Gets the winner of the Monopoly game
+     * @return Player winner
+     */
     public Player getWinner() {
         return winner;
     }

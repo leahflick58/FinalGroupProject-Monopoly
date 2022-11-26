@@ -9,13 +9,12 @@ public class Board {
     protected static LinkedList<Community> communityChests;       //Community Chest cards
 
     /**
-     * Board constructor
+     * Board constructor.
      * Because the board will not change during the game, all spaces and cards are initialized
      * in the Board constructor
      */
     public Board() {
-        //TODO: complete constructor (+ Spaces, Chance, Community constructors)
-        //TODO: create names and property values of spaces
+        //TODO: create Street names
         spaces = new HashMap<>();
         spaces.put(0, new Go());
         spaces.put(1, new Streets("Med", 2, 60, 30, "Brown"));  //10 with house
@@ -134,7 +133,6 @@ public class Board {
 
     /**
      * Reverses HashMap<Integer location, Spaces space> spaces
-     * used in nearest():Player
      * @param spaces
      * @return HashMap<Spaces, Integer> locations
      */

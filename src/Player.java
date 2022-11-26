@@ -11,15 +11,15 @@ public class Player {
     protected int currentSpace;
 
     /**
-     * A Player has 8 attributes, only one of which is up for user input
+     * A Player has 8 attributes, only one of which is up for user input.
      * Pre-determined attributes:
-     * isInJail - boolean for if a Player is in jail
-     * bankrupt - boolean for if a Player is still "in the game"
-     * hasGetOutOfJail - int of number of Get Out of Jail cards a Player has
-     * turnsInJail - int of number of concurrent turns a Player has spent in jail
-     * properties - an empty ArrayList of Player's owned Properties
-     * bankBalance - int of Player's available money, initiated at $1500
-     * currentSpace - int of Player's respective space on the Board. Initiated at "GO"
+     * isInJail - boolean for if a Player is in jail.
+     * bankrupt - boolean for if a Player is still "in the game".
+     * hasGetOutOfJail - int of number of Get Out of Jail cards a Player has.
+     * turnsInJail - int of number of concurrent turns a Player has spent in jail.
+     * properties - an empty ArrayList of Player's owned Properties.
+     * bankBalance - int of Player's available money, initiated at $1500.
+     * currentSpace - int of Player's respective space on the Board. Initiated at "GO".
      * @param name User's name
      */
     public Player(String name) {

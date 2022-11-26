@@ -9,7 +9,7 @@ public class GameLoop {
     /**
      * GameLoop constructor: Initializes a new Monopoly board and takes an ArrayList of player names and creates a new
      * ArrayList of Player objects.
-     * @param names
+     * @param names of the players in the game
      */
     public GameLoop(ArrayList<String> names) {
         board = new Board();        //ArrayLists <Spaces>,<Chance>, <CommunityChest>
@@ -62,14 +62,17 @@ public class GameLoop {
     /**
      * Gets the name of the space on the board given its integer location
      * @param currentSpace
-     * @return
+     * @return String name of space
      */
     public String getSpace(int currentSpace) {
         return board.getSpaces().get(currentSpace).getName();
     }
 
     /**
-     * Rolls two 6-sided dice according to Monopoly rules
+     * Rolls two 6-sided dice according to Monopoly rules:
+     * If the first roll yields doubles (same number of digits on each die), player can roll dice again.
+     * If the second roll yields doubles, player can roll dice a third time.
+     * If the third roll yields doubles, player is considered to be cheating and must go to jail.
      * @return sum of rolls or 0 if caught cheating, indicating player should go to jail
      */
     //Tests Passed
@@ -96,7 +99,7 @@ public class GameLoop {
     }
 
     /**
-     * Moves player's current location on board based on dice roll
+     * Moves player's current location on board based on dice roll.
      * @param p
      * @param spaces
      * @return int new location on board
@@ -118,7 +121,7 @@ public class GameLoop {
     }
 
     /**
-     * calls Spaces' action()
+     * Calls Spaces' action()
      * @param p
      */
     public void playerAction(Player p) {
@@ -126,7 +129,7 @@ public class GameLoop {
     }
 
     /**
-     * If all but one player is bankrupt, the game has a winner
+     * If all but one player is bankrupt, the game has a winner.
      * @return true if game has a winner
      */
     public boolean hasWinner() {
@@ -141,7 +144,7 @@ public class GameLoop {
     }
 
     /**
-     * If the game has a winner, finds and returns the winner of the game
+     * If the game has a winner, finds and returns the winner of the game.
      * @return address of Player who has won the game
      */
     public Player winner() {

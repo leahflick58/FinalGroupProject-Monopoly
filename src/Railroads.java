@@ -5,7 +5,7 @@ public class Railroads extends Property {
     Map<Integer, Integer> railRoadRent;
 
     /**
-     * RailRoads have all the same parameters as their parent class, Property
+     * RailRoads have all the same parameters as their parent class, Property.
      * A HashMap is created for rent amounts based on amount of RailRoads owned
      *@param name name of the property (i.e. "Beans on Broad", "Hall of Arts and Letters", etc.
      *@param rent rent due when someone other than the owner lands on the property
@@ -23,7 +23,7 @@ public class Railroads extends Property {
     }
 
     /**
-     * Returns the amount of rent due based on Player's number of railroads
+     * Returns the amount of rent due based on Player's number of railroads.
      * @param p Player who owns the respective property
      * @return total dollar amount due
      */

@@ -9,7 +9,7 @@ abstract class Property extends Spaces {
 
     /**
      * A Property, extended from Spaces class, has five attributes:
-     * @param name name of the property (i.e. "Beans on Broad", "Hall of Arts and Letters", etc.
+     * @param name name of the property (i.e. "Beans on Broad", "Hall of Arts and Letters", etc.)
      * @param rent rent due when someone other than the owner lands on the property
      * @param price price in order to buy property
      * @param mortgage the amount the player can receive from the bank from mortgaging the property
@@ -45,10 +45,10 @@ abstract class Property extends Spaces {
     }
 
     /**
-     * When a Player lands on a Property space, first check if that property is owned
-     * If the Player who landed on the space owns it, break
-     * If a different Player owns it, the current Player must pay them rent
-     * If no one owns it, the Player has the choice to buy the Property or pass
+     * When a Player lands on a Property space, first check if that property is owned.
+     * If the Player who landed on the space owns it, break.
+     * If a different Player owns it, the current Player must pay them rent.
+     * If no one owns it, the Player has the choice to buy the Property or pass.
      * @param p
      */
     // TODO: This is gonna require a lot of testing, I don't know if this does what we want
@@ -97,7 +97,8 @@ abstract class Property extends Spaces {
     }
 
     /**
-     * Used when either a player chooses to unmortgage a property or when the property is seized by the bank (reset() method)
+     * Used when either a player chooses to unmortgage a property or when the property is seized by the bank (reset()
+     * method)
      */
     public void unmortgage() {
         mortgaged = false;

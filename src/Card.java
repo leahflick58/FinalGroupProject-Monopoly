@@ -6,7 +6,7 @@ public abstract class Card {
     /**
      * A singular card for the Community/Chance deck of cards.
      * @param type relates to the action associated with the type of card (Collect money, pay bank, pay other bankers,
-     *             go to jail, etc.).
+     *             go to jail, etc.)
      * @param amount either the amount due/owed, the location of the desired space, or the number of spaces to move
      *               depending on the type
      * @param message note written on the card for the user to see

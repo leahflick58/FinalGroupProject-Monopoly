@@ -1,6 +1,6 @@
 public class Go extends Spaces {
     /**
-     * Go action - pay Player 200 dollars
+     * Go action - pay Player $200
      * @param p active Player
      */
     @Override

@@ -80,7 +80,7 @@ public class Jail extends Spaces{
     }
 
     /**
-     * Rolls two dice and returns true if both dice land on the same number of digits
+     * Rolls two dice once and returns true if both dice land on the same number of digits
      * @return doubles
      */
     public static boolean rolledDoubles() {
