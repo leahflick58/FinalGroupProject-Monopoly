@@ -61,7 +61,7 @@ abstract class Property extends Spaces {
             if (player.ownsProperty(this)) {
                 owned = true;
                 // if the player that owns this property is not whose turn it is, the current player must pay rent
-                System.out.println(player.name + " owns this property. You must pay " + this.rent + " in rent.");
+                System.out.println(player.name + " owns this property. You must pay " + this.getTotalRent(player) + " in rent.");
                 if (player != p) {
                     p.payRent(player, this);
                 }   // no else statement, if the property is owned by current player the move passes to the next player
