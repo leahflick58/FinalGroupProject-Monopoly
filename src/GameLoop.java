@@ -69,32 +69,42 @@ public class GameLoop {
     }
 
     /**
+     * Rolls a 6-sided die
+     * @return result of the roll
+     */
+    public static int rollDie() {
+        Random rand = new Random();
+        return rand.nextInt(6) + 1;
+    }
+    /**
      * Rolls two 6-sided dice according to Monopoly rules:
      * If the first roll yields doubles (same number of digits on each die), player can roll dice again.
      * If the second roll yields doubles, player can roll dice a third time.
      * If the third roll yields doubles, player is considered to be cheating and must go to jail.
      * @return sum of rolls or 0 if caught cheating, indicating player should go to jail
      */
-    //Tests Passed
     public static int rollDice() {
-        Random randGen = new Random();
         int sum = 0;
         int rolls = 0;
         boolean doubles;
 
         do {
             doubles = false;
-            int die1 = randGen.nextInt(6) + 1;
-            int die2 = randGen.nextInt(6) + 1;
+            int die1 = rollDie();
+            int die2 = rollDie();
+
+            System.out.println("You rolled a " + die1 + " and a " + die2);
             sum += die1 + die2;
             rolls++;
             if(die1 == die2) {
                 doubles = true;
+                System.out.println("You rolled doubles. Roll dice again!");
             }
-        } while (doubles && (rolls < 3));
-        if(rolls == 3) {
-            return 0;
-        }
+            if((rolls == 3) && doubles) {
+                return 0;
+            }
+        } while (doubles);
+
         return sum;
     }
 
