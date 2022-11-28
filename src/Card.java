@@ -151,7 +151,7 @@ public abstract class Card {
      * For type "advance" - only affects active player (specific to Chance cards).
      * Player advances to the nearest Railroad and performs the action on that space.
      * Player receives $200 if he/she passes Go.
-     * @param p
+     * @param p active Player
      */
     public void advNearestRR(Player p) {
         int nearest = p.nearestRailroad();
@@ -166,7 +166,7 @@ public abstract class Card {
      * For type "advance" - only affects active player (specific to Chance cards).
      * Player advances to the nearest Utility and performs the action on that space.
      * Player receives $200 if he/she passes Go.
-     * @param p
+     * @param p active Player
      */
     public void advNearestUtil(Player p) {
         int nearest = p.nearestUtility();

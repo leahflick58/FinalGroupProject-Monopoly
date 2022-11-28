@@ -41,10 +41,8 @@ public class CommunitySpace extends Spaces {
         }
         if (!Objects.equals(drawnCard.getType(), "getOutOfJail")) {
             Board.communityChests.addLast(drawnCard);
-            Board.communityChests.remove(drawnCard);
-        } else {
-            Board.communityChests.remove(drawnCard);
         }
+        Board.communityChests.remove(drawnCard);
     }
 
     @Override

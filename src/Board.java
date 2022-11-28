@@ -133,7 +133,7 @@ public class Board {
 
     /**
      * Reverses HashMap<Integer location, Spaces space> spaces
-     * @param spaces
+     * @param spaces HashMap of an inherited space class and it's relative integer location
      * @return HashMap<Spaces, Integer> locations
      */
     public HashMap<Spaces, Integer> getLocations(HashMap<Integer, Spaces> spaces) {

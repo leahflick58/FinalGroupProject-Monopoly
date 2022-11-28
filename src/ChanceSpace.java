@@ -47,8 +47,8 @@ public class ChanceSpace extends Spaces {
         }
         if (!Objects.equals(drawnCard.getType(), "getOutOfJail")) {
             Board.chance.addLast(drawnCard);
-            Board.chance.remove(drawnCard);
         }
+        Board.chance.remove(drawnCard);
 
     }
 
