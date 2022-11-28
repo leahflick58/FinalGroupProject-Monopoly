@@ -76,6 +76,7 @@ public class GameLoop {
         Random rand = new Random();
         return rand.nextInt(6) + 1;
     }
+
     /**
      * Rolls two 6-sided dice according to Monopoly rules:
      * If the first roll yields doubles (same number of digits on each die), player can roll dice again.
@@ -167,4 +168,5 @@ public class GameLoop {
         }
         return null;
     }
+
 }
