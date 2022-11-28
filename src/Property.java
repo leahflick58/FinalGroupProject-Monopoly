@@ -71,12 +71,16 @@ abstract class Property extends Spaces {
         // if the property is not owned, the player may either buy or pass
         if (!owned) {
             // NOTICE - First time I've had to deal with user input
-            System.out.println("Do you want to buy this property? Enter Y/N: ");
-            System.out.println(this.getDetails());
-
-            //TODO: handle invalid input.Currently any symbol other than 'Y' means "no"
             Scanner in = new Scanner(System.in);
-            String decision = in.next();
+            String decision = "O";
+            while (!decision.equals("Y") && !decision.equals("N")) {
+                System.out.println("Do you want to buy this property? Enter Y/N: ");
+                System.out.println(this.getDetails());
+                decision = in.next();
+                if (!decision.equals("Y") && !decision.equals("N")) {
+                    System.out.println("Invalid input. Choose Y or N");
+                }
+            }
             if(decision.equals("Y")) {
                 p.addProperty(this);
                 System.out.println(p.name + " has bought " + this.name);
