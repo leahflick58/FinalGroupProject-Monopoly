@@ -10,11 +10,9 @@ public class Railroads extends Property {
      *@param name name of the property (i.e. "Beans on Broad", "Hall of Arts and Letters", etc.
      *@param rent rent due when someone other than the owner lands on the property
      *@param price price in order to buy property
-     *@param mortgage the amount the player can receive from the bank from mortgaging the property
-     *      Finally, boolean mortgaged is set to false
      */
-    public Railroads(String name, int rent, int price, int mortgage) {
-        super(name, rent, price, mortgage);
+    public Railroads(String name, int rent, int price) {
+        super(name, rent, price);
         railRoadRent = new HashMap<>();
         railRoadRent.put(1, 25);
         railRoadRent.put(2, 50);

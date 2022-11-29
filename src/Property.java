@@ -4,23 +4,17 @@ abstract class Property extends Spaces {
     private final String name;
     private final int rent;
     private final int price;
-    private final int mortgage;
-    private boolean mortgaged;
 
     /**
      * A Property, extended from Spaces class, has five attributes:
      * @param name name of the property (i.e. "Beans on Broad", "Hall of Arts and Letters", etc.)
      * @param rent rent due when someone other than the owner lands on the property
      * @param price price in order to buy property
-     * @param mortgage the amount the player can receive from the bank from mortgaging the property
-     *                 Finally, boolean mortgaged is set to false
      */
-    public Property(String name, int rent, int price, int mortgage) {
+    public Property(String name, int rent, int price) {
         this.name = name;
         this.rent = rent;
         this.price = price;
-        this.mortgage = mortgage;
-        mortgaged = false;
     }
 
     /**
@@ -37,12 +31,6 @@ abstract class Property extends Spaces {
         return price;
     }
 
-    /**
-     * @return Property's mortgage
-     */
-    public int getMortgage() {
-        return mortgage;
-    }
 
     /**
      * When a Player lands on a Property space, first check if that property is owned.
@@ -63,7 +51,43 @@ abstract class Property extends Spaces {
                 // if the player that owns this property is not whose turn it is, the current player must pay rent
                 System.out.println(player.name + " owns this property. You must pay " + this.getTotalRent(player) + " in rent.");
                 if (player != p) {
-                    p.payRent(player, this);
+                    // TODO: Check if player can afford it
+                    if (p.bankBalance - this.getTotalRent(player) > 0) {
+                        p.payRent(player, this);
+                    } else {
+                        if (p.properties.size() > 0) {
+                            System.out.println("You cannot afford rent. You must sell a property to pay. What property would you like to sell?");
+                            for (Property property: p.properties) {
+                                System.out.println(property.name + " Selling Price: " + (property.getPrice() / 2));
+                            }
+                            Scanner in = new Scanner(System.in);
+                            boolean correct_name = false;
+                            while (!correct_name) {
+                                System.out.println("Property: ");
+                                String property = in.next();
+                                for (Property properties: p.properties) {
+                                    if (properties.getName().equals(property)) {
+                                        p.sellProperty(properties);
+                                        System.out.println(property + " sold to the bank.");
+                                        correct_name = true;
+                                        break;
+                                    }
+                                }
+                                if (!correct_name) {
+                                    System.out.println("An invalid property name was entered. Please enter a valid property.");
+                                }
+                            }
+                            p.payRent(player, this);
+                        } else {
+                            System.out.println("You cannot afford the rent. Your remaining bank balance will be transferred to " + player.name + " and your assets will be given to the bank.");
+                            p.bankrupt = true;
+                            for (Property property : p.properties) {
+                                p.sellProperty(property);
+                            }
+                            break;
+                        }
+
+                    }
                 }   // no else statement, if the property is owned by current player the move passes to the next player
                 break;
             }
@@ -71,6 +95,7 @@ abstract class Property extends Spaces {
         // if the property is not owned, the player may either buy or pass
         if (!owned) {
             // NOTICE - First time I've had to deal with user input
+            // TODO: Check if a player can afford it
             Scanner in = new Scanner(System.in);
             String decision = "O";
             while (!decision.equals("Y") && !decision.equals("N")) {
@@ -92,23 +117,9 @@ abstract class Property extends Spaces {
      * When a Property is sold back to the bank, it resets it its "natural" state
      */
     public void reset() {
-        unmortgage();
+
     }
 
-    /**
-     * Used when a player wishes to mortgage a property for extra cash
-     */
-    public void mortgage() {
-        mortgaged = true;
-    }
-
-    /**
-     * Used when either a player chooses to unmortgage a property or when the property is seized by the bank (reset()
-     * method)
-     */
-    public void unmortgage() {
-        mortgaged = false;
-    }
 
     /**
      * Returns the amount of rent due based on Player's number of specific property type
@@ -126,8 +137,7 @@ abstract class Property extends Spaces {
      * @return String
      */
     public String getDetails() {
-        return (getName() + "\nPrice: $" + getPrice() + "\nRent: $" + getRent()
-        + "\nMortgage: $" + getMortgage());
+        return (getName() + "\nPrice: $" + getPrice() + "\nRent: $" + getRent());
     }
 
 }

@@ -7,11 +7,10 @@ public class Streets extends Property {
      * @param name name of the property (i.e. "Beans on Broad", "Hall of Arts and Letters", etc.
      * @param rent rent due when someone other than the owner lands on the property
      * @param price price in order to buy property
-     * @param mortgage the amount the player can receive from the bank from mortgaging the property
      * @param colorGroup color group the Street is associated with, determines if a Player can upgrade to a house
      */
-    public Streets(String name, int rent, int price, int mortgage, String colorGroup) {
-        super(name, rent, price, mortgage);
+    public Streets(String name, int rent, int price, String colorGroup) {
+        super(name, rent, price);
         this.isHotel = false;
         this.colorGroup = colorGroup;
     }
@@ -44,7 +43,6 @@ public class Streets extends Property {
      */
     @Override
     public void reset() {
-        super.reset();
         isHotel = false;
     }
 

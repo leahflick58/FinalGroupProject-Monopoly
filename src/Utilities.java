@@ -4,11 +4,9 @@ public class Utilities extends Property {
      * @param name name of the property (i.e. "Beans on Broad", "Hall of Arts and Letters", etc.
      * @param rent rent due when someone other than the owner lands on the property
      * @param price price in order to buy property
-     * @param mortgage the amount the player can receive from the bank from mortgaging the property
-     *                 Finally, the boolean mortgaged is set to false
      */
-    public Utilities(String name, int rent, int price, int mortgage) {
-        super(name, rent, price, mortgage);
+    public Utilities(String name, int rent, int price) {
+        super(name, rent, price);
     }
 
     /**
