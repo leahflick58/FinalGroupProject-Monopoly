@@ -1,10 +1,24 @@
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Random;
+import java.util.*;
 
 public class Board {
+    public static LinkedList<Chance> getChance() {
+        return chance;
+    }
+
+    public static LinkedList<Community> getCommunity() {
+        return communityChests;
+    }
+
     protected static HashMap<Integer, Spaces> spaces;
     protected static HashMap<Spaces, Integer> locations;
+    protected static Set<Streets> brown;
+    protected static Set<Streets> lightBlue;
+    protected static Set<Streets> pink;
+    protected static Set<Streets> orange;
+    protected static Set<Streets> red;
+    protected static Set<Streets> yellow;
+    protected static Set<Streets> green;
+    protected static Set<Streets> darkBlue;
     protected static LinkedList<Chance> chance;                   //Chance cards
     protected static LinkedList<Community> communityChests;       //Community Chest cards
 
@@ -22,17 +36,17 @@ public class Board {
         spaces.put(3, new Streets("Baltic", 4, 60, "Brown"));   //20
         spaces.put(4, new Taxes());     //income tax
         spaces.put(5, new Railroads("Reading", 25,200));
-        spaces.put(6, new Streets("Oriental", 6,100,"Blue"));   //30
+        spaces.put(6, new Streets("Oriental", 6,100,"Light Blue"));   //30
         spaces.put(7, new ChanceSpace());
-        spaces.put(8, new Streets("Vermont", 6,100,"Blue")); //30 with house
-        spaces.put(9, new Streets("Connecticut",8,120,"Blue"));  //40
+        spaces.put(8, new Streets("Vermont", 6,100,"Light Blue")); //30 with house
+        spaces.put(9, new Streets("Connecticut",8,120,"Light Blue"));  //40
 
         spaces.put(10, new Jail());
-        spaces.put(11, new Streets("St Charles", 10,140,"Magenta")); //50
+        spaces.put(11, new Streets("St Charles", 10,140,"Pink")); //50
         spaces.put(12, new Utilities("Electric Company", 4,150));
                                     //4x dice roll or 10x if both utilities owned by this player
-        spaces.put(13, new Streets("States", 10,140,"Magenta")); //50
-        spaces.put(14, new Streets("Virginia", 12,160,"Magenta"));   //60
+        spaces.put(13, new Streets("States", 10,140,"Pink")); //50
+        spaces.put(14, new Streets("Virginia", 12,160,"Pink"));   //60
         spaces.put(15, new Railroads("Pennsylvania", 25,200));
         spaces.put(16, new Streets("St James", 14,180,"Orange"));    //70
         spaces.put(17, new CommunitySpace());
@@ -58,10 +72,9 @@ public class Board {
         spaces.put(34, new Streets("Pennsylvania", 28,320,"Green"));    //150
         spaces.put(35, new Railroads("Short Line", 25,200));
         spaces.put(36, new ChanceSpace());
-        spaces.put(37, new Streets("Park Place", 35,350,"Blue"));    //175
+        spaces.put(37, new Streets("Park Place", 35,350,"Dark Blue"));    //175
         spaces.put(38, new Taxes());
-        spaces.put(39, new Streets("Boardwalk", 50,400, "Blue"));   //200
-
+        spaces.put(39, new Streets("Boardwalk", 50,400, "Dark Blue"));   //200
 
         //Cards information taken from https://www.monopolyland.com/list-monopoly-chance-community-chest-cards/
 
@@ -121,6 +134,49 @@ public class Board {
                 " Pay each player $50."));
         chance.add(new Chance("collectBank", 150, "Your building loan matures. Collect $150"));
 
+        //shuffle card decks
+        Collections.shuffle(communityChests);
+        Collections.shuffle(chance);
+
+        //Color Group Sets
+        brown = new HashSet<>(List.of(
+                (Streets) spaces.get(1),
+                (Streets) spaces.get(3)
+        ));
+        lightBlue = new HashSet<>(List.of(
+                (Streets) spaces.get(6),
+                (Streets) spaces.get(8),
+                (Streets) spaces.get(9)
+        ));
+        pink = new HashSet<>(List.of(
+                (Streets) spaces.get(11),
+                (Streets) spaces.get(13),
+                (Streets) spaces.get(14)
+        ));
+        orange = new HashSet<>(List.of(
+                (Streets) spaces.get(16),
+                (Streets) spaces.get(18),
+                (Streets) spaces.get(19)
+        ));
+        red = new HashSet<>(List.of(
+                (Streets) spaces.get(21),
+                (Streets) spaces.get(23),
+                (Streets) spaces.get(24)
+        ));
+        yellow = new HashSet<>(List.of(
+                (Streets) spaces.get(26),
+                (Streets) spaces.get(27),
+                (Streets) spaces.get(29)
+        ));
+        green = new HashSet<>(List.of(
+                (Streets) spaces.get(31),
+                (Streets) spaces.get(32),
+                (Streets) spaces.get(34)
+        ));
+        darkBlue = new HashSet<>(List.of(
+                (Streets) spaces.get(37),
+                (Streets) spaces.get(39)
+        ));
     }
 
     /**

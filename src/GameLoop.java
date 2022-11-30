@@ -45,11 +45,11 @@ public class GameLoop {
                 if (!p.isInJail) {
                     int rolls = 0;
                     boolean doubles;
-                    boolean endTurn;
+                    boolean toJail;
 
                     do {
                         doubles = false;
-                        endTurn = false;
+                        toJail = false;
                         int die1 = rollDie();
                         int die2 = rollDie();
 
@@ -64,7 +64,7 @@ public class GameLoop {
                             System.out.println(p.name + " is in jail");
                             playerAction(p);
                             if(p.currentSpace == 30) {
-                                endTurn = true;
+                                toJail = true;
                                 System.out.println(p.name + "'s New Balance: $" + p.bankBalance);
                             }
                         } else {
@@ -72,9 +72,12 @@ public class GameLoop {
                             System.out.println("Landed on " + getSpace(p.getCurrentSpace()) + " (" + p.getCurrentSpace() +
                                     ")");
                             playerAction(p);
-                            System.out.println("You rolled doubles. Roll dice again!");
+                            if(doubles) {
+                                System.out.println("You rolled doubles. Roll dice again!");
+                            }
                         }
-                    } while((rolls <= 3) && doubles && !p.isInJail && !endTurn);
+                    } while((rolls <= 3) && doubles && !p.isInJail && !toJail);
+                    System.out.println(p.name + "'s New Balance: $" + p.bankBalance);
 
                 } else {
                     if(p.getTurnsInJail() > 0) {
