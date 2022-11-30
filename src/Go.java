@@ -1,4 +1,8 @@
 public class Go extends Spaces {
+    public Go(int xCoord, int yCoord, String labelString, int rotationDegrees) {
+        super(xCoord, yCoord, labelString, rotationDegrees);
+    }
+
     /**
      * Go action - pay Player $200
      * @param p active Player
@@ -9,7 +13,7 @@ public class Go extends Spaces {
     }
 
     @Override
-    String getName() {
+    String spaceName() {
         return "Go";
     }
 }

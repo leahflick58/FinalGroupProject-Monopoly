@@ -2,6 +2,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class GoToJail extends Spaces {
+    public GoToJail(int xCoord, int yCoord, String labelString, int rotationDegrees) {
+        super(xCoord, yCoord, labelString, rotationDegrees);
+    }
+
     /**
      * GoToJail action - Sends active Player to Jail space (10) with 3 turns in jail and sets boolean isInJail to true.
      * @param p active Player
@@ -30,7 +34,7 @@ public class GoToJail extends Spaces {
     }
 
     @Override
-    String getName() {
+    String spaceName() {
         return "Go To Jail";
     }
 }

@@ -2,6 +2,10 @@ import java.util.Objects;
 
 public class ChanceSpace extends Spaces {
 
+    public ChanceSpace(int xCoord, int yCoord, String labelString, int rotationDegrees) {
+        super(xCoord, yCoord, labelString, rotationDegrees);
+    }
+
     /**
      * Draws a card from the Chance deck and carries out the assigned action
      * @param p active Player
@@ -53,7 +57,7 @@ public class ChanceSpace extends Spaces {
     }
 
     @Override
-    String getName() {
+    String spaceName() {
         return "Chance";
     }
 }

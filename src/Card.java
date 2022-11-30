@@ -143,7 +143,7 @@ public abstract class Card {
     public void goBack(Player p, int amount) {
         p.setCurrentSpace(p.getCurrentSpace() - amount - 1);
         System.out.println("Landed on " +
-                Board.spaces.get(p.getCurrentSpace()).getName());
+                Board.spaces.get(p.getCurrentSpace()).spaceName());
         Board.spaces.get(p.getCurrentSpace()).action(p);
     }
 

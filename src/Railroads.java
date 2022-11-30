@@ -11,8 +11,8 @@ public class Railroads extends Property {
      *@param rent rent due when someone other than the owner lands on the property
      *@param price price in order to buy property
      */
-    public Railroads(String name, int rent, int price) {
-        super(name, rent, price);
+    public Railroads(int xCoord, int yCoord, String labelString, int rotationDegrees, String name, int rent, int price) {
+        super(xCoord, yCoord, labelString, rotationDegrees, name, rent, price);
         railRoadRent = new HashMap<>();
         railRoadRent.put(1, 25);
         railRoadRent.put(2, 50);

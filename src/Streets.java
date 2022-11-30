@@ -9,8 +9,8 @@ public class Streets extends Property {
      * @param price price in order to buy property
      * @param colorGroup color group the Street is associated with, determines if a Player can upgrade to a house
      */
-    public Streets(String name, int rent, int price, String colorGroup) {
-        super(name, rent, price);
+    public Streets(int xCoord, int yCoord, String labelString, int rotationDegrees, String name, int rent, int price, String colorGroup) {
+        super(xCoord, yCoord, labelString, rotationDegrees, name, rent, price);
         this.isHotel = false;
         this.colorGroup = colorGroup;
     }

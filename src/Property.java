@@ -11,7 +11,8 @@ abstract class Property extends Spaces {
      * @param rent rent due when someone other than the owner lands on the property
      * @param price price in order to buy property
      */
-    public Property(String name, int rent, int price) {
+    public Property(int xCoord, int yCoord, String labelString, int rotationDegrees, String name, int rent, int price) {
+        super(xCoord, yCoord, labelString, rotationDegrees);
         this.name = name;
         this.rent = rent;
         this.price = price;
@@ -66,7 +67,7 @@ abstract class Property extends Spaces {
                                     System.out.println("Property: ");
                                     String property = in.next();
                                     for (Property properties: p.properties) {
-                                        if (properties.getName().equals(property)) {
+                                        if (properties.spaceName().equals(property)) {
                                             p.sellProperty(properties);
                                             System.out.println(property + " sold to the bank.");
                                             correct_name = true;
@@ -131,7 +132,7 @@ abstract class Property extends Spaces {
      */
     abstract int getTotalRent(Player p);
 
-    public String getName() {
+    public String spaceName() {
         return name;
     }
 
@@ -140,7 +141,7 @@ abstract class Property extends Spaces {
      * @return String
      */
     public String getDetails() {
-        return (getName() + "\nPrice: $" + getPrice() + "\nRent: $" + getRent());
+        return (spaceName() + "\nPrice: $" + getPrice() + "\nRent: $" + getRent());
     }
 
 }

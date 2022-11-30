@@ -1,4 +1,8 @@
 public class Parking extends Spaces {
+    public Parking(int xCoord, int yCoord, String labelString, int rotationDegrees) {
+        super(xCoord, yCoord, labelString, rotationDegrees);
+    }
+
     /**
      * Parking action - Nothing
      * @param p active Player
@@ -9,7 +13,7 @@ public class Parking extends Spaces {
     }
 
     @Override
-    String getName() {
+    String spaceName() {
         return "Free Parking";
     }
 }

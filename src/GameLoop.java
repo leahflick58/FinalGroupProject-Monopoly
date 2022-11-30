@@ -112,7 +112,7 @@ public class GameLoop {
      * @return String name of space
      */
     public String getSpace(int currentSpace) {
-        return board.getSpaces().get(currentSpace).getName();
+        return board.getSpaces().get(currentSpace).spaceName();
     }
 
     /**

@@ -2,6 +2,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Jail extends Spaces{
+    public Jail(int xCoord, int yCoord, String labelString, int rotationDegrees) {
+        super(xCoord, yCoord, labelString, rotationDegrees);
+    }
+
     /**
      * Jail Action
      * Check if a Player is currently in jail, if not space acts as "Just Visiting" and nothing happens
@@ -75,7 +79,7 @@ public class Jail extends Spaces{
     }
 
     @Override
-    String getName() {
+    String spaceName() {
         return "Jail";
     }
 

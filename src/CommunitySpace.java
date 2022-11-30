@@ -2,6 +2,10 @@ import java.util.Objects;
 
 public class CommunitySpace extends Spaces {
 
+    public CommunitySpace(int xCoord, int yCoord, String labelString, int rotationDegrees) {
+        super(xCoord, yCoord, labelString, rotationDegrees);
+    }
+
     /**
      * Draws a card from the Community Chest deck and carries out the assigned action
      * @param p active Player
@@ -46,7 +50,7 @@ public class CommunitySpace extends Spaces {
     }
 
     @Override
-    String getName() {
+    String spaceName() {
         return "Community Chest";
     }
 

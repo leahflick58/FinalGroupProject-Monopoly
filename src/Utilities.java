@@ -5,8 +5,8 @@ public class Utilities extends Property {
      * @param rent rent due when someone other than the owner lands on the property
      * @param price price in order to buy property
      */
-    public Utilities(String name, int rent, int price) {
-        super(name, rent, price);
+    public Utilities(int xCoord, int yCoord, String labelString, int rotationDegrees, String name, int rent, int price) {
+        super(xCoord, yCoord, labelString, rotationDegrees, name, rent, price);
     }
 
     /**

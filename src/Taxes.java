@@ -1,4 +1,8 @@
 public class Taxes extends Spaces{
+    public Taxes(int xCoord, int yCoord, String labelString, int rotationDegrees) {
+        super(xCoord, yCoord, labelString, rotationDegrees);
+    }
+
     /**
      * Taxes action - Pay specific amount of taxes to bank
      * @param p active Player
@@ -10,7 +14,7 @@ public class Taxes extends Spaces{
     }
 
     @Override
-    String getName() {
+    String spaceName() {
         return "Taxes";     //will need to split into Income and Luxury
     }
 }
