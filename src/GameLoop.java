@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 public class GameLoop {
     public static ArrayList<Player> players;
@@ -31,29 +32,75 @@ public class GameLoop {
     }
 
     /**
-     * Plays a single Monopoly round
+     * Plays a single round of Monopoly.
+     * Rolls two 6-sided dice according to Monopoly rules:
+     * If the first roll yields doubles (same number of digits on each die), player can roll dice again.
+     * If the second roll yields doubles, player can roll dice a third time.
+     * If the third roll yields doubles, player is considered to be cheating and must go to jail.
      */
     public void play() {
         for(Player p : players) {
             if (!p.isBankrupt()) {
-                System.out.println(p.name + "'s Balance: $" + p.bankBalance);
+                System.out.println("\n" + p.name + "'s Balance: $" + p.bankBalance);
                                         //if p.isinJail && p.usesJailFreeCard {
                 if (!p.isInJail) {
-                    move(p, rollDice());
-                    if(p.isInJail) {
-                        System.out.println(p.name + " is in jail");
-                    } else {
-                        System.out.println("Landed on " + getSpace(p.getCurrentSpace()) + " (" + p.getCurrentSpace() +
-                                ")");
-                    }
-                    playerAction(p);
-                    System.out.println(p.name + "'s New Balance: $" + p.bankBalance + "\n");
+                    int rolls = 0;
+                    boolean doubles;
+                    boolean toJail;
+
+                    do {
+                        doubles = false;
+                        toJail = false;
+                        int die1 = rollDie();
+                        int die2 = rollDie();
+
+                        System.out.println("You rolled a " + die1 + " and a " + die2);
+                        rolls++;
+
+                        if(die1 == die2) {
+                            doubles = true;
+                        }
+                        if((rolls == 3) && doubles) {   //caught cheating
+                            move(p, 0);
+                            System.out.println(p.name + " is in jail");
+                            playerAction(p);
+                            if(p.currentSpace == 30) {
+                                toJail = true;
+                                System.out.println(p.name + "'s New Balance: $" + p.bankBalance);
+                            }
+                        } else {
+                            move(p, die1 + die2);
+                            System.out.println("Landed on " + getSpace(p.getCurrentSpace()) + " (" + p.getCurrentSpace() +
+                                    ")");
+                            playerAction(p);
+                            if(doubles) {
+                                System.out.println("You rolled doubles. Roll dice again!");
+                            }
+                        }
+                    } while((rolls <= 3) && doubles && !p.isInJail && !toJail);
+                    System.out.println(p.name + "'s New Balance: $" + p.bankBalance);
+
                 } else {
                     if(p.getTurnsInJail() > 0) {
                         System.out.println(p.name + " is in jail");
                         playerAction(p);    //jail action
                     }
                 }
+
+                //You may upgrade to hotels, collect rent, and deal with other players even though in Jail.
+
+                //Upgrade to hotel:
+                if(p.properties.size() > 0) {   //will not iterate through color groups if player owns 0 properties
+                    checkColorGroupForUpgrade(p, Board.getBrown());
+                    checkColorGroupForUpgrade(p, Board.getLightBlue());
+                    checkColorGroupForUpgrade(p, Board.getPink());
+                    checkColorGroupForUpgrade(p, Board.getOrange());
+                    checkColorGroupForUpgrade(p, Board.getRed());
+                    checkColorGroupForUpgrade(p, Board.getYellow());
+                    checkColorGroupForUpgrade(p, Board.getGreen());
+                    checkColorGroupForUpgrade(p, Board.getDarkBlue());
+                }
+
             }
             else System.out.println(p.name + " is bankrupt");
         }
@@ -78,38 +125,6 @@ public class GameLoop {
     }
 
     /**
-     * Rolls two 6-sided dice according to Monopoly rules:
-     * If the first roll yields doubles (same number of digits on each die), player can roll dice again.
-     * If the second roll yields doubles, player can roll dice a third time.
-     * If the third roll yields doubles, player is considered to be cheating and must go to jail.
-     * @return sum of rolls or 0 if caught cheating, indicating player should go to jail
-     */
-    public static int rollDice() {
-        int sum = 0;
-        int rolls = 0;
-        boolean doubles;
-
-        do {
-            doubles = false;
-            int die1 = rollDie();
-            int die2 = rollDie();
-
-            System.out.println("You rolled a " + die1 + " and a " + die2);
-            sum += die1 + die2;
-            rolls++;
-            if(die1 == die2) {
-                doubles = true;
-                System.out.println("You rolled doubles. Roll dice again!");
-            }
-            if((rolls == 3) && doubles) {
-                return 0;
-            }
-        } while (doubles);
-
-        return sum;
-    }
-
-    /**
      * Moves player's current location on board based on dice roll.
      * @param p
      * @param spaces
@@ -125,9 +140,7 @@ public class GameLoop {
             p.setCurrentSpace(newSpace % 40);
         } else {
             System.out.println("Caught cheating on rolling dice");
-            p.isInJail = true;  //if cheating on rolling dice, go to jail
-            p.setTurnsInJail(3);
-            p.currentSpace = 10;
+            p.currentSpace = 30;
         }
     }
 
@@ -167,6 +180,30 @@ public class GameLoop {
             }
         }
         return null;
+    }
+
+    /**
+     * If active player owns an entire color group, they may upgrade to hotels
+     * @param p
+     * @param colorGroup
+     */
+    public void checkColorGroupForUpgrade(Player p, Set<Streets> colorGroup) {
+        if(p.hasEntireColorGroup(colorGroup)) {
+            Scanner in = new Scanner(System.in);
+            String decision = "O";
+            while (!decision.equals("Y") && !decision.equals("N")) {
+                System.out.println("Do you want to upgrade to hotels? Enter Y/N: ");
+                decision = in.next();
+                if (!decision.equals("Y") && !decision.equals("N")) {
+                    System.out.println("Invalid input. Choose Y or N");
+                }
+            }
+            if(decision.equals("Y")) {
+                for(Streets s : colorGroup) {
+                    s.upgrade(s);
+                }
+            }
+        }
     }
 
 }
