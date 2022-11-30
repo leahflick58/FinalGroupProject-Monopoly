@@ -39,7 +39,6 @@ abstract class Property extends Spaces {
      * If no one owns it, the Player has the choice to buy the Property or pass.
      * @param p
      */
-    // TODO: This is gonna require a lot of testing, I don't know if this does what we want
     @Override
     public void action(Player p) {
         // loop through all players
@@ -60,21 +59,23 @@ abstract class Property extends Spaces {
                             for (Property property: p.properties) {
                                 System.out.println(property.name + " Selling Price: " + (property.getPrice() / 2));
                             }
-                            Scanner in = new Scanner(System.in);
-                            boolean correct_name = false;
-                            while (!correct_name) {
-                                System.out.println("Property: ");
-                                String property = in.next();
-                                for (Property properties: p.properties) {
-                                    if (properties.getName().equals(property)) {
-                                        p.sellProperty(properties);
-                                        System.out.println(property + " sold to the bank.");
-                                        correct_name = true;
-                                        break;
+                            while (p.bankBalance - this.getTotalRent(player) < 0) {
+                                Scanner in = new Scanner(System.in);
+                                boolean correct_name = false;
+                                while (!correct_name) {
+                                    System.out.println("Property: ");
+                                    String property = in.next();
+                                    for (Property properties: p.properties) {
+                                        if (properties.getName().equals(property)) {
+                                            p.sellProperty(properties);
+                                            System.out.println(property + " sold to the bank.");
+                                            correct_name = true;
+                                            break;
+                                        }
                                     }
-                                }
-                                if (!correct_name) {
-                                    System.out.println("An invalid property name was entered. Please enter a valid property.");
+                                    if (!correct_name) {
+                                        System.out.println("An invalid property name was entered. Please enter a valid property.");
+                                    }
                                 }
                             }
                             p.payRent(player, this);
@@ -86,7 +87,6 @@ abstract class Property extends Spaces {
                             }
                             break;
                         }
-
                     }
                 }   // no else statement, if the property is owned by current player the move passes to the next player
                 break;
@@ -95,20 +95,23 @@ abstract class Property extends Spaces {
         // if the property is not owned, the player may either buy or pass
         if (!owned) {
             // NOTICE - First time I've had to deal with user input
-            // TODO: Check if a player can afford it
-            Scanner in = new Scanner(System.in);
-            String decision = "O";
-            while (!decision.equals("Y") && !decision.equals("N")) {
-                System.out.println("Do you want to buy this property? Enter Y/N: ");
-                System.out.println(this.getDetails());
-                decision = in.next();
-                if (!decision.equals("Y") && !decision.equals("N")) {
-                    System.out.println("Invalid input. Choose Y or N");
+            if (p.bankBalance - this.getPrice() > 0) {
+                Scanner in = new Scanner(System.in);
+                String decision = "O";
+                while (!decision.equals("Y") && !decision.equals("N")) {
+                    System.out.println("Do you want to buy this property? Enter Y/N: ");
+                    System.out.println(this.getDetails());
+                    decision = in.next();
+                    if (!decision.equals("Y") && !decision.equals("N")) {
+                        System.out.println("Invalid input. Choose Y or N");
+                    }
                 }
-            }
-            if(decision.equals("Y")) {
-                p.addProperty(this);
-                System.out.println(p.name + " has bought " + this.name);
+                if(decision.equals("Y")) {
+                    p.addProperty(this);
+                    System.out.println(p.name + " has bought " + this.name);
+                }
+            } else {
+                System.out.println("You cannot afford this property.");
             }
         }
     }
