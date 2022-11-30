@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 public class GameLoop {
     public static ArrayList<Player> players;
@@ -85,6 +86,21 @@ public class GameLoop {
                         playerAction(p);    //jail action
                     }
                 }
+
+                //You may upgrade to hotels, collect rent, and deal with other players even though in Jail.
+
+                //Upgrade to hotel:
+                if(p.properties.size() > 0) {   //will not iterate through color groups if player owns 0 properties
+                    checkColorGroupForUpgrade(p, Board.getBrown());
+                    checkColorGroupForUpgrade(p, Board.getLightBlue());
+                    checkColorGroupForUpgrade(p, Board.getPink());
+                    checkColorGroupForUpgrade(p, Board.getOrange());
+                    checkColorGroupForUpgrade(p, Board.getRed());
+                    checkColorGroupForUpgrade(p, Board.getYellow());
+                    checkColorGroupForUpgrade(p, Board.getGreen());
+                    checkColorGroupForUpgrade(p, Board.getDarkBlue());
+                }
+
             }
             else System.out.println(p.name + " is bankrupt");
         }
@@ -164,6 +180,30 @@ public class GameLoop {
             }
         }
         return null;
+    }
+
+    /**
+     * If active player owns an entire color group, they may upgrade to hotels
+     * @param p
+     * @param colorGroup
+     */
+    public void checkColorGroupForUpgrade(Player p, Set<Streets> colorGroup) {
+        if(p.hasEntireColorGroup(colorGroup)) {
+            Scanner in = new Scanner(System.in);
+            String decision = "O";
+            while (!decision.equals("Y") && !decision.equals("N")) {
+                System.out.println("Do you want to upgrade to hotels? Enter Y/N: ");
+                decision = in.next();
+                if (!decision.equals("Y") && !decision.equals("N")) {
+                    System.out.println("Invalid input. Choose Y or N");
+                }
+            }
+            if(decision.equals("Y")) {
+                for(Streets s : colorGroup) {
+                    s.upgrade(s);
+                }
+            }
+        }
     }
 
 }

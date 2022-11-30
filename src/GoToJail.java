@@ -8,9 +8,8 @@ public class GoToJail extends Spaces {
      */
     @Override
     void action(Player p) {
-        //TODO: modify according to the following rules:
-        //You may buy and erect houses and/or hotels, sell or buy property, collect rent, mortgage properties,
-        // participate in auctions and deal with other players even though in Jail.
+        //You may buy and erect houses and/or hotels, sell or buy property, collect rent,
+        //and deal with other players even though in Jail.
 
         if(p.getNumGetOutOfJail() > 0) {
             System.out.println("Play 'Get Out of Jail' card? Enter Y/N: ");

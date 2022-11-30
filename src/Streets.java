@@ -34,7 +34,6 @@ public class Streets extends Property {
      * @param property Street Player wants to upgrade
      */
     public void upgrade(Streets property) {
-        //TODO: check to see if Player is eligible to upgrade
         property.isHotel = true;
     }
 

@@ -243,4 +243,22 @@ public class Player {
         return bankrupt;
     }
 
+    /**
+     * Determines whether this player owns all Street properties in this color group
+     * @param color
+     * @return true if player owns all Streets within color group
+     */
+    public boolean hasEntireColorGroup(Set<Streets> color) {
+        int numStreets = 0;
+        for(Streets s : color) {
+            if(ownsProperty(s)) {
+                numStreets++;
+            }
+        }
+        if(numStreets == color.size()) {
+            return true;
+        }
+        return false;
+    }
+
 }

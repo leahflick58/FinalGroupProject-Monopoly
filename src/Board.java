@@ -1,10 +1,6 @@
 import java.util.*;
 
 public class Board {
-    public static LinkedList<Chance> getChance() {
-        return chance;
-    }
-
     public static LinkedList<Community> getCommunity() {
         return communityChests;
     }
@@ -77,7 +73,7 @@ public class Board {
         spaces.put(39, new Streets("Boardwalk", 50,400, "Dark Blue"));   //200
 
         //Cards information taken from https://www.monopolyland.com/list-monopoly-chance-community-chest-cards/
-
+        //Deck of Community Chest cards
         communityChests = new LinkedList<>();
         communityChests.add(new Community("goToJail", 1, "Go to Jail. Go directly to Jail, do not" +
                 " pass Go, do not collect $200"));
@@ -106,8 +102,7 @@ public class Board {
         communityChests.add(new Community("collectBank", 100,"You inherit $100"));
 
 
-
-        //TODO: create shuffle method opt
+        //Deck of Chance cards
         chance = new LinkedList<>();
         chance.add(new Chance("advance", 39, "Advance to Boardwalk"));
         chance.add(new Chance("advance", 0, "Advance to " + spaces.get(0).getName() + " (Collect $200)"));
@@ -134,7 +129,7 @@ public class Board {
                 " Pay each player $50."));
         chance.add(new Chance("collectBank", 150, "Your building loan matures. Collect $150"));
 
-        //shuffle card decks
+        //Shuffle card decks
         Collections.shuffle(communityChests);
         Collections.shuffle(chance);
 
@@ -200,5 +195,60 @@ public class Board {
         return locations;
     }
 
-
+    /**
+     * Getter: Brown color group
+     * @return HashSet of Streets properties in the Brown color group
+     */
+    public static Set<Streets> getBrown() {
+        return brown;
+    }
+    /**
+     * Getter: Light Blue color group
+     * @return HashSet of Streets properties in the Light Blue color group
+     */
+    public static Set<Streets> getLightBlue() {
+        return lightBlue;
+    }
+    /**
+     * Getter: Pink color group
+     * @return HashSet of Streets properties in the Pink color group
+     */
+    public static Set<Streets> getPink() {
+        return pink;
+    }
+    /**
+     * Getter: Orange color group
+     * @return HashSet of Streets properties in the Orange color group
+     */
+    public static Set<Streets> getOrange() {
+        return orange;
+    }
+    /**
+     * Getter: Red color group
+     * @return HashSet of Streets properties in the Red color group
+     */
+    public static Set<Streets> getRed() {
+        return red;
+    }
+    /**
+     * Getter: Yellow color group
+     * @return HashSet of Streets properties in the Yellow color group
+     */
+    public static Set<Streets> getYellow() {
+        return yellow;
+    }
+    /**
+     * Getter: Green color group
+     * @return HashSet of Streets properties in the Green color group
+     */
+    public static Set<Streets> getGreen() {
+        return green;
+    }
+    /**
+     * Getter: Dark Blue color group
+     * @return HashSet of Streets properties in the Dark Blue color group
+     */
+    public static Set<Streets> getDarkBlue() {
+        return darkBlue;
+    }
 }
