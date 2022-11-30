@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class Streets extends Property {
     private boolean isHotel;
     private final String colorGroup;
@@ -64,5 +66,49 @@ public class Streets extends Property {
             }
         }
         return rent;
+    }
+
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        if(this.colorGroup.equals("brown")){
+            g.drawRect(0,this.getHeight()-20,this.getWidth(),20);
+            g.setColor(Color.LIGHT_GRAY);
+            g.fillRect(0,this.getHeight()-20,this.getWidth(),20);
+        }
+        if(this.colorGroup.equals("lightBlue")){
+            g.drawRect(0,this.getHeight()-20,this.getWidth(),20);
+            g.setColor(Color.BLUE);
+            g.fillRect(0,this.getHeight()-20,this.getWidth(),20);
+        }
+        if(this.colorGroup.equals("pink")){
+            g.drawRect(0,0,20,this.getHeight());
+            g.setColor(Color.PINK);
+            g.fillRect(0,0,20,this.getHeight());
+        }
+        if(this.colorGroup.equals("orange")){
+            g.drawRect(0,0,20,this.getHeight());
+            g.setColor(Color.ORANGE);
+            g.fillRect(0,0,20,this.getHeight());
+        }
+        if(this.colorGroup.equals("red")){
+            g.drawRect(0,0,this.getWidth(),20);
+            g.setColor(Color.RED);
+            g.fillRect(0,0,this.getWidth(),20);
+        }
+        if(this.colorGroup.equals("yellow")){
+            g.drawRect(0,0,this.getWidth(),20);
+            g.setColor(Color.YELLOW);
+            g.fillRect(0,0,this.getWidth(),20);
+        }
+        if(this.colorGroup.equals("green")){
+            g.drawRect(this.getWidth()-20,0,20,this.getHeight());
+            g.setColor(Color.GREEN);
+            g.fillRect(this.getWidth()-20,0,20,this.getHeight());
+        }
+        if(this.colorGroup.equals("darkBlue")){
+            g.drawRect(this.getWidth()-20,0,20,this.getHeight());
+            g.setColor(Color.MAGENTA);
+            g.fillRect(this.getWidth()-20,0,20,this.getHeight());
+        }
     }
 }

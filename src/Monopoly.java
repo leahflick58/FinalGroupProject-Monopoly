@@ -1,17 +1,26 @@
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Monopoly {
+public class Monopoly extends JFrame {
     private GameLoop loop;
     private Player winner;
+    JPanel contentIncluder;
 
     /**
      * Creates a GameLoop for the Monopoly game and gets the winner
      * @param players as an ArrayList of String names
      */
     public Monopoly(ArrayList<String> players) {
-        //TODO: create shuffle methods for Community and Chance
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 450, 300);
+        setSize(1080,1000);
+        contentIncluder = new JPanel();
+        contentIncluder.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentIncluder);
+        contentIncluder.setLayout(null);
         loop = new GameLoop(players);
         winner = loop.gameLoop();
     }
