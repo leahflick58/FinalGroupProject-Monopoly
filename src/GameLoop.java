@@ -31,23 +31,51 @@ public class GameLoop {
     }
 
     /**
-     * Plays a single Monopoly round
+     * Plays a single round of Monopoly.
+     * Rolls two 6-sided dice according to Monopoly rules:
+     * If the first roll yields doubles (same number of digits on each die), player can roll dice again.
+     * If the second roll yields doubles, player can roll dice a third time.
+     * If the third roll yields doubles, player is considered to be cheating and must go to jail.
      */
     public void play() {
         for(Player p : players) {
             if (!p.isBankrupt()) {
-                System.out.println(p.name + "'s Balance: $" + p.bankBalance);
+                System.out.println("\n" + p.name + "'s Balance: $" + p.bankBalance);
                                         //if p.isinJail && p.usesJailFreeCard {
                 if (!p.isInJail) {
-                    move(p, rollDice());
-                    if(p.isInJail) {
-                        System.out.println(p.name + " is in jail");
-                    } else {
-                        System.out.println("Landed on " + getSpace(p.getCurrentSpace()) + " (" + p.getCurrentSpace() +
-                                ")");
-                    }
-                    playerAction(p);
-                    System.out.println(p.name + "'s New Balance: $" + p.bankBalance + "\n");
+                    int rolls = 0;
+                    boolean doubles;
+                    boolean endTurn;
+
+                    do {
+                        doubles = false;
+                        endTurn = false;
+                        int die1 = rollDie();
+                        int die2 = rollDie();
+
+                        System.out.println("You rolled a " + die1 + " and a " + die2);
+                        rolls++;
+
+                        if(die1 == die2) {
+                            doubles = true;
+                        }
+                        if((rolls == 3) && doubles) {   //caught cheating
+                            move(p, 0);
+                            System.out.println(p.name + " is in jail");
+                            playerAction(p);
+                            if(p.currentSpace == 30) {
+                                endTurn = true;
+                                System.out.println(p.name + "'s New Balance: $" + p.bankBalance);
+                            }
+                        } else {
+                            move(p, die1 + die2);
+                            System.out.println("Landed on " + getSpace(p.getCurrentSpace()) + " (" + p.getCurrentSpace() +
+                                    ")");
+                            playerAction(p);
+                            System.out.println("You rolled doubles. Roll dice again!");
+                        }
+                    } while((rolls <= 3) && doubles && !p.isInJail && !endTurn);
+
                 } else {
                     if(p.getTurnsInJail() > 0) {
                         System.out.println(p.name + " is in jail");
@@ -78,38 +106,6 @@ public class GameLoop {
     }
 
     /**
-     * Rolls two 6-sided dice according to Monopoly rules:
-     * If the first roll yields doubles (same number of digits on each die), player can roll dice again.
-     * If the second roll yields doubles, player can roll dice a third time.
-     * If the third roll yields doubles, player is considered to be cheating and must go to jail.
-     * @return sum of rolls or 0 if caught cheating, indicating player should go to jail
-     */
-    public static int rollDice() {
-        int sum = 0;
-        int rolls = 0;
-        boolean doubles;
-
-        do {
-            doubles = false;
-            int die1 = rollDie();
-            int die2 = rollDie();
-
-            System.out.println("You rolled a " + die1 + " and a " + die2);
-            sum += die1 + die2;
-            rolls++;
-            if(die1 == die2) {
-                doubles = true;
-                System.out.println("You rolled doubles. Roll dice again!");
-            }
-            if((rolls == 3) && doubles) {
-                return 0;
-            }
-        } while (doubles);
-
-        return sum;
-    }
-
-    /**
      * Moves player's current location on board based on dice roll.
      * @param p
      * @param spaces
@@ -125,9 +121,7 @@ public class GameLoop {
             p.setCurrentSpace(newSpace % 40);
         } else {
             System.out.println("Caught cheating on rolling dice");
-            p.isInJail = true;  //if cheating on rolling dice, go to jail
-            p.setTurnsInJail(3);
-            p.currentSpace = 10;
+            p.currentSpace = 30;
         }
     }
 

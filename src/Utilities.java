@@ -17,7 +17,7 @@ public class Utilities extends Property {
     // did a new dice roll to save hassle
     @Override
     int getTotalRent(Player p) {
-        int roll = GameLoop.rollDice();
+        int roll = GameLoop.rollDie() + GameLoop.rollDie();
         int numUtilities = p.numberUtilities();
         if (numUtilities == 2) {
             return roll * 10;
