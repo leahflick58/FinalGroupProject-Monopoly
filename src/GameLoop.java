@@ -91,14 +91,7 @@ public class GameLoop {
 
                 //Upgrade to hotel:
                 if(p.properties.size() > 0) {   //will not iterate through color groups if player owns 0 properties
-                    checkColorGroupForUpgrade(p, Board.getBrown());
-                    checkColorGroupForUpgrade(p, Board.getLightBlue());
-                    checkColorGroupForUpgrade(p, Board.getPink());
-                    checkColorGroupForUpgrade(p, Board.getOrange());
-                    checkColorGroupForUpgrade(p, Board.getRed());
-                    checkColorGroupForUpgrade(p, Board.getYellow());
-                    checkColorGroupForUpgrade(p, Board.getGreen());
-                    checkColorGroupForUpgrade(p, Board.getDarkBlue());
+                    checkColorGroupsForUpgrade(p);
                 }
 
             }
@@ -183,24 +176,27 @@ public class GameLoop {
     }
 
     /**
-     * If active player owns an entire color group, they may upgrade to hotels
+     * Checks all color groups in Board for active player ownership.
+     * If active player owns an entire color group, they may upgrade to hotels.
      * @param p
-     * @param colorGroup
      */
-    public void checkColorGroupForUpgrade(Player p, Set<Streets> colorGroup) {
-        if(p.hasEntireColorGroup(colorGroup)) {
-            Scanner in = new Scanner(System.in);
-            String decision = "O";
-            while (!decision.equals("Y") && !decision.equals("N")) {
-                System.out.println("Do you want to upgrade to hotels? Enter Y/N: ");
-                decision = in.next();
-                if (!decision.equals("Y") && !decision.equals("N")) {
-                    System.out.println("Invalid input. Choose Y or N");
+    public void checkColorGroupsForUpgrade(Player p) {
+        for(String colorGroup : Board.colorGroups.keySet()) {
+            Set<Streets> thisColor = Board.colorGroups.get(colorGroup);
+            if (p.hasEntireColorGroup(thisColor)) {
+                Scanner in = new Scanner(System.in);
+                String decision = "O";
+                while (!decision.equals("Y") && !decision.equals("N")) {
+                    System.out.println("Do you want to upgrade to hotels? Enter Y/N: ");
+                    decision = in.next();
+                    if (!decision.equals("Y") && !decision.equals("N")) {
+                        System.out.println("Invalid input. Choose Y or N");
+                    }
                 }
-            }
-            if(decision.equals("Y")) {
-                for(Streets s : colorGroup) {
-                    s.upgrade(s);
+                if (decision.equals("Y")) {
+                    for (Streets s : thisColor) {
+                        s.upgrade(s);
+                    }
                 }
             }
         }

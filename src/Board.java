@@ -7,6 +7,7 @@ public class Board {
 
     protected static HashMap<Integer, Spaces> spaces;
     protected static HashMap<Spaces, Integer> locations;
+    protected static HashMap<String, Set<Streets>> colorGroups;
     protected static Set<Streets> brown;
     protected static Set<Streets> lightBlue;
     protected static Set<Streets> pink;
@@ -134,44 +135,37 @@ public class Board {
         Collections.shuffle(chance);
 
         //Color Group Sets
-        brown = new HashSet<>(List.of(
+        colorGroups = new HashMap<>();
+        colorGroups.put("Brown", new HashSet<>(List.of(
                 (Streets) spaces.get(1),
-                (Streets) spaces.get(3)
-        ));
-        lightBlue = new HashSet<>(List.of(
+                (Streets) spaces.get(3))));
+        colorGroups.put("Light Blue", new HashSet<>(List.of(
                 (Streets) spaces.get(6),
                 (Streets) spaces.get(8),
-                (Streets) spaces.get(9)
-        ));
-        pink = new HashSet<>(List.of(
+                (Streets) spaces.get(9))));
+        colorGroups.put("Pink", new HashSet<>(List.of(
                 (Streets) spaces.get(11),
                 (Streets) spaces.get(13),
-                (Streets) spaces.get(14)
-        ));
-        orange = new HashSet<>(List.of(
+                (Streets) spaces.get(14))));
+        colorGroups.put("Orange", new HashSet<>(List.of(
                 (Streets) spaces.get(16),
                 (Streets) spaces.get(18),
-                (Streets) spaces.get(19)
-        ));
-        red = new HashSet<>(List.of(
+                (Streets) spaces.get(19))));
+        colorGroups.put("Red", new HashSet<>(List.of(
                 (Streets) spaces.get(21),
                 (Streets) spaces.get(23),
-                (Streets) spaces.get(24)
-        ));
-        yellow = new HashSet<>(List.of(
+                (Streets) spaces.get(24))));
+        colorGroups.put("Yellow", new HashSet<>(List.of(
                 (Streets) spaces.get(26),
                 (Streets) spaces.get(27),
-                (Streets) spaces.get(29)
-        ));
-        green = new HashSet<>(List.of(
+                (Streets) spaces.get(29))));
+        colorGroups.put("Green", new HashSet<>(List.of(
                 (Streets) spaces.get(31),
                 (Streets) spaces.get(32),
-                (Streets) spaces.get(34)
-        ));
-        darkBlue = new HashSet<>(List.of(
+                (Streets) spaces.get(34))));
+        colorGroups.put("Dark Blue", new HashSet<>(List.of(
                 (Streets) spaces.get(37),
-                (Streets) spaces.get(39)
-        ));
+                (Streets) spaces.get(39))));
     }
 
     /**
