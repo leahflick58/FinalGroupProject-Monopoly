@@ -1,3 +1,4 @@
+package MonopolyGUI;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -12,18 +13,25 @@ public class Monopoly extends JFrame {
     JPanel contentIncluder;
 
     /**
+     * Constructs the Monopoly GUI window, adapted from [PUT GITHUB REPOSITORY HERE]
      * Creates a GameLoop for the Monopoly game and gets the winner
      * @param players as an ArrayList of String names
      */
     public Monopoly(ArrayList<String> players) {
+        /**
+         * @author
+         */
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
-        setSize(1080,1000);
+        setBounds(0, 0, 450, 300);
+        setSize(1080,700);
         contentIncluder = new JPanel();
         contentIncluder.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentIncluder);
         contentIncluder.setLayout(null);
 
+        /**
+         * @author
+         */
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setBorder(new LineBorder(new Color(0, 0,0)));
         layeredPane.setBounds(6,6,632,630);
@@ -38,6 +46,10 @@ public class Monopoly extends JFrame {
         rightPanel.setBorder(new LineBorder(Color.BLACK));
         rightPanel.setBounds(640,6,419,630);    //AM adjusted dimensions
         contentIncluder.add(rightPanel);
+
+        //
+
+        setVisible(true);
 
         loop = new GameLoop(players);
         winner = loop.gameLoop();
@@ -54,7 +66,6 @@ public class Monopoly extends JFrame {
     public static void main(String[] args) {
         Monopoly myGame = new Monopoly(new ArrayList<>(List.of("Alexis","David")));
         myGame.loop.gameLoop();
-        myGame.setVisible(true);
         System.out.println(myGame.winner.name + "won!");
     }
 
