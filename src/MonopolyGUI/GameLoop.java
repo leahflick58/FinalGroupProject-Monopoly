@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -25,6 +27,25 @@ public class GameLoop extends JFrame {
     private JTextArea panelPlayer1TextArea;
     public static ArrayList<Player> players;
     private Board board;
+    private int die1;
+    private int die2;
+
+
+    public int getDie2() {
+        return die2;
+    }
+
+    public void setDie2(int die2) {
+        this.die2 = die2;
+    }
+
+    public int getDie1() {
+        return die1;
+    }
+
+    public void setDie1(int die1) {
+        this.die1 = die1;
+    }
 
     /**
      * GameLoop constructor: Initializes a new Monopoly board and takes an ArrayList of player names and creates a new
@@ -56,49 +77,55 @@ public class GameLoop extends JFrame {
         contentIncluder.add(rightPanel);
         rightPanel.setLayout(null);
 
+        //@author
         btnBuy = new JButton("Buy");
         btnBuy.setBounds(81,478,117,29);
         rightPanel.add(btnBuy);
         btnBuy.setEnabled(false);
 
+        //@author
         btnPayRent = new JButton("Pay Rent");
         btnPayRent.setBounds(210, 478, 117, 29);
         rightPanel.add(btnPayRent);
         btnPayRent.setEnabled(false);
 
+        //@author
         btnRollDice = new JButton("Roll Dice");
         btnRollDice.setBounds(81, 413, 246, 53);
         rightPanel.add(btnRollDice);
         btnRollDice.setEnabled(false);
 
+        //@author
         btnNextTurn = new JButton("Next Turn");
         btnNextTurn.setBounds(81, 519, 246, 53);
         rightPanel.add(btnNextTurn);
         btnNextTurn.setEnabled(false);
 
+        //@author
         JPanel test = new JPanel();
         test.setBounds(81, 312, 246, 68);
         rightPanel.add(test);
         test.setLayout(null);
 
+        //@author
+        playerAssetsPanel = new JPanel();
+        playerAssetsPanel.setBounds(81, 28, 246, 189);
+        rightPanel.add(playerAssetsPanel);
+        playerAssetsPanel.setLayout(c1);
+
+        //@author
         infoConsole = new JTextArea();
         infoConsole.setColumns(20);
         infoConsole.setRows(5);
         infoConsole.setBounds(6, 6, 234, 56);
         test.add(infoConsole);
         infoConsole.setLineWrap(true);
-        infoConsole.setText("PLayer 1 starts the game by clicking Roll Dice!");
-
-//        playerAssetsPanel = new JPanel();
-//        playerAssetsPanel.setBounds(81, 28, 246, 189);
-//        rightPanel.add(playerAssetsPanel);
-//        playerAssetsPanel.setLayout(c1);
-
 
         setVisible(true);
 
-        ////////////////////////////
-        board = new Board();        //ArrayLists <Spaces>,<Chance>, <CommunityChest>
+        /////////////////////////////
+
+        board = new Board();            //ArrayLists <Spaces>,<Chance>, <CommunityChest>
         players = new ArrayList<>();
         for (String p : names) {
             players.add(new Player(p));
@@ -128,22 +155,19 @@ public class GameLoop extends JFrame {
             System.out.println("\n" + p.name + "'s Balance: $" + p.bankBalance);
 
             //adapted from []
-            playerAssetsPanel = new JPanel();
-            playerAssetsPanel.setBounds(81, 28, 246, 189);
-            rightPanel.add(playerAssetsPanel);
-            playerAssetsPanel.setLayout(c1);
-
             JPanel playerPanel = new JPanel();
             playerPanel.setBackground(new Color(0,190,190));
             playerAssetsPanel.add(playerPanel, "0");
             playerPanel.setLayout(null);
 
+            //adapted from []
             JLabel playerTitle = new JLabel(p.name + "'s Assets");
             playerTitle.setForeground(Color.WHITE);
             playerTitle.setHorizontalAlignment(SwingConstants.CENTER);
             playerTitle.setBounds(0, 6, 240, 16);
             playerPanel.add(playerTitle);
 
+            //adapted from []
             panelPlayer1TextArea = new JTextArea();
             panelPlayer1TextArea.setBounds(10, 34, 230, 149);
             panelPlayer1TextArea.setText("Balance: $" + p.bankBalance);
@@ -159,20 +183,36 @@ public class GameLoop extends JFrame {
                     boolean toJail;
 
                     do {
+                        infoConsole.setText("Roll the dice!");
+                        btnRollDice.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                setDie1(rollDie());
+                                setDie2(rollDie());
+                                infoConsole.setText("You rolled a " + getDie1() + " and a " + getDie2());
+                            }
+                        });
+                        while (!btnRollDice.isSelected()) {
+                            btnRollDice.setEnabled(true);
+                        }
+
                         doubles = false;
                         toJail = false;
-                        int die1 = rollDie();
-                        int die2 = rollDie();
-
-                        System.out.println("You rolled a " + die1 + " and a " + die2);
-                        rolls++;
-
+                        if(btnRollDice.isSelected()) {
+                            int die1 = getDie1();
+                            int die2 = getDie2();
+                            rolls++;
+                            infoConsole.append("\nRolls = " + rolls);
+                        }
                         if(die1 == die2) {
                             doubles = true;
                         }
                         if((rolls == 3) && doubles) {   //caught cheating
+                            btnRollDice.setEnabled(false);
                             move(p, 0);
-                            System.out.println(p.name + " is in jail");
+//                            System.out.println(p.name + " is in jail");
+                            infoConsole.setText("You were caught cheating by rolling doubles a third time. Go to jail."
+                            );
                             playerAction(p);
                             if(p.currentSpace == 30) {
                                 toJail = true;
@@ -182,9 +222,12 @@ public class GameLoop extends JFrame {
                             move(p, die1 + die2);
                             System.out.println("Landed on " + getSpace(p.getCurrentSpace()) + " (" + p.getCurrentSpace() +
                                     ")");
+                            infoConsole.append("\nLanded on " + getSpace(p.getCurrentSpace()) + " (" +
+                                    p.getCurrentSpace() + ")");
                             playerAction(p);
                             if(doubles) {
-                                System.out.println("You rolled doubles. Roll dice again!");
+//                                System.out.println("You rolled doubles. Roll dice again!");
+                                infoConsole.append("\nYou rolled doubles. Roll dice again!");
                             }
                         }
                     } while((rolls <= 3) && doubles && !p.isInJail && !toJail);
