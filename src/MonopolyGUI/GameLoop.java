@@ -12,8 +12,6 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class GameLoop extends JFrame {
-    private GameLoop loop;
-    private Player winner;
     private JPanel contentIncluder;
     private JLayeredPane layeredPane;
     private JPanel rightPanel;
@@ -29,7 +27,15 @@ public class GameLoop extends JFrame {
     private Board board;
     private int die1;
     private int die2;
+    private boolean rolledDice;
 
+    public boolean getRolledDice() {
+        return rolledDice;
+    }
+
+    public void setRolledDice(boolean rolledDice) {
+        this.rolledDice = rolledDice;
+    }
 
     public int getDie2() {
         return die2;
@@ -92,6 +98,16 @@ public class GameLoop extends JFrame {
         //@author
         btnRollDice = new JButton("Roll Dice");
         btnRollDice.setBounds(81, 413, 246, 53);
+        btnRollDice.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setDie1(rollDie());
+                setDie2(rollDie());
+                infoConsole.setText("You rolled a " + getDie1() + " and a " + getDie2());
+                btnRollDice.setEnabled(false);
+                setRolledDice(true);
+            }
+        });
         rightPanel.add(btnRollDice);
         btnRollDice.setEnabled(false);
 
@@ -152,7 +168,6 @@ public class GameLoop extends JFrame {
      */
     public void play() {
         for(Player p : players) {
-            System.out.println("\n" + p.name + "'s Balance: $" + p.bankBalance);
 
             //adapted from []
             JPanel playerPanel = new JPanel();
@@ -175,80 +190,35 @@ public class GameLoop extends JFrame {
 
             setVisible(true);
 
-            if (!p.isBankrupt()) {
+            //game logic
+            if(!p.isBankrupt()) {
+                System.out.println("\n" + p.name + "'s Balance: $" + p.bankBalance);
 
-                if (!p.isInJail) {
+                if(!p.isInJail) {
                     int rolls = 0;
                     boolean doubles;
                     boolean toJail;
 
-                    do {
-                        infoConsole.setText("Roll the dice!");
-                        btnRollDice.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                setDie1(rollDie());
-                                setDie2(rollDie());
-                                infoConsole.setText("You rolled a " + getDie1() + " and a " + getDie2());
-                            }
-                        });
-                        while (!btnRollDice.isSelected()) {
-                            btnRollDice.setEnabled(true);
-                        }
-
+                    while(rolls < 3) {
+                        System.out.println("Another iteration");
                         doubles = false;
                         toJail = false;
+                        //Player rolls dice to begin turn
+                        infoConsole.setText("Roll the dice!");
+                        setRolledDice(false);
+//                        while (!getRolledDice()) {      //waits for user to roll dice
+                            btnRollDice.setEnabled(true);
+//                        }
                         if(btnRollDice.isSelected()) {
                             int die1 = getDie1();
                             int die2 = getDie2();
                             rolls++;
                             infoConsole.append("\nRolls = " + rolls);
                         }
-                        if(die1 == die2) {
-                            doubles = true;
-                        }
-                        if((rolls == 3) && doubles) {   //caught cheating
-                            btnRollDice.setEnabled(false);
-                            move(p, 0);
-//                            System.out.println(p.name + " is in jail");
-                            infoConsole.setText("You were caught cheating by rolling doubles a third time. Go to jail."
-                            );
-                            playerAction(p);
-                            if(p.currentSpace == 30) {
-                                toJail = true;
-                                System.out.println(p.name + "'s New Balance: $" + p.bankBalance);
-                            }
-                        } else {
-                            move(p, die1 + die2);
-                            System.out.println("Landed on " + getSpace(p.getCurrentSpace()) + " (" + p.getCurrentSpace() +
-                                    ")");
-                            infoConsole.append("\nLanded on " + getSpace(p.getCurrentSpace()) + " (" +
-                                    p.getCurrentSpace() + ")");
-                            playerAction(p);
-                            if(doubles) {
-//                                System.out.println("You rolled doubles. Roll dice again!");
-                                infoConsole.append("\nYou rolled doubles. Roll dice again!");
-                            }
-                        }
-                    } while((rolls <= 3) && doubles && !p.isInJail && !toJail);
-                    System.out.println(p.name + "'s New Balance: $" + p.bankBalance);
 
-                } else {
-                    if(p.getTurnsInJail() > 0) {
-                        System.out.println(p.name + " is in jail");
-                        playerAction(p);    //jail action
                     }
                 }
-
-                //You may upgrade to hotels, collect rent, and deal with other players even though in Jail.
-
-                //Upgrade to hotel:
-                if(p.properties.size() > 0) {   //will not iterate through color groups if player owns 0 properties
-                    checkColorGroupsForUpgrade(p);
-                }
-
             }
-            else System.out.println(p.name + " is bankrupt");
         }
     }
 
