@@ -62,7 +62,7 @@ public class GameLoop extends JFrame {
         //@author
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
-        setSize(1080,700);
+        setSize(1080,1080);
         contentIncluder = new JPanel();
         contentIncluder.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentIncluder);

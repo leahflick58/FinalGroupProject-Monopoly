@@ -74,12 +74,12 @@ public class Streets extends Property {
         super.paintComponent(g);
         if(this.colorGroup.equals("brown")){
             g.drawRect(0,this.getHeight()-20,this.getWidth(),20);
-            g.setColor(Color.LIGHT_GRAY);
+            g.setColor(new Color(45, 18, 18));
             g.fillRect(0,this.getHeight()-20,this.getWidth(),20);
         }
         if(this.colorGroup.equals("lightBlue")){
             g.drawRect(0,this.getHeight()-20,this.getWidth(),20);
-            g.setColor(Color.BLUE);
+            g.setColor(new Color(133, 238, 238, 255));
             g.fillRect(0,this.getHeight()-20,this.getWidth(),20);
         }
         if(this.colorGroup.equals("pink")){
@@ -109,7 +109,7 @@ public class Streets extends Property {
         }
         if(this.colorGroup.equals("darkBlue")){
             g.drawRect(this.getWidth()-20,0,20,this.getHeight());
-            g.setColor(Color.MAGENTA);
+            g.setColor(new Color(6, 41, 98, 239));
             g.fillRect(this.getWidth()-20,0,20,this.getHeight());
         }
     }
