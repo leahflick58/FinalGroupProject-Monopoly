@@ -199,16 +199,15 @@ public class GameLoop extends JFrame {
                     boolean doubles;
                     boolean toJail;
 
-                    while(rolls < 3) {
-                        System.out.println("Another iteration");
+                    do {
                         doubles = false;
                         toJail = false;
                         //Player rolls dice to begin turn
                         infoConsole.setText("Roll the dice!");
                         setRolledDice(false);
-//                        while (!getRolledDice()) {      //waits for user to roll dice
+                        while (!getRolledDice()) {      //waits for user to roll dice
                             btnRollDice.setEnabled(true);
-//                        }
+                        }
                         if(btnRollDice.isSelected()) {
                             int die1 = getDie1();
                             int die2 = getDie2();
@@ -216,7 +215,7 @@ public class GameLoop extends JFrame {
                             infoConsole.append("\nRolls = " + rolls);
                         }
 
-                    }
+                    } while (rolls < 3);
                 }
             }
         }
