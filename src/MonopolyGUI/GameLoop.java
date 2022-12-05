@@ -24,7 +24,7 @@ public class GameLoop extends JFrame {
     private CardLayout c1 = new CardLayout();
     private JTextArea panelPlayer1TextArea;
     public static ArrayList<Player> players;
-    private Board board;
+    private Board board = new Board();
     private int die1;
     private int die2;
     private boolean rolledDice;
@@ -72,6 +72,7 @@ public class GameLoop extends JFrame {
         layeredPane = new JLayeredPane();
         layeredPane.setBorder(new LineBorder(new Color(0, 0,0)));
         layeredPane.setBounds(6,6,632,630);
+        layeredPane.add(board, new Integer(0));
         contentIncluder.add(layeredPane);
 
         //Control Panel

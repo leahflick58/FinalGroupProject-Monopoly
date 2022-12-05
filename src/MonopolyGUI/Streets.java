@@ -73,44 +73,44 @@ public class Streets extends Property {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         if(this.colorGroup.equals("brown")){
-            g.drawRect(0,this.getHeight()-20,this.getWidth(),20);
+            g.drawRect(0,this.getHeight()-10,this.getWidth(),10);
             g.setColor(new Color(45, 18, 18));
-            g.fillRect(0,this.getHeight()-20,this.getWidth(),20);
+            g.fillRect(0,this.getHeight()-10,this.getWidth(),10);
         }
         if(this.colorGroup.equals("lightBlue")){
-            g.drawRect(0,this.getHeight()-20,this.getWidth(),20);
+            g.drawRect(0,this.getHeight()-10,this.getWidth(),10);
             g.setColor(new Color(133, 238, 238, 255));
-            g.fillRect(0,this.getHeight()-20,this.getWidth(),20);
+            g.fillRect(0,this.getHeight()-10,this.getWidth(),10);
         }
         if(this.colorGroup.equals("pink")){
-            g.drawRect(0,0,20,this.getHeight());
+            g.drawRect(0,0,10,this.getHeight());
             g.setColor(Color.PINK);
-            g.fillRect(0,0,20,this.getHeight());
+            g.fillRect(0,0,10,this.getHeight());
         }
         if(this.colorGroup.equals("orange")){
-            g.drawRect(0,0,20,this.getHeight());
+            g.drawRect(0,0,10,this.getHeight());
             g.setColor(Color.ORANGE);
-            g.fillRect(0,0,20,this.getHeight());
+            g.fillRect(0,0,10,this.getHeight());
         }
         if(this.colorGroup.equals("red")){
-            g.drawRect(0,0,this.getWidth(),20);
+            g.drawRect(0,0,this.getWidth(),10);
             g.setColor(Color.RED);
-            g.fillRect(0,0,this.getWidth(),20);
+            g.fillRect(0,0,this.getWidth(),10);
         }
         if(this.colorGroup.equals("yellow")){
-            g.drawRect(0,0,this.getWidth(),20);
+            g.drawRect(0,0,this.getWidth(),10);
             g.setColor(Color.YELLOW);
-            g.fillRect(0,0,this.getWidth(),20);
+            g.fillRect(0,0,this.getWidth(),10);
         }
         if(this.colorGroup.equals("green")){
-            g.drawRect(this.getWidth()-20,0,20,this.getHeight());
+            g.drawRect(this.getWidth()-10,0,10,this.getHeight());
             g.setColor(Color.GREEN);
-            g.fillRect(this.getWidth()-20,0,20,this.getHeight());
+            g.fillRect(this.getWidth()-10,0,10,this.getHeight());
         }
         if(this.colorGroup.equals("darkBlue")){
-            g.drawRect(this.getWidth()-20,0,20,this.getHeight());
+            g.drawRect(this.getWidth()-10,0,10,this.getHeight());
             g.setColor(new Color(6, 41, 98, 239));
-            g.fillRect(this.getWidth()-20,0,20,this.getHeight());
+            g.fillRect(this.getWidth()-10,0,10,this.getHeight());
         }
     }
 }

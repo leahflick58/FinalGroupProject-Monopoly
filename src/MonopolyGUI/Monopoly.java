@@ -129,6 +129,7 @@ public class Monopoly extends JFrame {
 
     public static void main(String[] args) {
         Monopoly myGame = new Monopoly(new ArrayList<>(List.of("Alexis","David")));
+        myGame.setVisible(true);
         myGame.loop.gameLoop();
         System.out.println(myGame.winner.name + "won!");
     }

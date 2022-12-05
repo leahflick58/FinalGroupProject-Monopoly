@@ -13,15 +13,15 @@ public abstract class Spaces extends JPanel{
         number = totalSquares;
         totalSquares++;
         setBorder(new LineBorder(new Color(0, 0, 0)));
-        setBounds(xCoord, yCoord, 100, 100);
+        setBounds(xCoord, yCoord, 50, 50);
         name = labelString;
         this.setLayout(null);
 
         if(rotationDegrees == 0) {
             nameLabel = new JLabel(labelString);
-            nameLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+            nameLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 5));
             nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
-            nameLabel.setBounds(0,20,this.getWidth(),20);
+            nameLabel.setBounds(0,10,this.getWidth(),10);
             this.add(nameLabel);
         } else {
             // rotating a Jlabel: https://www.daniweb.com/programming/software-development/threads/390060/rotate-jlabel-or-image-in-label
@@ -42,10 +42,10 @@ public abstract class Spaces extends JPanel{
                 }
             };
             if(rotationDegrees == 90) {
-                nameLabel.setBounds(20, 0, this.getWidth(), this.getHeight());
+                nameLabel.setBounds(10, 0, this.getWidth(), this.getHeight());
             }
             if(rotationDegrees == -90) {
-                nameLabel.setBounds(-10, 0, this.getWidth(), this.getHeight());
+                nameLabel.setBounds(-5, 0, this.getWidth(), this.getHeight());
             }
             if(rotationDegrees == 180) {
                 nameLabel.setBounds(0, 0, this.getWidth(), this.getHeight());
@@ -53,7 +53,7 @@ public abstract class Spaces extends JPanel{
             if(rotationDegrees == 135 || rotationDegrees == -135 || rotationDegrees == -45 || rotationDegrees == 45) {
                 nameLabel.setBounds(0, 0, this.getWidth(), this.getHeight());
             }
-            nameLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+            nameLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 5));
             nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
             this.add(nameLabel);
