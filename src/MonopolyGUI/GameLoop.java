@@ -46,7 +46,7 @@ public class GameLoop extends JFrame {
         layeredPane.add(board, new Integer(0));
         contentIncluder.add(layeredPane);
 
-        //Control Panel
+        //CONTROL PANEL (GRAY)
         //@author
         rightPanel = new JPanel();
         rightPanel.setBackground(Color.LIGHT_GRAY);
@@ -55,9 +55,10 @@ public class GameLoop extends JFrame {
         contentIncluder.add(rightPanel);
         rightPanel.setLayout(null);
 
+        //PLAYER ASSETS
         //@author
         playerAssetsPanel = new JPanel();
-        playerAssetsPanel.setBounds(81, 28, 246, 189);
+        playerAssetsPanel.setBounds(81, 58, 246, 189);
         rightPanel.add(playerAssetsPanel);
         playerAssetsPanel.setLayout(c1);
 
@@ -67,23 +68,31 @@ public class GameLoop extends JFrame {
         playerAssetsPanel.add(playerPanel);
         playerPanel.setLayout(null);
 
+        //INFORMATION CONSOLE
         //@author
         JPanel info = new JPanel();
-        info.setBounds(81, 272, 246, 208);
+        info.setBounds(81, 312, 246, 258);
+        info.setBackground(new Color(140, 185, 160));
         rightPanel.add(info);
         info.setLayout(null);
+
+        JLabel infoLabel = new JLabel("Information Console");
+        infoLabel.setForeground(Color.WHITE);
+        infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        infoLabel.setBounds(0, 6, 240, 16);
+        info.add(infoLabel);
 
         //@author
         infoConsole = new JTextArea();
         infoConsole.setColumns(20);
         infoConsole.setRows(5);
-        infoConsole.setBounds(6, 6, 234, 190);
+        infoConsole.setBounds(6, 35, 234, 210);
         infoConsole.setLineWrap(true);
         infoConsole.setEditable(false);
         info.add(infoConsole);
 
-        //Sets up console for user input
-        input = new JUserInput(rightPanel);
+        //USER INPUT CONSOLE
+//        input = new JUserInput(rightPanel);
 
         setVisible(true);
 

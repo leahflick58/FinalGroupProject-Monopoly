@@ -6,6 +6,7 @@ abstract class Property extends Spaces {
     private final String name;
     private final int rent;
     private final int price;
+    private JUserInput userInput;
 
     /**
      * A Property, extended from Spaces class, has five attributes:
