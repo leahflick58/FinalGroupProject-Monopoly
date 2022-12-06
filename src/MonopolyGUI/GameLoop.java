@@ -20,9 +20,10 @@ public class GameLoop extends JFrame {
     private JButton btnRollDice;
     private JButton btnNextTurn;
     private static JTextArea infoConsole;
+    private static JTextArea userInput;
     private JPanel playerAssetsPanel;
     private CardLayout c1 = new CardLayout();
-    private JTextArea panelPlayer1TextArea;
+    private JTextArea panelPlayerTextArea;
     public static ArrayList<Player> players;
     private Board board = new Board();
     private int die1;
@@ -84,45 +85,39 @@ public class GameLoop extends JFrame {
         contentIncluder.add(rightPanel);
         rightPanel.setLayout(null);
 
-        //@author
-        btnBuy = new JButton("Buy");
-        btnBuy.setBounds(81,478,117,29);
-        rightPanel.add(btnBuy);
-        btnBuy.setEnabled(false);
+//        //@author
+//        btnBuy = new JButton("Buy");
+//        btnBuy.setBounds(81,478,117,29);
+//        rightPanel.add(btnBuy);
+//        btnBuy.setEnabled(false);
 
-        //@author
-        btnPayRent = new JButton("Pay Rent");
-        btnPayRent.setBounds(210, 478, 117, 29);
-        rightPanel.add(btnPayRent);
-        btnPayRent.setEnabled(false);
+//        //@author
+//        btnPayRent = new JButton("Pay Rent");
+//        btnPayRent.setBounds(210, 478, 117, 29);
+//        rightPanel.add(btnPayRent);
+//        btnPayRent.setEnabled(false);
 
-        //@author
-        btnRollDice = new JButton("Roll Dice");
-        btnRollDice.setBounds(81, 413, 246, 53);
-        btnRollDice.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setDie1(rollDie());
-                setDie2(rollDie());
-                infoConsole.setText("You rolled a " + getDie1() + " and a " + getDie2());
-                btnRollDice.setEnabled(false);
-                setRolledDice(true);
-            }
-        });
-        rightPanel.add(btnRollDice);
-        btnRollDice.setEnabled(false);
+//        //@author
+//        btnRollDice = new JButton("Roll Dice");
+//        btnRollDice.setBounds(81, 413, 246, 53);
+//        btnRollDice.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                setDie1(rollDie());
+//                setDie2(rollDie());
+//                infoConsole.setText("You rolled a " + getDie1() + " and a " + getDie2());
+////                btnRollDice.setEnabled(false);
+//                setRolledDice(true);
+//            }
+//        });
+//        rightPanel.add(btnRollDice);
+//        btnRollDice.setEnabled(false);
 
-        //@author
-        btnNextTurn = new JButton("Next Turn");
-        btnNextTurn.setBounds(81, 519, 246, 53);
-        rightPanel.add(btnNextTurn);
-        btnNextTurn.setEnabled(false);
-
-        //@author
-        JPanel test = new JPanel();
-        test.setBounds(81, 312, 246, 68);
-        rightPanel.add(test);
-        test.setLayout(null);
+//        //@author
+//        btnNextTurn = new JButton("Next Turn");
+//        btnNextTurn.setBounds(81, 519, 246, 53);
+//        rightPanel.add(btnNextTurn);
+//        btnNextTurn.setEnabled(false);
 
         //@author
         playerAssetsPanel = new JPanel();
@@ -131,12 +126,31 @@ public class GameLoop extends JFrame {
         playerAssetsPanel.setLayout(c1);
 
         //@author
+        JPanel info = new JPanel();
+        info.setBounds(81, 272, 246, 208);
+        rightPanel.add(info);
+        info.setLayout(null);
+
+        //@author
         infoConsole = new JTextArea();
         infoConsole.setColumns(20);
         infoConsole.setRows(5);
-        infoConsole.setBounds(6, 6, 234, 56);
-        test.add(infoConsole);
+        infoConsole.setBounds(6, 6, 234, 190);
         infoConsole.setLineWrap(true);
+        infoConsole.setEditable(false);
+        info.add(infoConsole);
+
+        JPanel userPanel = new JPanel();
+        userPanel.setBounds(81, 512, 246, 80);
+        rightPanel.add(userPanel);
+        userPanel.setLayout(null);
+
+        userInput = new JTextArea(3,20);
+        userInput.setBounds(6,6,234,65);
+        userInput.setLineWrap(true);
+        userInput.setEditable(true);
+        userPanel.add(userInput);
+        userInput.setText("User Input\n");
 
         setVisible(true);
 
@@ -172,7 +186,7 @@ public class GameLoop extends JFrame {
 
             //adapted from []
             JPanel playerPanel = new JPanel();
-            playerPanel.setBackground(new Color(0,190,190));
+            playerPanel.setBackground(new Color(0, 190, 190));
             playerAssetsPanel.add(playerPanel, "0");
             playerPanel.setLayout(null);
 
@@ -184,17 +198,20 @@ public class GameLoop extends JFrame {
             playerPanel.add(playerTitle);
 
             //adapted from []
-            panelPlayer1TextArea = new JTextArea();
-            panelPlayer1TextArea.setBounds(10, 34, 230, 149);
-            panelPlayer1TextArea.setText("Balance: $" + p.bankBalance);
-            playerPanel.add(panelPlayer1TextArea);
+            panelPlayerTextArea = new JTextArea();
+            panelPlayerTextArea.setBounds(10, 34, 230, 149);
+            panelPlayerTextArea.setEditable(false);
+            panelPlayerTextArea.setText("Balance: $" + p.bankBalance);
+            for(Property property : p.properties) {
+                infoConsole.append("\n" + property.getDetails());
+            }
+            playerPanel.add(panelPlayerTextArea);
 
             setVisible(true);
 
             //game logic
-            if(!p.isBankrupt()) {
-                System.out.println("\n" + p.name + "'s Balance: $" + p.bankBalance);
-
+            if (!p.isBankrupt()) {
+                infoConsole.setText(p.name + "'s Balance: $" + p.bankBalance);
                 if(!p.isInJail) {
                     int rolls = 0;
                     boolean doubles;
@@ -203,22 +220,44 @@ public class GameLoop extends JFrame {
                     do {
                         doubles = false;
                         toJail = false;
-                        //Player rolls dice to begin turn
-                        infoConsole.setText("Roll the dice!");
-                        setRolledDice(false);
-                        while (!getRolledDice()) {      //waits for user to roll dice
-                            btnRollDice.setEnabled(true);
-                        }
-                        if(btnRollDice.isSelected()) {
-                            int die1 = getDie1();
-                            int die2 = getDie2();
-                            rolls++;
-                            infoConsole.append("\nRolls = " + rolls);
-                        }
+                        int die1 = rollDie();
+                        int die2 = rollDie();
 
-                    } while (rolls < 3);
+                        infoConsole.append("\nYou rolled a " + die1 + " and a " + die2);
+                        rolls++;
+
+                        if(die1 == die2) {
+                            doubles = true;
+                        }
+                        if((rolls == 3) && doubles) {   //caught cheating
+                            move(p, 0);
+                            infoConsole.append("\n" + p.name + " is in jail.");
+                            playerAction(p);
+                            if (p.currentSpace == 30) {
+                                toJail = true;
+                                infoConsole.append("\n" + p.name + "'s New Balance: $" + p.bankBalance);
+                            }
+                        } else {
+                                move(p, die1 + die2);
+                                infoConsole.append("\nLanded on " + getSpace(p.getCurrentSpace()) + " (" + p.getCurrentSpace() +
+                                        ")");
+                                playerAction(p);
+                                if(doubles) {
+                                    infoConsole.append("\nYou rolled doubles. Roll dice again!");
+                                }
+                        }
+                    } while ((rolls <= 3) && doubles && !p.isInJail && !toJail);
+                    infoConsole.append("\n" + p.name + "'s New Balance: $" + p.bankBalance);
+                } else {
+                    if(p.getTurnsInJail() > 0) {
+                        infoConsole.append("\n" + p.name + " is in jail");
+                        playerAction(p);    //jail action
+                    }
                 }
-            }
+                if(p.properties.size() > 0) {   //will not iterate through color groups if player owns 0 properties
+                    checkColorGroupsForUpgrade(p);
+                }
+            } else infoConsole.append("\n" + p.name + " is bankrupt");
         }
     }
 

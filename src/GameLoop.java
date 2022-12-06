@@ -94,8 +94,7 @@ public class GameLoop {
                     checkColorGroupsForUpgrade(p);
                 }
 
-            }
-            else System.out.println(p.name + " is bankrupt");
+            } else System.out.println(p.name + " is bankrupt");
         }
     }
 
