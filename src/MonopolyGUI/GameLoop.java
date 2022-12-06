@@ -16,7 +16,7 @@ public class GameLoop extends JFrame {
     private JLayeredPane layeredPane;
     private JPanel rightPanel;
     private static JTextArea infoConsole;
-    private static JTextArea userInput;
+    private JUserInput input;
     private JPanel playerAssetsPanel;
     private JPanel playerPanel;
     private JLabel playerTitle;
@@ -82,17 +82,8 @@ public class GameLoop extends JFrame {
         infoConsole.setEditable(false);
         info.add(infoConsole);
 
-        JPanel userPanel = new JPanel();
-        userPanel.setBounds(81, 512, 246, 80);
-        rightPanel.add(userPanel);
-        userPanel.setLayout(null);
-
-        userInput = new JTextArea(3,20);
-        userInput.setBounds(6,6,234,65);
-        userInput.setLineWrap(true);
-        userInput.setEditable(true);
-        userPanel.add(userInput);
-        userInput.setText("User Input\n");
+        //Sets up console for user input
+        input = new JUserInput(rightPanel);
 
         setVisible(true);
 
@@ -126,6 +117,7 @@ public class GameLoop extends JFrame {
     public void play() {
         for(Player p : players) {
 
+            playerPanel.removeAll();
             //adapted from []
             playerTitle = new JLabel(p.name + "'s Assets");
             playerTitle.setForeground(Color.WHITE);
@@ -140,8 +132,7 @@ public class GameLoop extends JFrame {
             panelPlayerTextArea.setEditable(false);
             panelPlayerTextArea.setLineWrap(true);
             panelPlayerTextArea.setText("Balance: $" + p.bankBalance +
-                    "\nGet Out of Jail Free cards: " + p.getNumGetOutOfJail() +
-                    "\nNumber of Properties: " + p.properties.size());
+                    "\nGet Out of Jail Free cards: " + p.getNumGetOutOfJail());
             if(p.properties.size() > 0) {
                 panelPlayerTextArea.append("\nProperties:");
                 for (Property property : p.properties) {
@@ -149,7 +140,7 @@ public class GameLoop extends JFrame {
                 }
             }
             playerPanel.add(panelPlayerTextArea);
-
+            playerPanel.repaint();
             setVisible(true);
 
             //game logic

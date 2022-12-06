@@ -123,7 +123,13 @@ abstract class Property extends Spaces {
      * When a Property is sold back to the bank, it resets it its "natural" state
      */
     public void reset() {
+    }
 
+    /**
+     * @return the name of this property
+     */
+    public String getName() {
+        return name;
     }
 
 
