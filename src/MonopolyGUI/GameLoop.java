@@ -15,44 +15,14 @@ public class GameLoop extends JFrame {
     private JPanel contentIncluder;
     private JLayeredPane layeredPane;
     private JPanel rightPanel;
-    private JButton btnBuy;
-    private JButton btnPayRent;
-    private JButton btnRollDice;
-    private JButton btnNextTurn;
     private static JTextArea infoConsole;
     private static JTextArea userInput;
     private JPanel playerAssetsPanel;
+    private JPanel playerPanel;
+    private JLabel playerTitle;
     private CardLayout c1 = new CardLayout();
-    private JTextArea panelPlayerTextArea;
     public static ArrayList<Player> players;
     private Board board = new Board();
-    private int die1;
-    private int die2;
-    private boolean rolledDice;
-
-    public boolean getRolledDice() {
-        return rolledDice;
-    }
-
-    public void setRolledDice(boolean rolledDice) {
-        this.rolledDice = rolledDice;
-    }
-
-    public int getDie2() {
-        return die2;
-    }
-
-    public void setDie2(int die2) {
-        this.die2 = die2;
-    }
-
-    public int getDie1() {
-        return die1;
-    }
-
-    public void setDie1(int die1) {
-        this.die1 = die1;
-    }
 
     /**
      * GameLoop constructor: Initializes a new Monopoly board and takes an ArrayList of player names and creates a new
@@ -85,45 +55,17 @@ public class GameLoop extends JFrame {
         contentIncluder.add(rightPanel);
         rightPanel.setLayout(null);
 
-//        //@author
-//        btnBuy = new JButton("Buy");
-//        btnBuy.setBounds(81,478,117,29);
-//        rightPanel.add(btnBuy);
-//        btnBuy.setEnabled(false);
-
-//        //@author
-//        btnPayRent = new JButton("Pay Rent");
-//        btnPayRent.setBounds(210, 478, 117, 29);
-//        rightPanel.add(btnPayRent);
-//        btnPayRent.setEnabled(false);
-
-//        //@author
-//        btnRollDice = new JButton("Roll Dice");
-//        btnRollDice.setBounds(81, 413, 246, 53);
-//        btnRollDice.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                setDie1(rollDie());
-//                setDie2(rollDie());
-//                infoConsole.setText("You rolled a " + getDie1() + " and a " + getDie2());
-////                btnRollDice.setEnabled(false);
-//                setRolledDice(true);
-//            }
-//        });
-//        rightPanel.add(btnRollDice);
-//        btnRollDice.setEnabled(false);
-
-//        //@author
-//        btnNextTurn = new JButton("Next Turn");
-//        btnNextTurn.setBounds(81, 519, 246, 53);
-//        rightPanel.add(btnNextTurn);
-//        btnNextTurn.setEnabled(false);
-
         //@author
         playerAssetsPanel = new JPanel();
         playerAssetsPanel.setBounds(81, 28, 246, 189);
         rightPanel.add(playerAssetsPanel);
         playerAssetsPanel.setLayout(c1);
+
+        //@author
+        playerPanel = new JPanel();
+        playerPanel.setBackground(new Color(140, 185, 160));
+        playerAssetsPanel.add(playerPanel);
+        playerPanel.setLayout(null);
 
         //@author
         JPanel info = new JPanel();
@@ -185,25 +127,26 @@ public class GameLoop extends JFrame {
         for(Player p : players) {
 
             //adapted from []
-            JPanel playerPanel = new JPanel();
-            playerPanel.setBackground(new Color(0, 190, 190));
-            playerAssetsPanel.add(playerPanel, "0");
-            playerPanel.setLayout(null);
-
-            //adapted from []
-            JLabel playerTitle = new JLabel(p.name + "'s Assets");
+            playerTitle = new JLabel(p.name + "'s Assets");
             playerTitle.setForeground(Color.WHITE);
             playerTitle.setHorizontalAlignment(SwingConstants.CENTER);
             playerTitle.setBounds(0, 6, 240, 16);
             playerPanel.add(playerTitle);
 
+
             //adapted from []
-            panelPlayerTextArea = new JTextArea();
+            JTextArea panelPlayerTextArea = new JTextArea(15,20);
             panelPlayerTextArea.setBounds(10, 34, 230, 149);
             panelPlayerTextArea.setEditable(false);
-            panelPlayerTextArea.setText("Balance: $" + p.bankBalance);
-            for(Property property : p.properties) {
-                infoConsole.append("\n" + property.getDetails());
+            panelPlayerTextArea.setLineWrap(true);
+            panelPlayerTextArea.setText("Balance: $" + p.bankBalance +
+                    "\nGet Out of Jail Free cards: " + p.getNumGetOutOfJail() +
+                    "\nNumber of Properties: " + p.properties.size());
+            if(p.properties.size() > 0) {
+                panelPlayerTextArea.append("\nProperties:");
+                for (Property property : p.properties) {
+                    panelPlayerTextArea.append("\n" + property.getName());
+                }
             }
             playerPanel.add(panelPlayerTextArea);
 
