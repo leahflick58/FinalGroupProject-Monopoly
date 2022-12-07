@@ -21,19 +21,14 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+/**
+ * Board constructor: initializes spaces on board, Comunity Chest and Chance cards, and board visual.
+ * All GUI components are taken from https://github.com/limoneren/Monopoly-Game-Prototype.git
+ */
 public class BoardGUI extends JPanel {
 
     protected static HashMap<Integer, SpacesGUI> spaces;
-    protected static HashMap<SpacesGUI, Integer> locations;
     protected static HashMap<String, Set<StreetsGUI>> colorGroups;
-    protected static Set<StreetsGUI> brown;
-    protected static Set<StreetsGUI> lightBlue;
-    protected static Set<StreetsGUI> pink;
-    protected static Set<StreetsGUI> orange;
-    protected static Set<StreetsGUI> red;
-    protected static Set<StreetsGUI> yellow;
-    protected static Set<StreetsGUI> green;
-    protected static Set<StreetsGUI> darkBlue;
     protected static LinkedList<ChanceGUI> chance;                   //ChanceGUI cards
     protected static LinkedList<CommunityGUI> communityChests;       //CommunityGUI Chest cards
 
@@ -64,7 +59,7 @@ public class BoardGUI extends JPanel {
                                     //4x dice roll or 10x if both utilities owned by this player
         spaces.put(13, new StreetsGUI(753, 93, "E Pine St", -90,"E Pine St", 10,140,"Pink")); //50
         spaces.put(14, new StreetsGUI(753, 123, "Thorn Field", -90,"Thorn Field", 12,160,"Pink"));   //60
-        spaces.put(15, new RailroadsGUI(753, 153, "Memorial", -90, "Memorial", 25,200));
+        spaces.put(15, new RailroadsGUI(753, 153, "Harker", -90, "Harker", 25,200));
         spaces.put(16, new StreetsGUI(753,183, "Commuter Lounge", -90,"Commuter Lounge", 14,180,"Orange"));    //70
         spaces.put(17, new CommunitySpaceGUI(753, 213, "Community", -90));
         spaces.put(18, new StreetsGUI(753, 243, "TLC", -90, "TLC", 14,180,"Orange"));   //70
@@ -246,73 +241,4 @@ public class BoardGUI extends JPanel {
         return spaces;
     }
 
-    /**
-     * Reverses HashMap<Integer location, SpacesGUI space> spaces
-     * @param spaces HashMap of an inherited space class and it's relative integer location
-     * @return HashMap<SpacesGUI, Integer> locations
-     */
-    public HashMap<SpacesGUI, Integer> getLocations(HashMap<Integer, SpacesGUI> spaces) {
-        locations = new HashMap<>();
-        for(Integer i : spaces.keySet()) {
-            locations.put(spaces.get(i), i);
-        }
-        return locations;
-    }
-
-    /**
-     * Getter: Brown color group
-     * @return HashSet of StreetsGUI properties in the Brown color group
-     */
-    public static Set<StreetsGUI> getBrown() {
-        return brown;
-    }
-    /**
-     * Getter: Light Blue color group
-     * @return HashSet of StreetsGUI properties in the Light Blue color group
-     */
-    public static Set<StreetsGUI> getLightBlue() {
-        return lightBlue;
-    }
-    /**
-     * Getter: Pink color group
-     * @return HashSet of StreetsGUI properties in the Pink color group
-     */
-    public static Set<StreetsGUI> getPink() {
-        return pink;
-    }
-    /**
-     * Getter: Orange color group
-     * @return HashSet of StreetsGUI properties in the Orange color group
-     */
-    public static Set<StreetsGUI> getOrange() {
-        return orange;
-    }
-    /**
-     * Getter: Red color group
-     * @return HashSet of StreetsGUI properties in the Red color group
-     */
-    public static Set<StreetsGUI> getRed() {
-        return red;
-    }
-    /**
-     * Getter: Yellow color group
-     * @return HashSet of StreetsGUI properties in the Yellow color group
-     */
-    public static Set<StreetsGUI> getYellow() {
-        return yellow;
-    }
-    /**
-     * Getter: Green color group
-     * @return HashSet of StreetsGUI properties in the Green color group
-     */
-    public static Set<StreetsGUI> getGreen() {
-        return green;
-    }
-    /**
-     * Getter: Dark Blue color group
-     * @return HashSet of StreetsGUI properties in the Dark Blue color group
-     */
-    public static Set<StreetsGUI> getDarkBlue() {
-        return darkBlue;
-    }
 }

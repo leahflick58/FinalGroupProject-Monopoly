@@ -24,6 +24,7 @@ public class GameLoopGUI extends JFrame {
     /**
      * GameLoopGUI constructor: Initializes a new MonopolyGUI board and takes an ArrayList of player names and creates a new
      * ArrayList of PlayerGUI objects.
+     * All GUI components are taken from https://github.com/limoneren/Monopoly-Game-Prototype.git
      * @param names of the players in the game
      */
     public GameLoopGUI(ArrayList<String> names) {
@@ -119,6 +120,7 @@ public class GameLoopGUI extends JFrame {
      * If the first roll yields doubles (same number of digits on each die), player can roll dice again.
      * If the second roll yields doubles, player can roll dice a third time.
      * If the third roll yields doubles, player is considered to be cheating and must go to jail.
+     * All GUI components are taken from https://github.com/limoneren/Monopoly-Game-Prototype.git
      */
     public void play() {
         for(PlayerGUI p : players) {
@@ -233,6 +235,7 @@ public class GameLoopGUI extends JFrame {
 
     /**
      * Moves player's current location on board based on dice roll.
+     * All GUI components are taken from https://github.com/limoneren/Monopoly-Game-Prototype.git
      * @param p
      * @param spaces
      * @return int new location on board

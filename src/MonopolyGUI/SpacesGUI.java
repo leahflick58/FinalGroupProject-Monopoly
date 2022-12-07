@@ -9,6 +9,14 @@ public abstract class SpacesGUI extends JPanel{
     private String name;
     JLabel nameLabel;
 
+    /**
+     * Spaces constructor.
+     * All GUI components are taken from https://github.com/limoneren/Monopoly-Game-Prototype.git
+     * @param xCoord
+     * @param yCoord
+     * @param labelString
+     * @param rotationDegrees
+     */
     public SpacesGUI(int xCoord, int yCoord, String labelString, int rotationDegrees) {
         setBorder(new LineBorder(new Color(0, 0, 0)));
         setBounds(xCoord, yCoord, 75, 30);
@@ -48,6 +56,11 @@ public abstract class SpacesGUI extends JPanel{
         nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
     }
 
+    /**
+     * Assigns the correct color to each color group depending on property name
+     * All GUI components are taken from https://github.com/limoneren/Monopoly-Game-Prototype.git
+     * @param g the <code>Graphics</code> object to protect
+     */
     public void paintComponent (Graphics g) {
         super.paintComponent(g);
         if(this.name.equals("Broad St") || this.name.equals("Collage")){
