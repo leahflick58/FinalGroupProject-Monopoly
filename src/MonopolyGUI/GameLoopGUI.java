@@ -19,7 +19,7 @@ public class GameLoopGUI extends JFrame {
     private JLabel playerTitle;
     private CardLayout c1 = new CardLayout();
     public static ArrayList<PlayerGUI> players;
-    private BoardGUI board = new BoardGUI();
+    private BoardGUI board;
 
     /**
      * GameLoopGUI constructor: Initializes a new MonopolyGUI board and takes an ArrayList of player names and creates a new
@@ -39,17 +39,19 @@ public class GameLoopGUI extends JFrame {
         //@author
         layeredPane = new JLayeredPane();
         layeredPane.setBorder(new LineBorder(new Color(0, 0,0)));
-        layeredPane.setBounds(6,6,632,630);
-        layeredPane.add(board);
-        board.setVisible(true);
+        layeredPane.setBounds(6,6,850,345);
         contentIncluder.add(layeredPane);
+
+        board = new BoardGUI();
+        board.setBackground(new Color(51, 255, 153));
+        layeredPane.add(board);
 
         //CONTROL PANEL (GRAY)
         //@author
         rightPanel = new JPanel();
         rightPanel.setBackground(Color.LIGHT_GRAY);
         rightPanel.setBorder(new LineBorder(new Color(0,0,0)));
-        rightPanel.setBounds(640,6,419,630);    //AM adjusted dimensions
+        rightPanel.setBounds(6,351,850,300);    //AM adjusted dimensions
         contentIncluder.add(rightPanel);
         rightPanel.setLayout(null);
 
@@ -69,7 +71,7 @@ public class GameLoopGUI extends JFrame {
         //INFORMATION CONSOLE
         //@author
         JPanel info = new JPanel();
-        info.setBounds(81, 312, 246, 258);
+        info.setBounds(400, 40, 246, 258);
         info.setBackground(new Color(140, 185, 160));
         rightPanel.add(info);
         info.setLayout(null);
@@ -136,7 +138,7 @@ public class GameLoopGUI extends JFrame {
             panelPlayerTextArea.setEditable(false);
             panelPlayerTextArea.setLineWrap(true);
             panelPlayerTextArea.setText("Balance: $" + p.bankBalance +
-                    "\nGet Out of JailGUI Free cards: " + p.getNumGetOutOfJail());
+                    "\nGet Out of Jail Free cards: " + p.getNumGetOutOfJail());
             if(p.properties.size() > 0) {
                 panelPlayerTextArea.append("\nProperties:");
                 for (PropertyGUI property : p.properties) {
@@ -240,8 +242,8 @@ public class GameLoopGUI extends JFrame {
             int newSpace = p.getCurrentSpace() + spaces;
             if(newSpace > 39) {
                 p.addOrSubBankBalance(200);
-                System.out.println("You earned $200 for passing GoGUI");
-                infoConsole.append("\nYou earned $200 for passing GoGUI");
+                System.out.println("You earned $200 for passing Go");
+                infoConsole.append("\nYou earned $200 for passing Go");
             }
             p.setCurrentSpace(newSpace % 40);
         } else {
