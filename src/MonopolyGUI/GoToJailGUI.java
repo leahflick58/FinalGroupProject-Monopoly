@@ -2,29 +2,29 @@ package MonopolyGUI;
 
 import java.util.Scanner;
 
-public class GoToJail extends Spaces {
-    public GoToJail(int xCoord, int yCoord, String labelString, int rotationDegrees) {
+public class GoToJailGUI extends SpacesGUI {
+    public GoToJailGUI(int xCoord, int yCoord, String labelString, int rotationDegrees) {
         super(xCoord, yCoord, labelString, rotationDegrees);
     }
 
     /**
-     * GoToJail action - Sends active Player to Jail space (10) with 3 turns in jail and sets boolean isInJail to true.
-     * @param p active Player
+     * GoToJailGUI action - Sends active PlayerGUI to JailGUI space (10) with 3 turns in jail and sets boolean isInJail to true.
+     * @param p active PlayerGUI
      */
     @Override
-    void action(Player p) {
+    void action(PlayerGUI p) {
         //You may buy and erect houses and/or hotels, sell or buy property, collect rent,
-        //and deal with other players even though in Jail.
+        //and deal with other players even though in JailGUI.
 
         if(p.getNumGetOutOfJail() > 0) {
-            System.out.println("Play 'Get Out of Jail' card? Enter Y/N: ");
+            System.out.println("Play 'Get Out of JailGUI' card? Enter Y/N: ");
             Scanner in = new Scanner(System.in);
             if (in.next().equals("Y")) {
                 p.setNumGetOutOfJail(-1);    //removes 1 GetOutOfJail card
                 if (p.getNumGetOutOfJail() == 1) {
-                    System.out.println("You have 1 Get Out Of Jail card left.");
+                    System.out.println("You have 1 Get Out Of JailGUI card left.");
                 } else {
-                    System.out.println("You have " + p.numGetOutOfJail + " Get Out Of Jail cards left.");
+                    System.out.println("You have " + p.numGetOutOfJail + " Get Out Of JailGUI cards left.");
                 }
             }
         } else {
@@ -36,6 +36,6 @@ public class GoToJail extends Spaces {
 
     @Override
     String spaceName() {
-        return "Go To Jail";
+        return "GoGUI To JailGUI";
     }
 }

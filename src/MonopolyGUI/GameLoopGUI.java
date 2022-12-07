@@ -4,14 +4,12 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
-public class GameLoop extends JFrame {
+public class GameLoopGUI extends JFrame {
     private JPanel contentIncluder;
     private JLayeredPane layeredPane;
     private JPanel rightPanel;
@@ -20,15 +18,15 @@ public class GameLoop extends JFrame {
     private JPanel playerPanel;
     private JLabel playerTitle;
     private CardLayout c1 = new CardLayout();
-    public static ArrayList<Player> players;
-    private Board board = new Board();
+    public static ArrayList<PlayerGUI> players;
+    private BoardGUI board = new BoardGUI();
 
     /**
-     * GameLoop constructor: Initializes a new Monopoly board and takes an ArrayList of player names and creates a new
-     * ArrayList of Player objects.
+     * GameLoopGUI constructor: Initializes a new MonopolyGUI board and takes an ArrayList of player names and creates a new
+     * ArrayList of PlayerGUI objects.
      * @param names of the players in the game
      */
-    public GameLoop(ArrayList<String> names) {
+    public GameLoopGUI(ArrayList<String> names) {
         //@author
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
@@ -42,7 +40,8 @@ public class GameLoop extends JFrame {
         layeredPane = new JLayeredPane();
         layeredPane.setBorder(new LineBorder(new Color(0, 0,0)));
         layeredPane.setBounds(6,6,632,630);
-        layeredPane.add(board, new Integer(0));
+        layeredPane.add(board);
+        board.setVisible(true);
         contentIncluder.add(layeredPane);
 
         //CONTROL PANEL (GRAY)
@@ -94,18 +93,18 @@ public class GameLoop extends JFrame {
 
         /////////////////////////////
 
-        board = new Board();            //ArrayLists <Spaces>,<Chance>, <CommunityChest>
+        board = new BoardGUI();            //ArrayLists <SpacesGUI>,<ChanceGUI>, <CommunityChest>
         players = new ArrayList<>();
         for (String p : names) {
-            players.add(new Player(p));
+            players.add(new PlayerGUI(p));
         }
     }
 
     /**
-     * Iterates through multiple rounds of Monopoly until all but one player (winner) is bankrupt
-     * @return Player that has won the game
+     * Iterates through multiple rounds of MonopolyGUI until all but one player (winner) is bankrupt
+     * @return PlayerGUI that has won the game
      */
-    public Player gameLoop() {
+    public PlayerGUI gameLoop() {
         while(!hasWinner()) {
             play();
         }
@@ -113,14 +112,14 @@ public class GameLoop extends JFrame {
     }
 
     /**
-     * Plays a single round of Monopoly.
-     * Rolls two 6-sided dice according to Monopoly rules:
+     * Plays a single round of MonopolyGUI.
+     * Rolls two 6-sided dice according to MonopolyGUI rules:
      * If the first roll yields doubles (same number of digits on each die), player can roll dice again.
      * If the second roll yields doubles, player can roll dice a third time.
      * If the third roll yields doubles, player is considered to be cheating and must go to jail.
      */
     public void play() {
-        for(Player p : players) {
+        for(PlayerGUI p : players) {
 
             playerPanel.removeAll();
             //adapted from []
@@ -137,10 +136,10 @@ public class GameLoop extends JFrame {
             panelPlayerTextArea.setEditable(false);
             panelPlayerTextArea.setLineWrap(true);
             panelPlayerTextArea.setText("Balance: $" + p.bankBalance +
-                    "\nGet Out of Jail Free cards: " + p.getNumGetOutOfJail());
+                    "\nGet Out of JailGUI Free cards: " + p.getNumGetOutOfJail());
             if(p.properties.size() > 0) {
                 panelPlayerTextArea.append("\nProperties:");
-                for (Property property : p.properties) {
+                for (PropertyGUI property : p.properties) {
                     panelPlayerTextArea.append("\n" + property.getName());
                 }
             }
@@ -236,13 +235,13 @@ public class GameLoop extends JFrame {
      * @param spaces
      * @return int new location on board
      */
-    public void move(Player p, int spaces) {
+    public void move(PlayerGUI p, int spaces) {
         if (spaces != 0) {
             int newSpace = p.getCurrentSpace() + spaces;
             if(newSpace > 39) {
                 p.addOrSubBankBalance(200);
-                System.out.println("You earned $200 for passing Go");
-                infoConsole.append("\nYou earned $200 for passing Go");
+                System.out.println("You earned $200 for passing GoGUI");
+                infoConsole.append("\nYou earned $200 for passing GoGUI");
             }
             p.setCurrentSpace(newSpace % 40);
         } else {
@@ -253,10 +252,10 @@ public class GameLoop extends JFrame {
     }
 
     /**
-     * Calls Spaces' action()
+     * Calls SpacesGUI' action()
      * @param p
      */
-    public void playerAction(Player p) {
+    public void playerAction(PlayerGUI p) {
         board.getSpaces().get(p.currentSpace).action(p);
     }
 
@@ -267,7 +266,7 @@ public class GameLoop extends JFrame {
     public boolean hasWinner() {
         int numPlaying = 0;
 
-        for(Player p : this.players) {
+        for(PlayerGUI p : this.players) {
             if(!p.isBankrupt()) {
                 numPlaying++;
             }
@@ -277,11 +276,11 @@ public class GameLoop extends JFrame {
 
     /**
      * If the game has a winner, finds and returns the winner of the game.
-     * @return address of Player who has won the game
+     * @return address of PlayerGUI who has won the game
      */
-    public Player winner() {
+    public PlayerGUI winner() {
         if(hasWinner()) {
-            for(Player p : this.players) {
+            for(PlayerGUI p : this.players) {
                 if(!p.bankrupt) {
                     return p;
                 }
@@ -291,13 +290,13 @@ public class GameLoop extends JFrame {
     }
 
     /**
-     * Checks all color groups in Board for active player ownership.
+     * Checks all color groups in BoardGUI for active player ownership.
      * If active player owns an entire color group, they may upgrade to hotels.
      * @param p
      */
-    public void checkColorGroupsForUpgrade(Player p) {
-        for(String colorGroup : Board.colorGroups.keySet()) {
-            Set<Streets> thisColor = Board.colorGroups.get(colorGroup);
+    public void checkColorGroupsForUpgrade(PlayerGUI p) {
+        for(String colorGroup : BoardGUI.colorGroups.keySet()) {
+            Set<StreetsGUI> thisColor = BoardGUI.colorGroups.get(colorGroup);
             if (p.hasEntireColorGroup(thisColor)) {
                 Scanner in = new Scanner(System.in);
                 String decision = "O";
@@ -309,7 +308,7 @@ public class GameLoop extends JFrame {
                     }
                 }
                 if (decision.equals("Y")) {
-                    for (Streets s : thisColor) {
+                    for (StreetsGUI s : thisColor) {
                         s.upgrade(s);
                     }
                 }

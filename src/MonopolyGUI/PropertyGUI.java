@@ -2,18 +2,18 @@ package MonopolyGUI;
 
 import java.util.Scanner;
 
-abstract class Property extends Spaces {
+abstract class PropertyGUI extends SpacesGUI {
     private final String name;
     private final int rent;
     private final int price;
 
     /**
-     * A Property, extended from Spaces class, has five attributes:
+     * A PropertyGUI, extended from SpacesGUI class, has five attributes:
      * @param name name of the property (i.e. "Beans on Broad", "Hall of Arts and Letters", etc.)
      * @param rent rent due when someone other than the owner lands on the property
      * @param price price in order to buy property
      */
-    public Property(int xCoord, int yCoord, String labelString, int rotationDegrees, String name, int rent, int price) {
+    public PropertyGUI(int xCoord, int yCoord, String labelString, int rotationDegrees, String name, int rent, int price) {
         super(xCoord, yCoord, labelString, rotationDegrees);
         this.name = name;
         this.rent = rent;
@@ -21,14 +21,14 @@ abstract class Property extends Spaces {
     }
 
     /**
-     * @return Property's rent
+     * @return PropertyGUI's rent
      */
     public int getRent() {
         return rent;
     }
 
     /**
-     * @return Property's price
+     * @return PropertyGUI's price
      */
     public int getPrice() {
         return price;
@@ -36,17 +36,17 @@ abstract class Property extends Spaces {
 
 
     /**
-     * When a Player lands on a Property space, first check if that property is owned.
-     * If the Player who landed on the space owns it, break.
-     * If a different Player owns it, the current Player must pay them rent.
-     * If no one owns it, the Player has the choice to buy the Property or pass.
+     * When a PlayerGUI lands on a PropertyGUI space, first check if that property is owned.
+     * If the PlayerGUI who landed on the space owns it, break.
+     * If a different PlayerGUI owns it, the current PlayerGUI must pay them rent.
+     * If no one owns it, the PlayerGUI has the choice to buy the PropertyGUI or pass.
      * @param p
      */
     @Override
-    public void action(Player p) {
+    public void action(PlayerGUI p) {
         // loop through all players
         boolean owned = false;
-        for (Player player : GameLoop.players) {
+        for (PlayerGUI player : GameLoopGUI.players) {
             // if a player owns this property, mark as owned
             if (player.ownsProperty(this)) {
                 owned = true;
@@ -58,16 +58,16 @@ abstract class Property extends Spaces {
                     } else {
                         if (p.properties.size() > 0) {
                             System.out.println("You cannot afford rent. You must sell a property to pay. What property would you like to sell?");
-                            for (Property property: p.properties) {
+                            for (PropertyGUI property: p.properties) {
                                 System.out.println(property.name + " Selling Price: " + (property.getPrice() / 2));
                             }
                             while (p.bankBalance - this.getTotalRent(player) < 0) {
                                 Scanner in = new Scanner(System.in);
                                 boolean correct_name = false;
                                 while (!correct_name) {
-                                    System.out.println("Property: ");
+                                    System.out.println("PropertyGUI: ");
                                     String property = in.next();
-                                    for (Property properties: p.properties) {
+                                    for (PropertyGUI properties: p.properties) {
                                         if (properties.spaceName().equals(property)) {
                                             p.sellProperty(properties);
                                             System.out.println(property + " sold to the bank.");
@@ -84,7 +84,7 @@ abstract class Property extends Spaces {
                         } else {
                             System.out.println("You cannot afford the rent. Your remaining bank balance will be transferred to " + player.name + " and your assets will be given to the bank.");
                             p.bankrupt = true;
-                            for (Property property : p.properties) {
+                            for (PropertyGUI property : p.properties) {
                                 p.sellProperty(property);
                             }
                             break;
@@ -119,7 +119,7 @@ abstract class Property extends Spaces {
     }
 
     /**
-     * When a Property is sold back to the bank, it resets it its "natural" state
+     * When a PropertyGUI is sold back to the bank, it resets it its "natural" state
      */
     public void reset() {
     }
@@ -133,11 +133,11 @@ abstract class Property extends Spaces {
 
 
     /**
-     * Returns the amount of rent due based on Player's number of specific property type
-     * @param p Player who owns the respective property
+     * Returns the amount of rent due based on PlayerGUI's number of specific property type
+     * @param p PlayerGUI who owns the respective property
      * @return total dollar amount due
      */
-    abstract int getTotalRent(Player p);
+    abstract int getTotalRent(PlayerGUI p);
 
     public String spaceName() {
         return name;

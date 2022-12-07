@@ -2,19 +2,19 @@ package MonopolyGUI;
 
 import java.util.Objects;
 
-public class ChanceSpace extends Spaces {
+public class ChanceSpaceGUI extends SpacesGUI {
 
-    public ChanceSpace(int xCoord, int yCoord, String labelString, int rotationDegrees) {
+    public ChanceSpaceGUI(int xCoord, int yCoord, String labelString, int rotationDegrees) {
         super(xCoord, yCoord, labelString, rotationDegrees);
     }
 
     /**
-     * Draws a card from the Chance deck and carries out the assigned action
-     * @param p active Player
+     * Draws a card from the ChanceGUI deck and carries out the assigned action
+     * @param p active PlayerGUI
      */
     @Override
-    void action(Player p) {
-        Chance drawnCard = Board.chance.get(0);
+    void action(PlayerGUI p) {
+        ChanceGUI drawnCard = BoardGUI.chance.get(0);
         int cardAmount = drawnCard.getAmount();
         System.out.println(drawnCard.getMessage());
         switch (drawnCard.getType()) {
@@ -52,14 +52,14 @@ public class ChanceSpace extends Spaces {
                 break;
         }
         if (!Objects.equals(drawnCard.getType(), "getOutOfJail")) {
-            Board.chance.addLast(drawnCard);
+            BoardGUI.chance.addLast(drawnCard);
         }
-        Board.chance.remove(drawnCard);
+        BoardGUI.chance.remove(drawnCard);
 
     }
 
     @Override
     String spaceName() {
-        return "Chance";
+        return "ChanceGUI";
     }
 }

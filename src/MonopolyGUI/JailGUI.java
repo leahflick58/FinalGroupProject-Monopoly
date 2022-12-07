@@ -3,37 +3,37 @@ package MonopolyGUI;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Jail extends Spaces{
-    public Jail(int xCoord, int yCoord, String labelString, int rotationDegrees) {
+public class JailGUI extends SpacesGUI {
+    public JailGUI(int xCoord, int yCoord, String labelString, int rotationDegrees) {
         super(xCoord, yCoord, labelString, rotationDegrees);
     }
 
     /**
-     * Jail Action
-     * Check if a Player is currently in jail, if not space acts as "Just Visiting" and nothing happens
+     * JailGUI Action
+     * Check if a PlayerGUI is currently in jail, if not space acts as "Just Visiting" and nothing happens
      * If the player is in jail, they have three options to escape jail:
      * 1. Play get out of jail free card
      * 2. Pay bank $50
      * 3. Roll doubles
-     * After three consecutive rounds in jail, if the Player has not escaped jail, they must pay the fine and isInJail
+     * After three consecutive rounds in jail, if the PlayerGUI has not escaped jail, they must pay the fine and isInJail
      * is set to false
-     * @param p active Player
+     * @param p active PlayerGUI
      */
     @Override
-    void action(Player p) {
+    void action(PlayerGUI p) {
         if(!p.isInJail) {
             System.out.println("Just Visiting");
         } else {
-            //Option 1: Use Get Out of Jail Free card
+            //Option 1: Use Get Out of JailGUI Free card
             if (p.numGetOutOfJail > 0) {
-                System.out.println("Play 'Get Out of Jail' card? Enter Y/N: ");
+                System.out.println("Play 'Get Out of JailGUI' card? Enter Y/N: ");
                 Scanner in = new Scanner(System.in);
                 if (in.next().equals("Y")) {
                     p.setNumGetOutOfJail(-1);    //removes 1 GetOutOfJail card
                     if(p.getNumGetOutOfJail() == 1) {
-                        System.out.println("You have 1 Get Out Of Jail card left.");
+                        System.out.println("You have 1 Get Out Of JailGUI card left.");
                     } else {
-                        System.out.println("You have " + p.numGetOutOfJail + " Get Out Of Jail cards left.");
+                        System.out.println("You have " + p.numGetOutOfJail + " Get Out Of JailGUI cards left.");
                     }
                     p.isInJail = false;
                     p.resetTurnsInJail();
@@ -80,7 +80,7 @@ public class Jail extends Spaces{
 
     @Override
     String spaceName() {
-        return "Jail";
+        return "JailGUI";
     }
 
     /**

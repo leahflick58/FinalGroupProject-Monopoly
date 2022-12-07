@@ -5,13 +5,13 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-public abstract class Spaces extends JPanel{
+public abstract class SpacesGUI extends JPanel{
     int number;
     private String name;
     String description;
     JLabel nameLabel;
     static int totalSquares = 0;
-    public Spaces (int xCoord, int yCoord, String labelString, int rotationDegrees) {
+    public SpacesGUI(int xCoord, int yCoord, String labelString, int rotationDegrees) {
         number = totalSquares;
         totalSquares++;
         setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -63,8 +63,8 @@ public abstract class Spaces extends JPanel{
     }
     /**
      * An action is performed based on the inherited class of Space
-     * @param p active Player
+     * @param p active PlayerGUI
      */
-    abstract void action(Player p);
+    abstract void action(PlayerGUI p);
     abstract String spaceName();
 }

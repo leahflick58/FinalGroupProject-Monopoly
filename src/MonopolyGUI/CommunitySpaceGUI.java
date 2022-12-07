@@ -2,19 +2,19 @@ package MonopolyGUI;
 
 import java.util.Objects;
 
-public class CommunitySpace extends Spaces {
+public class CommunitySpaceGUI extends SpacesGUI {
 
-    public CommunitySpace(int xCoord, int yCoord, String labelString, int rotationDegrees) {
+    public CommunitySpaceGUI(int xCoord, int yCoord, String labelString, int rotationDegrees) {
         super(xCoord, yCoord, labelString, rotationDegrees);
     }
 
     /**
-     * Draws a card from the Community Chest deck and carries out the assigned action
-     * @param p active Player
+     * Draws a card from the CommunityGUI Chest deck and carries out the assigned action
+     * @param p active PlayerGUI
      */
     @Override
-    void action(Player p) {
-        Community drawnCard = Board.communityChests.get(0);
+    void action(PlayerGUI p) {
+        CommunityGUI drawnCard = BoardGUI.communityChests.get(0);
         System.out.println(drawnCard.getMessage());
         int cardAmount = drawnCard.getAmount();
         switch (drawnCard.getType()) {
@@ -46,14 +46,14 @@ public class CommunitySpace extends Spaces {
                 break;
         }
         if (!Objects.equals(drawnCard.getType(), "getOutOfJail")) {
-            Board.communityChests.addLast(drawnCard);
+            BoardGUI.communityChests.addLast(drawnCard);
         }
-        Board.communityChests.remove(drawnCard);
+        BoardGUI.communityChests.remove(drawnCard);
     }
 
     @Override
     String spaceName() {
-        return "Community Chest";
+        return "CommunityGUI Chest";
     }
 
 }

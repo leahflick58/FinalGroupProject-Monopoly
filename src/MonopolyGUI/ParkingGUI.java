@@ -1,16 +1,16 @@
 package MonopolyGUI;
 
-public class Parking extends Spaces {
-    public Parking(int xCoord, int yCoord, String labelString, int rotationDegrees) {
+public class ParkingGUI extends SpacesGUI {
+    public ParkingGUI(int xCoord, int yCoord, String labelString, int rotationDegrees) {
         super(xCoord, yCoord, labelString, rotationDegrees);
     }
 
     /**
-     * Parking action - Nothing
-     * @param p active Player
+     * ParkingGUI action - Nothing
+     * @param p active PlayerGUI
      */
     @Override
-    void action(Player p) {
+    void action(PlayerGUI p) {
         // Nothing happens in free parking
     }
 
