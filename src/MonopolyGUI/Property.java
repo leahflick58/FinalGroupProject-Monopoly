@@ -53,7 +53,6 @@ abstract class Property extends Spaces {
                 // if the player that owns this property is not whose turn it is, the current player must pay rent
                 System.out.println(player.name + " owns this property. You must pay $" + this.getTotalRent(player) + " in rent.");
                 if (player != p) {
-                    // TODO: Check if player can afford it
                     if (p.bankBalance - this.getTotalRent(player) > 0) {
                         p.payRent(player, this);
                     } else {

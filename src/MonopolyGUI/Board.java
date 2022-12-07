@@ -7,9 +7,6 @@ import java.util.*;
 import java.util.List;
 
 public class Board extends JPanel {
-    public static LinkedList<Community> getCommunity() {
-        return communityChests;
-    }
 
     protected static HashMap<Integer, Spaces> spaces;
     protected static HashMap<Spaces, Integer> locations;
@@ -34,49 +31,49 @@ public class Board extends JPanel {
         //TODO: create Street names
         spaces = new HashMap<>();
         spaces.put(0, new Go(3,3,"Go",180));
-        spaces.put(1, new Streets(53, 3,"Street",180,"Med", 2, 60, "Brown"));  //10 with house
-        spaces.put(2, new CommunitySpace(103, 3, "Community", 180));
-        spaces.put(3, new Streets(153, 3, "Street",180, "Baltic", 4, 60, "Brown"));   //20
-        spaces.put(4, new Taxes(203, 3, "Taxes", 180));     //income tax
-        spaces.put(5, new Railroads(253, 3, "Railroad", 180,"Reading", 25,200));
-        spaces.put(6, new Streets(303, 3, "Street", 180,"Oriental", 6,100,"Light Blue"));   //30
+        spaces.put(1, new Streets(53, 3,"Street",180,"Mediterranean Avenue", 2, 60, "Brown"));  //10 with house
+        spaces.put(2, new CommunitySpace(103, 3, "Community Chest", 180));
+        spaces.put(3, new Streets(153, 3, "Street",180, "Baltic Avenue", 4, 60, "Brown"));   //20
+        spaces.put(4, new Taxes(203, 3, "Income Tax", 180));
+        spaces.put(5, new Railroads(253, 3, "Railroad", 180,"Reading Railroad", 25,200));
+        spaces.put(6, new Streets(303, 3, "Street", 180,"Oriental Avenue", 6,100,"Light Blue"));   //30
         spaces.put(7, new ChanceSpace(353, 3, "Chance", 180));
-        spaces.put(8, new Streets(403, 3, "Street", 180, "Vermont", 6,100,"Light Blue")); //30 with house
-        spaces.put(9, new Streets(453, 3, "Street", 180, "Connecticut",8,120,"Light Blue"));  //40
+        spaces.put(8, new Streets(403, 3, "Street", 180, "Vermont Avenue", 6,100,"Light Blue")); //30 with house
+        spaces.put(9, new Streets(453, 3, "Street", 180, "Connecticut Avenue",8,120,"Light Blue"));  //40
 
         spaces.put(10, new Jail(503, 3, "Jail", -135));
-        spaces.put(11, new Streets(503, 53, "Street", -135, "St Charles", 10,140,"Pink")); //50
+        spaces.put(11, new Streets(503, 53, "Street", -135, "St Charles Place", 10,140,"Pink")); //50
         spaces.put(12, new Utilities(503, 103, "Utility", -135,"Electric Company", 4,150));
                                     //4x dice roll or 10x if both utilities owned by this player
-        spaces.put(13, new Streets(503, 153, "Street", -135,"States", 10,140,"Pink")); //50
-        spaces.put(14, new Streets(503, 203, "Street", -135,"Virginia", 12,160,"Pink"));   //60
-        spaces.put(15, new Railroads(503, 253, "Railroad", -135, "Pennsylvania", 25,200));
-        spaces.put(16, new Streets(503, 303, "Street", -135,"St James", 14,180,"Orange"));    //70
-        spaces.put(17, new CommunitySpace(503, 353, "Community", -135));
-        spaces.put(18, new Streets(503, 403, "Street", -135, "Tennessee", 14,180,"Orange"));   //70
-        spaces.put(19, new Streets(503, 453, "Street", -135, "New York", 16,200,"Orange"));   //80
+        spaces.put(13, new Streets(503, 153, "Street", -135,"States Avenue", 10,140,"Pink")); //50
+        spaces.put(14, new Streets(503, 203, "Street", -135,"Virginia Avenue", 12,160,"Pink"));   //60
+        spaces.put(15, new Railroads(503, 253, "Railroad", -135, "Pennsylvania Railroad", 25,200));
+        spaces.put(16, new Streets(503, 303, "Street", -135,"St James Place", 14,180,"Orange"));    //70
+        spaces.put(17, new CommunitySpace(503, 353, "Community Chest", -135));
+        spaces.put(18, new Streets(503, 403, "Street", -135, "Tennessee Avenue", 14,180,"Orange"));   //70
+        spaces.put(19, new Streets(503, 453, "Street", -135, "New York Avenue", 16,200,"Orange"));   //80
 
-        spaces.put(20, new Parking(503, 503, "Parking", -90));
-        spaces.put(21, new Streets(453, 503, "Street", -90, "Kentucky", 18,220,"Red"));  //90
+        spaces.put(20, new Parking(503, 503, "Free Parking", -90));
+        spaces.put(21, new Streets(453, 503, "Street", -90, "Kentucky Avenue", 18,220,"Red"));  //90
         spaces.put(22, new ChanceSpace(403, 503, "Chance", -90));
-        spaces.put(23, new Streets(353, 503, "Street", -90, "Indiana", 18,220,"Red"));   //90
-        spaces.put(24, new Streets(303, 503, "Street", -90, "Illinois", 20,240,"Red"));  //100
-        spaces.put(25, new Railroads(253, 503, "Railroad", -90, "B & O", 25,200));
-        spaces.put(26, new Streets(203, 503, "Street", -90, "Atlantic", 22,260,"Yellow"));   //110
-        spaces.put(27, new Streets(153, 503, "Street", -90, "Ventnor", 22,260,"Yellow"));    //110
+        spaces.put(23, new Streets(353, 503, "Street", -90, "Indiana Avenue", 18,220,"Red"));   //90
+        spaces.put(24, new Streets(303, 503, "Street", -90, "Illinois Avenue", 20,240,"Red"));  //100
+        spaces.put(25, new Railroads(253, 503, "Railroad", -90, "B & O Railroad", 25,200));
+        spaces.put(26, new Streets(203, 503, "Street", -90, "Atlantic Avenue", 22,260,"Yellow"));   //110
+        spaces.put(27, new Streets(153, 503, "Street", -90, "Ventnor Avenue", 22,260,"Yellow"));    //110
         spaces.put(28, new Utilities(103, 503, "Utility", -90, "Water Works", 4,150));
                                         //rent is 4x dice roll, 10x if both utilities
         spaces.put(29, new Streets(56, 503, "Street", -90, "Marvin Gardens", 24,280,"Yellow")); //120
 
         spaces.put(30, new GoToJail(3, 503, "Go To Jail", -45));
-        spaces.put(31, new Streets(3, 453, "Street", 0, "Pacific", 26,300,"Green")); //130
-        spaces.put(32, new Streets(3, 403, "Street", 0, "NC", 26,300,"Green"));  //130
-        spaces.put(33, new CommunitySpace(3, 353, "Community", 0));
-        spaces.put(34, new Streets(3, 303, "Street", 0, "Pennsylvania", 28,320,"Green"));    //150
-        spaces.put(35, new Railroads(3, 253, "Railroad", 0, "Short Line", 25,200));
+        spaces.put(31, new Streets(3, 453, "Street", 0, "Pacific Avenue", 26,300,"Green")); //130
+        spaces.put(32, new Streets(3, 403, "Street", 0, "North Carolina Avenue", 26,300,"Green"));  //130
+        spaces.put(33, new CommunitySpace(3, 353, "Community Chest", 0));
+        spaces.put(34, new Streets(3, 303, "Street", 0, "Pennsylvania Avenue", 28,320,"Green"));    //150
+        spaces.put(35, new Railroads(3, 253, "Railroad", 0, "Short Line Railroad", 25,200));
         spaces.put(36, new ChanceSpace(3, 203, "Chance", 0));
         spaces.put(37, new Streets(3, 153, "Street", 0, "Park Place", 35,350,"Dark Blue"));    //175
-        spaces.put(38, new Taxes(3, 103, "Taxes", 0));
+        spaces.put(38, new Taxes(3, 103, "Luxury Tax", 0));
         spaces.put(39, new Streets(3, 53, "Street", 0, "Boardwalk", 50,400, "Dark Blue"));   //200
 
         //Cards information taken from https://www.monopolyland.com/list-monopoly-chance-community-chest-cards/

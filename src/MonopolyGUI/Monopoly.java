@@ -21,14 +21,6 @@ public class Monopoly extends JFrame {
         winner = loop.gameLoop();
     }
 
-    /**
-     * Gets the winner of the Monopoly game
-     * @return Player winner
-     */
-    public Player getWinner() {
-        return winner;
-    }
-
     public static void main(String[] args) {
         Monopoly myGame = new Monopoly(new ArrayList<>(List.of("Alexis","David")));
         myGame.setVisible(true);

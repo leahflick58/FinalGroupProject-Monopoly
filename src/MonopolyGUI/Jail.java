@@ -21,8 +21,6 @@ public class Jail extends Spaces{
      */
     @Override
     void action(Player p) {
-        //TODO: Clean up and final testing: enough turns in jail?
-
         if(!p.isInJail) {
             System.out.println("Just Visiting");
         } else {
