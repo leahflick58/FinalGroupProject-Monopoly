@@ -191,7 +191,7 @@ public class BoardGUI extends JPanel {
                 (StreetsGUI) spaces.get(39))));
 
 
-        JLabel lblMonopoly = new JLabel("MONOPOLY"){
+        JLabel lblMonopoly = new JLabel("GROVOPOLY"){
             protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D)g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -211,8 +211,29 @@ public class BoardGUI extends JPanel {
         lblMonopoly.setOpaque(true);
         lblMonopoly.setHorizontalAlignment(SwingConstants.CENTER);
         lblMonopoly.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-        lblMonopoly.setBounds(310, 150, 200, 55);
+        lblMonopoly.setBounds(310, 150, 220, 55);
         this.add(lblMonopoly);
+
+        JLabel lblAuthors = new JLabel("By Leah Flick and Andrea Mealy") {
+          protected void paintComponent(Graphics g) {
+              Graphics2D g2 = (Graphics2D)g;
+              g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                      RenderingHints.VALUE_ANTIALIAS_ON);
+              AffineTransform aT = g2.getTransform();
+              Shape oldShape = g2.getClip();
+              g2.setTransform(aT);
+              g2.setClip(oldShape);
+              super.paintComponent(g);
+          }
+        };
+        lblAuthors.setForeground(Color.BLACK);
+        lblAuthors.setBackground(Color.WHITE);
+        lblAuthors.setOpaque(true);
+        lblAuthors.setHorizontalAlignment(SwingConstants.CENTER);
+        lblAuthors.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+        lblAuthors.setBounds(450, 200, 175, 30);
+        this.add(lblAuthors);
+
     }
 
     public void paintComponent (Graphics g) { super.paintComponent(g);}
