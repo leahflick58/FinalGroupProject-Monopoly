@@ -16,7 +16,6 @@ public class GameLoop extends JFrame {
     private JLayeredPane layeredPane;
     private JPanel rightPanel;
     private static JTextArea infoConsole;
-    private JUserInput input;
     private JPanel playerAssetsPanel;
     private JPanel playerPanel;
     private JLabel playerTitle;
@@ -91,9 +90,6 @@ public class GameLoop extends JFrame {
         infoConsole.setEditable(false);
         info.add(infoConsole);
 
-        //USER INPUT CONSOLE
-//        input = new JUserInput(rightPanel);
-
         setVisible(true);
 
         /////////////////////////////
@@ -154,6 +150,7 @@ public class GameLoop extends JFrame {
 
             //game logic
             if (!p.isBankrupt()) {
+                System.out.println("\n" + p.name + "'s Balance: $" + p.bankBalance);
                 infoConsole.setText(p.name + "'s Balance: $" + p.bankBalance);
                 if(!p.isInJail) {
                     int rolls = 0;
@@ -166,6 +163,7 @@ public class GameLoop extends JFrame {
                         int die1 = rollDie();
                         int die2 = rollDie();
 
+                        System.out.println("You rolled a " + die1 + " and a " + die2);
                         infoConsole.append("\nYou rolled a " + die1 + " and a " + die2);
                         rolls++;
 
@@ -174,25 +172,32 @@ public class GameLoop extends JFrame {
                         }
                         if((rolls == 3) && doubles) {   //caught cheating
                             move(p, 0);
+                            System.out.println(p.name + " is in jail.");
                             infoConsole.append("\n" + p.name + " is in jail.");
                             playerAction(p);
                             if (p.currentSpace == 30) {
                                 toJail = true;
+                                System.out.println(p.name + "'s New Balance: $" + p.bankBalance);
                                 infoConsole.append("\n" + p.name + "'s New Balance: $" + p.bankBalance);
                             }
                         } else {
-                                move(p, die1 + die2);
-                                infoConsole.append("\nLanded on " + getSpace(p.getCurrentSpace()) + " (" + p.getCurrentSpace() +
-                                        ")");
-                                playerAction(p);
-                                if(doubles) {
-                                    infoConsole.append("\nYou rolled doubles. Roll dice again!");
-                                }
+                            move(p, die1 + die2);
+                            System.out.println("Landed on " + getSpace(p.getCurrentSpace()) + " (" +
+                                    p.getCurrentSpace() + ")");
+                            infoConsole.append("\nLanded on " + getSpace(p.getCurrentSpace()) + " (" + p.getCurrentSpace() +
+                                    ")");
+                            playerAction(p);
+                            if(doubles) {
+                                System.out.println("You rolled doubles. Roll dice again!");
+                                infoConsole.append("\nYou rolled doubles. Roll dice again!");
+                            }
                         }
                     } while ((rolls <= 3) && doubles && !p.isInJail && !toJail);
+                    System.out.println(p.name + "'s New Balance: $" + p.bankBalance);
                     infoConsole.append("\n" + p.name + "'s New Balance: $" + p.bankBalance);
                 } else {
                     if(p.getTurnsInJail() > 0) {
+                        System.out.println(p.name + " is in jail");
                         infoConsole.append("\n" + p.name + " is in jail");
                         playerAction(p);    //jail action
                     }
@@ -200,7 +205,10 @@ public class GameLoop extends JFrame {
                 if(p.properties.size() > 0) {   //will not iterate through color groups if player owns 0 properties
                     checkColorGroupsForUpgrade(p);
                 }
-            } else infoConsole.append("\n" + p.name + " is bankrupt");
+            } else {
+                System.out.println(p.name + " is bankrupt");
+                infoConsole.append("\n" + p.name + " is bankrupt");
+            }
         }
     }
 
@@ -234,10 +242,12 @@ public class GameLoop extends JFrame {
             if(newSpace > 39) {
                 p.addOrSubBankBalance(200);
                 System.out.println("You earned $200 for passing Go");
+                infoConsole.append("\nYou earned $200 for passing Go");
             }
             p.setCurrentSpace(newSpace % 40);
         } else {
-            System.out.println("Caught cheating on rolling dice");
+            System.out.println("You were caught cheating on rolling dice");
+            infoConsole.append("\nYou were caught cheating on rolling dice");
             p.currentSpace = 30;
         }
     }
