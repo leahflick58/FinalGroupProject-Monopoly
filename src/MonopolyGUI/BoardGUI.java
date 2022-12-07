@@ -48,50 +48,50 @@ public class BoardGUI extends JPanel {
         this.setLayout(null);
         spaces = new HashMap<>();
         spaces.put(0, new GoGUI(3,3,"Go",135));
-        spaces.put(1, new StreetsGUI(78, 3,"Mediterranean Avenue",180,"Mediterranean Avenue", 2, 60, "Brown"));  //10 with house
+        spaces.put(1, new StreetsGUI(78, 3,"Broad St",180,"Broad St", 2, 60, "Brown"));  //10 with house
         spaces.put(2, new CommunitySpaceGUI(153, 3, "Community", 180));
-        spaces.put(3, new StreetsGUI(228, 3, "Baltic Avenue",180, "Baltic Avenue", 4, 60, "Brown"));   //20
-        spaces.put(4, new TaxesGUI(303, 3, "Taxes", 180));
-        spaces.put(5, new RailroadsGUI(378, 3, "Reading Railroad", 180,"Reading Railroad", 25,200));
-        spaces.put(6, new StreetsGUI(453, 3, "Oriental Avenue", 180,"Oriental Avenue", 6,100,"Light Blue"));   //30
+        spaces.put(3, new StreetsGUI(228, 3, "Collage",180, "Collage", 4, 60, "Brown"));   //20
+        spaces.put(4, new TaxesGUI(303, 3, "Parking Ticket", 180));
+        spaces.put(5, new RailroadsGUI(378, 3, "MEP", 180,"MEP", 25,200));
+        spaces.put(6, new StreetsGUI(453, 3, "Center St", 180,"Center St", 6,100,"Light Blue"));   //30
         spaces.put(7, new ChanceSpaceGUI(528, 3, "Chances", 180));
-        spaces.put(8, new StreetsGUI(603,3, "Vermont Avenue", 180, "Vermont Avenue", 6,100,"Light Blue")); //30 with house
-        spaces.put(9, new StreetsGUI(678, 3, "Connecticut Avenue", 180, "Connecticut Avenue",8,120,"Light Blue"));  //40
+        spaces.put(8, new StreetsGUI(603,3, "PEW", 180, "PEW", 6,100,"Light Blue")); //30 with house
+        spaces.put(9, new StreetsGUI(678, 3, "Lincoln Ave", 180, "Lincoln Ave",8,120,"Light Blue"));  //40
 
-        spaces.put(10, new JailGUI(753, 3, "Jail", -135));
-        spaces.put(11, new StreetsGUI(753, 33, "St Charles Place", -90, "St Charles Place", 10,140,"Pink")); //50
-        spaces.put(12, new UtilitiesGUI(753, 63, "Electric Company", -90,"Electric Company", 4,150));
+        spaces.put(10, new JailGUI(753, 3, "Provost", -135));
+        spaces.put(11, new StreetsGUI(753, 33, "SAC", -90, "SAC", 10,140,"Pink")); //50
+        spaces.put(12, new UtilitiesGUI(753, 63, "MAP Dining", -90,"MAP Dining", 4,150));
                                     //4x dice roll or 10x if both utilities owned by this player
-        spaces.put(13, new StreetsGUI(753, 93, "States Avenue", -90,"States Avenue", 10,140,"Pink")); //50
-        spaces.put(14, new StreetsGUI(753, 123, "Virginia Avenue", -90,"Virginia Avenue", 12,160,"Pink"));   //60
-        spaces.put(15, new RailroadsGUI(753, 153, "Pennsylvania Railroad", -90, "Pennsylvania Railroad", 25,200));
-        spaces.put(16, new StreetsGUI(753,183, "St James Place", -90,"St James Place", 14,180,"Orange"));    //70
-        spaces.put(17, new CommunitySpaceGUI(753, 213, "CommunityGUI", -90));
-        spaces.put(18, new StreetsGUI(753, 243, "Tennessee Avenue", -90, "Tennessee Avenue", 14,180,"Orange"));   //70
-        spaces.put(19, new StreetsGUI(753, 273, "New York Avenue", -90, "New York Avenue", 16,200,"Orange"));   //80
+        spaces.put(13, new StreetsGUI(753, 93, "E Pine St", -90,"E Pine St", 10,140,"Pink")); //50
+        spaces.put(14, new StreetsGUI(753, 123, "Thorn Field", -90,"Thorn Field", 12,160,"Pink"));   //60
+        spaces.put(15, new RailroadsGUI(753, 153, "Memorial", -90, "Memorial", 25,200));
+        spaces.put(16, new StreetsGUI(753,183, "Commuter Lounge", -90,"Commuter Lounge", 14,180,"Orange"));    //70
+        spaces.put(17, new CommunitySpaceGUI(753, 213, "Community", -90));
+        spaces.put(18, new StreetsGUI(753, 243, "TLC", -90, "TLC", 14,180,"Orange"));   //70
+        spaces.put(19, new StreetsGUI(753, 273, "Rathburn", -90, "Rathburn", 16,200,"Orange"));   //80
 
         spaces.put(20, new ParkingGUI(753, 303, "Parking", -45));
-        spaces.put(21, new StreetsGUI(603, 303, "Kentucky Avenue", 0, "Kentucky Avenue", 18,220,"Red"));  //90
+        spaces.put(21, new StreetsGUI(603, 303, "Dunkin", 0, "Dunkin", 18,220,"Red"));  //90
         spaces.put(22, new ChanceSpaceGUI(678, 303, "Chance", 0));
-        spaces.put(23, new StreetsGUI(528, 303, "Indiana Avenue", 0, "Indiana Avenue", 18,220,"Red"));   //90
-        spaces.put(24, new StreetsGUI(453, 303, "Illinois Avenue", 0, "Illinois Avenue", 20,240,"Red"));  //100
-        spaces.put(25, new RailroadsGUI(378, 303, "B & O Railroad", 0, "B & O Railroad", 25,200));
-        spaces.put(26, new StreetsGUI(303, 303, "Atlantic Avenue", 0, "Atlantic Avenue", 22,260,"Yellow"));   //110
-        spaces.put(27, new StreetsGUI(228, 303, "Ventnor Avenue", 0, "Ventnor Avenue", 22,260,"Yellow"));    //110
-        spaces.put(28, new UtilitiesGUI(153, 303, "Water Works", 0, "Water Works", 4,150));
+        spaces.put(23, new StreetsGUI(528, 303, "STEM", 0, "STEM", 18,220,"Red"));   //90
+        spaces.put(24, new StreetsGUI(453, 303, "Hoyt", 0, "Hoyt", 20,240,"Red"));  //100
+        spaces.put(25, new RailroadsGUI(378, 303, "Lincoln", 0, "Lincoln", 25,200));
+        spaces.put(26, new StreetsGUI(303, 303, "Beans", 0, "Beans", 22,260,"Yellow"));   //110
+        spaces.put(27, new StreetsGUI(228, 303, "Library", 0, "Library", 22,260,"Yellow"));    //110
+        spaces.put(28, new UtilitiesGUI(153, 303, "Hicks Dining", 0, "Hicks Dining", 4,150));
                                         //rent is 4x dice 828, 10x if both utilities
-        spaces.put(29, new StreetsGUI(78, 303, "Marvin Gardens", 0, "Marvin Gardens", 24,280,"Yellow")); //120
+        spaces.put(29, new StreetsGUI(78, 303, "E Main St", 0, "E Main St", 24,280,"Yellow")); //120
 
-        spaces.put(30, new GoToJailGUI(3, 303, "Go To Jail", 45));
-        spaces.put(31, new StreetsGUI(3, 273, "Pacific Avenue", 90, "Pacific Avenue", 26,300,"Green")); //130
-        spaces.put(32, new StreetsGUI(3, 243, "North Carolina Avenue", 90, "North Carolina Avenue", 26,300,"Green"));  //130
+        spaces.put(30, new GoToJailGUI(3, 303, "Go To Provost", 45));
+        spaces.put(31, new StreetsGUI(3, 273, "Guthrie Theater", 90, "Guthrie Theater", 26,300,"Green")); //130
+        spaces.put(32, new StreetsGUI(3, 243, "Carnegie", 90, "Carnegie", 26,300,"Green"));  //130
         spaces.put(33, new CommunitySpaceGUI(3, 213, "Community", 90));
-        spaces.put(34, new StreetsGUI(3, 183, "Pennsylvania Avenue", 90, "Pennsylvania Avenue", 28,320,"Green"));    //150
-        spaces.put(35, new RailroadsGUI(3, 153, "Short Line Railroad", 90, "Short Line Railroad", 25,200));
+        spaces.put(34, new StreetsGUI(3, 183, "Chapel", 90, "Chapel", 28,320,"Green"));    //150
+        spaces.put(35, new RailroadsGUI(3, 153, "Memorial", 90, "Memorial", 25,200));
         spaces.put(36, new ChanceSpaceGUI(3, 123, "Chance", 90));
-        spaces.put(37, new StreetsGUI(3, 93, "Park Place", 90, "Park Place", 35,350,"Dark Blue"));    //175
-        spaces.put(38, new TaxesGUI(3, 63, "Taxes", 90));
-        spaces.put(39, new StreetsGUI(3, 33, "Boardwalk", 90, "Boardwalk", 50,400, "Dark Blue"));   //200
+        spaces.put(37, new StreetsGUI(3, 93, "HAL", 90, "HAL", 35,350,"Dark Blue"));    //175
+        spaces.put(38, new TaxesGUI(3, 63, "Parking Ticket", 90));
+        spaces.put(39, new StreetsGUI(3, 33, "McNulty's House", 90, "McNulty's House", 50,400, "Dark Blue"));   //200
         spaces.forEach((key, value) -> {
                this.add(value);
             });
@@ -99,59 +99,59 @@ public class BoardGUI extends JPanel {
         //Cards information taken from https://www.monopolyland.com/list-monopoly-chance-community-chest-cards/
         //Deck of CommunityGUI Chest cards
         communityChests = new LinkedList<>();
-        communityChests.add(new CommunityGUI("goToJail", 1, "Go to Jail. Go directly to Jail, do not" +
+        communityChests.add(new CommunityGUI("goToJail", 1, "Go to the Provost. Go directly to the Provost, do not" +
                 " pass Go, do not collect $200"));
         communityChests.add(new CommunityGUI("advance", 0, "Advance to Go (Collect $200)"));
-        communityChests.add(new CommunityGUI("collectBank", 200, "Bank error in your favor. " +
+        communityChests.add(new CommunityGUI("collectBank", 200, "Financial Aid error in your favor. " +
                 "Collect $200"));
-        communityChests.add(new CommunityGUI("payBank", 50, "Doctor's fee. Pay $50"));
-        communityChests.add(new CommunityGUI("collectBank", 50, "From sale of stock you get $50."));
-        communityChests.add(new CommunityGUI("getOutOfJail", 1, "Get Out of Jail Free"));
+        communityChests.add(new CommunityGUI("payBank", 50, "Class fee. Pay $50"));
+        communityChests.add(new CommunityGUI("collectBank", 50, "From Career Services raffle you get $50."));
+        communityChests.add(new CommunityGUI("getOutOfJail", 1, "Get Out of Provost OOffice Free"));
 
-        communityChests.add(new CommunityGUI("collectBank", 100, "Holiday fund matures. Receive" +
+        communityChests.add(new CommunityGUI("collectBank", 100, "Greek Life hosts an event. Receive" +
                 " $100"));
-        communityChests.add(new CommunityGUI("collectBank", 20, "Income tax refund. Collect $20"));
+        communityChests.add(new CommunityGUI("collectBank", 20, "Book store is buying back textbooks. Collect $20"));
         communityChests.add(new CommunityGUI("collectPlayers", 10,"It is your birthday. Collect $10" +
                 " from every player."));
-        communityChests.add(new CommunityGUI("collectBank", 100, "Life insurance matures. Collect " +
+        communityChests.add(new CommunityGUI("collectBank", 100, "School overcharged you for your textbooks. Collect " +
                 "$100"));
-        communityChests.add(new CommunityGUI("payBank", 100, "Pay hospital fees of $100"));
+        communityChests.add(new CommunityGUI("payBank", 100, "Pay textbook fees of $100"));
         communityChests.add(new CommunityGUI("payBank",50, "Pay school fees of $50"));
-        communityChests.add(new CommunityGUI("collectBank",25, "Receive $25 consultancy " +
-                "fee"));
-        communityChests.add(new CommunityGUI("homeImprovement", 0, "You are assessed for street " +
+        communityChests.add(new CommunityGUI("collectBank",25, "Receive $25 school job " +
+                "compensation"));
+        communityChests.add(new CommunityGUI("homeImprovement", 0, "You are assessed for building " +
                 "repair: $40 per house, $115 per hotel"));
-        communityChests.add(new CommunityGUI("collectBank",10, "You won second prize in a beauty " +
+        communityChests.add(new CommunityGUI("collectBank",10, "You won second prize in a writing " +
                 "contest. Collect $10"));
         communityChests.add(new CommunityGUI("collectBank", 100,"You inherit $100"));
 
 
         //Deck of ChanceGUI cards
         chance = new LinkedList<>();
-        chance.add(new ChanceGUI("advance", 39, "Advance to Boardwalk"));
+        chance.add(new ChanceGUI("advance", 39, "Advance to McNulty's House"));
         chance.add(new ChanceGUI("advance", 0, "Advance to " + spaces.get(0).spaceName() + " (Collect $200)"));
         chance.add(new ChanceGUI("advance", 24, "Advance to " + spaces.get(24).spaceName() + ". If you " +
                 "pass Go, collect $200"));
         chance.add(new ChanceGUI("advance", 11, "Advance to " + spaces.get(11).spaceName() + ". If you " +
                 "pass Go, collect $200"));
-        chance.add(new ChanceGUI("advNearestRR", 0, "Advance to the nearest Railroad. If you " +
+        chance.add(new ChanceGUI("advNearestRR", 0, "Advance to the nearest Dorm. If you " +
                 "pass Go, collect $200"));
-        chance.add(new ChanceGUI("advNearestRR", 0, "Advance to the nearest Railroad. If you " +
+        chance.add(new ChanceGUI("advNearestRR", 0, "Advance to the nearest Dorm. If you " +
                 "pass Go, collect $200"));
-        chance.add(new ChanceGUI("advNearestUtil", 0, "Advance to the nearest Utility. If unowned, " +
+        chance.add(new ChanceGUI("advNearestUtil", 0, "Advance to the nearest Dining Hall. If unowned, " +
                 "you may buy it from the Bank. If owned, pay owner the rent to which they are entitled. "));
         chance.add(new ChanceGUI("collectBank",50,"Bank pays you dividend of $50"));
         chance.add(new ChanceGUI("goBack", 3, "Go back 3 spaces"));
-        chance.add(new ChanceGUI("goToJail", 1, "Go to JailGUI. Go directly to Jail, " +
+        chance.add(new ChanceGUI("goToJail", 1, "Go to the Provost. Go directly to the Provost, " +
                 "do not pass Go, do not collect $200."));
         chance.add(new ChanceGUI("homeImprovement", 0, "Make general repairs on all your property." +
                 " For each house pay $40. For each hotel pay $115."));
         chance.add(new ChanceGUI("payBank",15, "Speeding fine $15"));
-        chance.add(new ChanceGUI("advance", 0, "Take a trip to Reading Railroad. If you pass Go, " +
+        chance.add(new ChanceGUI("advance", 0, "Take a trip to MEP. If you pass Go, " +
                 "collect $200."));
-        chance.add(new ChanceGUI("payPlayers", 50, "You have been selected Chairman of the Board." +
+        chance.add(new ChanceGUI("payPlayers", 50, "You have been selected President of Student Government." +
                 " Pay each player $50."));
-        chance.add(new ChanceGUI("collectBank", 150, "Your building loan matures. Collect $150"));
+        chance.add(new ChanceGUI("collectBank", 150, "You got on the honor roll! Collect $150"));
 
         //Shuffle card decks
         Collections.shuffle(communityChests);

@@ -50,42 +50,42 @@ public abstract class SpacesGUI extends JPanel{
 
     public void paintComponent (Graphics g) {
         super.paintComponent(g);
-        if(this.name.equals("Mediterranean Avenue") || this.name.equals("Baltic Avenue")){
+        if(this.name.equals("Broad St") || this.name.equals("Collage")){
             g.drawRect(0,this.getHeight()-10,this.getWidth(),10);
             g.setColor(new Color(61, 21, 21));
             g.fillRect(0,this.getHeight()-10,this.getWidth(),10);
         }
-        if(this.name.equals("Oriental Avenue") || this.name.equals("Vermont Avenue") || this.name.equals("Connecticut Avenue")){
+        if(this.name.equals("Center St") || this.name.equals("PEW") || this.name.equals("Lincoln Ave")){
             g.drawRect(0,this.getHeight()-10,this.getWidth(),10);
             g.setColor(new Color(133, 238, 238, 255));
             g.fillRect(0,this.getHeight()-10,this.getWidth(),10);
         }
-        if(this.name.equals("St Charles Place") || this.name.equals("States Avenue") || this.name.equals("Virginia Avenue")){
+        if(this.name.equals("SAC") || this.name.equals("E Pine St") || this.name.equals("Thorn Field")){
             g.drawRect(0,0,10,this.getHeight());
             g.setColor(Color.PINK);
             g.fillRect(0,0,10,this.getHeight());
         }
-        if(this.name.equals("St James Place") || this.name.equals("Tennessee Avenue") || this.name.equals("New York Avenue")){
+        if(this.name.equals("Commuter Lounge") || this.name.equals("Rathburn") || this.name.equals("TLC")){
             g.drawRect(0,0,10,this.getHeight());
             g.setColor(Color.ORANGE);
             g.fillRect(0,0,10,this.getHeight());
         }
-        if(this.name.equals("Kentucky Avenue") || this.name.equals("Indiana Avenue") || this.name.equals("Illinois Avenue")){
+        if(this.name.equals("Dunkin") || this.name.equals("STEM") || this.name.equals("Hoyt")){
             g.drawRect(0,0,this.getWidth(),10);
             g.setColor(Color.RED);
             g.fillRect(0,0,this.getWidth(),10);
         }
-        if(this.name.equals("Atlantic Avenue") || this.name.equals("Ventnor Avenue") || this.name.equals("Marvin Gardens")){
+        if(this.name.equals("Library") || this.name.equals("Beans") || this.name.equals("E Main St")){
             g.drawRect(0,0,this.getWidth(),10);
             g.setColor(Color.YELLOW);
             g.fillRect(0,0,this.getWidth(),10);
         }
-        if(this.name.equals("Pacific Avenue") || this.name.equals("North Carolina Avenue") || this.name.equals("Pennsylvania Avenue")){
+        if(this.name.equals("Guthrie Theater") || this.name.equals("Carnegie") || this.name.equals("Chapel")){
             g.drawRect(this.getWidth()-10,0,10,this.getHeight());
             g.setColor(Color.GREEN);
             g.fillRect(this.getWidth()-10,0,10,this.getHeight());
         }
-        if(this.name.equals("Park Place") || this.name.equals("Boardwalk")){
+        if(this.name.equals("HAL") || this.name.equals("McNulty's House")){
             g.drawRect(this.getWidth()-10,0,10,this.getHeight());
             g.setColor(new Color(6, 41, 98, 239));
             g.fillRect(this.getWidth()-10,0,10,this.getHeight());
